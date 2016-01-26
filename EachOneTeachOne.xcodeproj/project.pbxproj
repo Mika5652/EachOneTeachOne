@@ -15,6 +15,12 @@
 		F62970541C4E7159007174C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62970521C4E7159007174C0 /* LaunchScreen.storyboard */; };
 		F629705F1C4E715A007174C0 /* EachOneTeachOneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F629705E1C4E715A007174C0 /* EachOneTeachOneTests.m */; };
 		F629706A1C4E715A007174C0 /* EachOneTeachOneUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970691C4E715A007174C0 /* EachOneTeachOneUITests.m */; };
+		F629707E1C4E7A76007174C0 /* DBMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = F629707D1C4E7A76007174C0 /* DBMainView.m */; };
+		F62970811C4E7A9D007174C0 /* DBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970801C4E7A9D007174C0 /* DBMainViewController.m */; };
+		F62970861C4E8308007174C0 /* DBCreateFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970851C4E8308007174C0 /* DBCreateFeedViewController.m */; };
+		F629708A1C4E8330007174C0 /* DBCreateFeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970891C4E8330007174C0 /* DBCreateFeedView.m */; };
+		F629708F1C512D13007174C0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F629708E1C512D13007174C0 /* MediaPlayer.framework */; };
+		F62970911C512D2A007174C0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F62970901C512D2A007174C0 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +57,17 @@
 		F62970651C4E715A007174C0 /* EachOneTeachOneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EachOneTeachOneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F62970691C4E715A007174C0 /* EachOneTeachOneUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EachOneTeachOneUITests.m; sourceTree = "<group>"; };
 		F629706B1C4E715A007174C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F629707C1C4E7A76007174C0 /* DBMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBMainView.h; sourceTree = "<group>"; };
+		F629707D1C4E7A76007174C0 /* DBMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBMainView.m; sourceTree = "<group>"; };
+		F629707F1C4E7A9D007174C0 /* DBMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBMainViewController.h; sourceTree = "<group>"; };
+		F62970801C4E7A9D007174C0 /* DBMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBMainViewController.m; sourceTree = "<group>"; };
+		F62970841C4E8308007174C0 /* DBCreateFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateFeedViewController.h; sourceTree = "<group>"; };
+		F62970851C4E8308007174C0 /* DBCreateFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateFeedViewController.m; sourceTree = "<group>"; };
+		F62970881C4E8330007174C0 /* DBCreateFeedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateFeedView.h; sourceTree = "<group>"; };
+		F62970891C4E8330007174C0 /* DBCreateFeedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateFeedView.m; sourceTree = "<group>"; };
+		F629708D1C4E8DE1007174C0 /* Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
+		F629708E1C512D13007174C0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		F62970901C512D2A007174C0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +75,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F62970911C512D2A007174C0 /* MobileCoreServices.framework in Frameworks */,
+				F629708F1C512D13007174C0 /* MediaPlayer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -81,6 +100,7 @@
 		F62970381C4E7159007174C0 = {
 			isa = PBXGroup;
 			children = (
+				F62970921C512D2E007174C0 /* Framework */,
 				F62970431C4E7159007174C0 /* EachOneTeachOne */,
 				F629705D1C4E715A007174C0 /* EachOneTeachOneTests */,
 				F62970681C4E715A007174C0 /* EachOneTeachOneUITests */,
@@ -101,6 +121,8 @@
 		F62970431C4E7159007174C0 /* EachOneTeachOne */ = {
 			isa = PBXGroup;
 			children = (
+				F629708B1C4E8DD0007174C0 /* General */,
+				F62970771C4E7A16007174C0 /* View Controller */,
 				F62970471C4E7159007174C0 /* AppDelegate.h */,
 				F62970481C4E7159007174C0 /* AppDelegate.m */,
 				F629704A1C4E7159007174C0 /* ViewController.h */,
@@ -138,6 +160,78 @@
 				F629706B1C4E715A007174C0 /* Info.plist */,
 			);
 			path = EachOneTeachOneUITests;
+			sourceTree = "<group>";
+		};
+		F62970771C4E7A16007174C0 /* View Controller */ = {
+			isa = PBXGroup;
+			children = (
+				F62970831C4E82E1007174C0 /* CreateFeed */,
+				F62970821C4E82B2007174C0 /* MainView */,
+			);
+			name = "View Controller";
+			sourceTree = "<group>";
+		};
+		F629707B1C4E7A5B007174C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F629707C1C4E7A76007174C0 /* DBMainView.h */,
+				F629707D1C4E7A76007174C0 /* DBMainView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		F62970821C4E82B2007174C0 /* MainView */ = {
+			isa = PBXGroup;
+			children = (
+				F629707B1C4E7A5B007174C0 /* View */,
+				F629707F1C4E7A9D007174C0 /* DBMainViewController.h */,
+				F62970801C4E7A9D007174C0 /* DBMainViewController.m */,
+			);
+			name = MainView;
+			sourceTree = "<group>";
+		};
+		F62970831C4E82E1007174C0 /* CreateFeed */ = {
+			isa = PBXGroup;
+			children = (
+				F62970871C4E830D007174C0 /* View */,
+				F62970841C4E8308007174C0 /* DBCreateFeedViewController.h */,
+				F62970851C4E8308007174C0 /* DBCreateFeedViewController.m */,
+			);
+			name = CreateFeed;
+			sourceTree = "<group>";
+		};
+		F62970871C4E830D007174C0 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F62970881C4E8330007174C0 /* DBCreateFeedView.h */,
+				F62970891C4E8330007174C0 /* DBCreateFeedView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		F629708B1C4E8DD0007174C0 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				F629708C1C4E8DD6007174C0 /* Core */,
+			);
+			name = General;
+			sourceTree = "<group>";
+		};
+		F629708C1C4E8DD6007174C0 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				F629708D1C4E8DE1007174C0 /* Core.h */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
+		F62970921C512D2E007174C0 /* Framework */ = {
+			isa = PBXGroup;
+			children = (
+				F62970901C512D2A007174C0 /* MobileCoreServices.framework */,
+				F629708E1C512D13007174C0 /* MediaPlayer.framework */,
+			);
+			name = Framework;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -202,6 +296,9 @@
 		F62970391C4E7159007174C0 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				KnownAssetTags = (
+					New,
+				);
 				LastUpgradeCheck = 0720;
 				ORGANIZATIONNAME = "Michael Pohl";
 				TargetAttributes = {
@@ -273,8 +370,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F629707E1C4E7A76007174C0 /* DBMainView.m in Sources */,
 				F629704C1C4E7159007174C0 /* ViewController.m in Sources */,
+				F629708A1C4E8330007174C0 /* DBCreateFeedView.m in Sources */,
+				F62970861C4E8308007174C0 /* DBCreateFeedViewController.m in Sources */,
 				F62970491C4E7159007174C0 /* AppDelegate.m in Sources */,
+				F62970811C4E7A9D007174C0 /* DBMainViewController.m in Sources */,
 				F62970461C4E7159007174C0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -501,6 +602,7 @@
 				F62970701C4E715A007174C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F62970711C4E715A007174C0 /* Build configuration list for PBXNativeTarget "EachOneTeachOneTests" */ = {
 			isa = XCConfigurationList;
@@ -509,6 +611,7 @@
 				F62970731C4E715A007174C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		F62970741C4E715A007174C0 /* Build configuration list for PBXNativeTarget "EachOneTeachOneUITests" */ = {
 			isa = XCConfigurationList;
@@ -517,6 +620,7 @@
 				F62970761C4E715A007174C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
