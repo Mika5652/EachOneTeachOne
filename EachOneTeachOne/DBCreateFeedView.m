@@ -77,7 +77,8 @@
         TMAL_ADDS_VISUAL(@"V:[_titlePostLabel]-10-[_titleTextField]");
 // Capture video button image
         TMAL_ADDS_CENTERX(_captureVideoButton, self.captureVideoButton.superview);
-        TMAL_ADDS_VISUAL(@"V:[_titleTextField]-50-[_captureVideoButton]");
+        TMAL_ADDS_VISUAL(@"H:[_captureVideoButton(==150)]");
+        TMAL_ADDS_VISUAL(@"V:[_titleTextField]-50-[_captureVideoButton(==150)]");
 // Description label
         TMAL_ADDS_CENTERX(_descriptionLabel, self.descriptionLabel.superview);
         TMAL_ADDS_VISUAL(@"V:[_captureVideoButton]-30-[_descriptionLabel]");

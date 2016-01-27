@@ -61,7 +61,20 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     if ([picker isEqual:self.imagePickerController]) {
-        NSLog(@"Did finish picking");
+        
+        UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+        [self.createFeedView.captureVideoButton setImage:chosenImage forState:UIControlStateNormal];
+        self.createFeedView.captureVideoButton.clipsToBounds = YES;
+        
+        // Create path.
+        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+        NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:TAKE_VIDEO_ICON];
+        
+        // Save image.
+        [UIImageJPEGRepresentation(chosenImage, 1) writeToFile:filePath atomically:YES];
+        
+        [picker dismissViewControllerAnimated:YES completion:nil];
+        
         [self.imagePickerController dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -69,8 +82,10 @@
 #pragma mark - UserAction
 
 - (void)postButtonDidPress {
-    NSString *titleString = self.createFeedView.titleTextField.text;
-    NSString *descriptionString = self.createFeedView.descriptionTextView.text;
+    PFObject *question = [PFObject objectWithClassName:@"Question"];
+    question[@"title"] = self.createFeedView.titleTextField.text;
+    question[@"questionDescription"] = self.createFeedView.descriptionTextView.text;
+    [question save];
 }
 
 #pragma mark - Properties

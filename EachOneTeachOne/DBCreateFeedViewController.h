@@ -8,8 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+// Frameworks
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
+#import <Parse/Parse.h>
+
+// Macros
+#define TAKE_VIDEO_ICON                 @"camera_icon"
 
 @class DBCreateFeedView;
 
