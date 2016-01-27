@@ -13,9 +13,12 @@
 
 @class DBCreateFeedView;
 
-@interface DBCreateFeedViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface DBCreateFeedViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate ,UITextViewDelegate>
 
 @property (readonly) DBCreateFeedView* createFeedView;
+
+@property NSString *titleTextString;
+@property NSString *descriptionTextString;
 
 @property UIImagePickerController *picker;
 
