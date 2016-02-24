@@ -14,8 +14,14 @@
 @dynamic questionDescription;
 @dynamic videosAndPhotos;
 
-+ (NSString *)parseClassName {
++ (NSString *)parseClassName
+{
     return @"Question";
+}
+
++ (void) load
+{
+    [self registerSubclass];
 }
 
 @end

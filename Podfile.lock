@@ -1,4 +1,37 @@
 PODS:
+  - AWSAutoScaling (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSCloudWatch (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSCognito (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSCore (2.3.4)
+  - AWSDynamoDB (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSEC2 (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSElasticLoadBalancing (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSIoT (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSKinesis (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSLambda (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSMachineLearning (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSMobileAnalytics (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSS3 (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSSES (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSSimpleDB (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSSNS (2.3.4):
+    - AWSCore (= 2.3.4)
+  - AWSSQS (2.3.4):
+    - AWSCore (= 2.3.4)
   - Bolts (1.6.0):
     - Bolts/AppLinks (= 1.6.0)
     - Bolts/Tasks (= 1.6.0)
@@ -11,10 +44,44 @@ PODS:
     - Bolts/Tasks (~> 1.5)
 
 DEPENDENCIES:
+  - AWSAutoScaling
+  - AWSCloudWatch
+  - AWSCognito
+  - AWSCore
+  - AWSDynamoDB
+  - AWSEC2
+  - AWSElasticLoadBalancing
+  - AWSIoT
+  - AWSKinesis
+  - AWSLambda
+  - AWSMachineLearning
+  - AWSMobileAnalytics
+  - AWSS3
+  - AWSSES
+  - AWSSimpleDB
+  - AWSSNS
+  - AWSSQS
   - FBSDKCoreKit (~> 4.9.1)
   - Parse (~> 1.12.0)
 
 SPEC CHECKSUMS:
+  AWSAutoScaling: 58757e3fae42c8ba72ca742863c7bf7db879352d
+  AWSCloudWatch: 3990aa0432b66662b10436676c3a514c4dc36ce7
+  AWSCognito: 8ea24f9261967a108131106585c832ab48f12540
+  AWSCore: 926eb781459b58d4319b0fa4f5f3bffb6b28b112
+  AWSDynamoDB: 9a823a84100dd2fb440b3d2e738489641822e4e1
+  AWSEC2: 8ec96ab79521215d281f65ad92a5484d50b9c870
+  AWSElasticLoadBalancing: 407db0d5c2965302ad6d099e158d22ecdd1f9827
+  AWSIoT: 400c629ee7ffe39f5c3ee3e8ee898838a02e840b
+  AWSKinesis: d9bc7858c01a4ba7f201abf2d0129c0beaa921ea
+  AWSLambda: 6932d78bb67eb9b659ac30bb0631bad75d774430
+  AWSMachineLearning: 1ccb5fd051acae788bd861d31a7714c40f9a7f7f
+  AWSMobileAnalytics: f4fc6b1e36f6c2fe70ebedff989835433e4ca142
+  AWSS3: f49fde807d6cfc373f1bdb8150c9770d470ca2fd
+  AWSSES: 3c976fc58abfc92bc301b0af2d8f1164bf8ecf62
+  AWSSimpleDB: 4fe05ca1f857d7b7e9c03504f1140ff7c713ce5c
+  AWSSNS: f00c29631df2c3a37653f9f1d3d0f736daf95133
+  AWSSQS: 96d02b4c65dc518af539dff0e751e595d48ee904
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   FBSDKCoreKit: aee20b6d9855f15b618d4fddd1a5ad45f5a4a59d
   Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b

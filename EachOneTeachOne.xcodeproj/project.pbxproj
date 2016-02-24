@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09385D961C75F16F00F0FB0D /* myText.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 09385D951C75F16F00F0FB0D /* myText.rtf */; };
+		09A7C3F51C7D9336009DABE5 /* DBS3Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A7C3F41C7D9336009DABE5 /* DBS3Manager.m */; };
 		64ADAFFCFE98F21A4D5D51B8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D443A8CB6401AC603A4C18 /* libPods.a */; };
 		F60D1C6B1C5900D0008A460F /* libParse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F60D1C6A1C5900D0008A460F /* libParse.a */; };
 		F60D1C6F1C590FD9008A460F /* DBQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = F60D1C6E1C590FD9008A460F /* DBQuestion.m */; };
@@ -45,6 +47,9 @@
 
 /* Begin PBXFileReference section */
 		03EE3D9235AF85CB51148BA1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		09385D951C75F16F00F0FB0D /* myText.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = myText.rtf; sourceTree = "<group>"; };
+		09A7C3F31C7B06A6009DABE5 /* DBS3Manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBS3Manager.h; sourceTree = "<group>"; };
+		09A7C3F41C7D9336009DABE5 /* DBS3Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBS3Manager.m; sourceTree = "<group>"; };
 		50D443A8CB6401AC603A4C18 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		599559C5D9391F9736A02E83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		F60D1C6A1C5900D0008A460F /* libParse.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParse.a; path = "Pods/../build/Debug-iphoneos/libParse.a"; sourceTree = "<group>"; };
@@ -108,6 +113,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		09A7C3F11C7B0632009DABE5 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				09A7C3F31C7B06A6009DABE5 /* DBS3Manager.h */,
+				09A7C3F41C7D9336009DABE5 /* DBS3Manager.m */,
+			);
+			name = Manager;
+			sourceTree = "<group>";
+		};
 		51CCCA5B6D01CE374C1F9DE6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -179,6 +193,7 @@
 		F62970441C4E7159007174C0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				09385D951C75F16F00F0FB0D /* myText.rtf */,
 				F62970451C4E7159007174C0 /* main.m */,
 			);
 			name = "Supporting Files";
@@ -252,6 +267,7 @@
 		F629708B1C4E8DD0007174C0 /* General */ = {
 			isa = PBXGroup;
 			children = (
+				09A7C3F11C7B0632009DABE5 /* Manager */,
 				F60D1C6C1C590FBB008A460F /* Entities */,
 				F629708C1C4E8DD6007174C0 /* Core */,
 			);
@@ -390,6 +406,7 @@
 				F62970541C4E7159007174C0 /* LaunchScreen.storyboard in Resources */,
 				F62970511C4E7159007174C0 /* Assets.xcassets in Resources */,
 				F629704F1C4E7159007174C0 /* Main.storyboard in Resources */,
+				09385D961C75F16F00F0FB0D /* myText.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -463,6 +480,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F629707E1C4E7A76007174C0 /* DBMainView.m in Sources */,
+				09A7C3F51C7D9336009DABE5 /* DBS3Manager.m in Sources */,
 				F629704C1C4E7159007174C0 /* ViewController.m in Sources */,
 				F629708A1C4E8330007174C0 /* DBCreateFeedView.m in Sources */,
 				F62970861C4E8308007174C0 /* DBCreateFeedViewController.m in Sources */,

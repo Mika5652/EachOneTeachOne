@@ -20,4 +20,5 @@
 @property UIButton *captureVideoButton;
 @property UIButton *postButton;
 
+
 @end

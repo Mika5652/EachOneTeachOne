@@ -12,6 +12,11 @@
 // Views
 #import "DBCreateFeedView.h"
 
+// Entities
+#import "DBQuestion.h"
+
+#import "DBS3Manager.h" // DELELTE
+
 @interface DBCreateFeedViewController ()
 
 @property UIImagePickerController *imagePickerController;
@@ -23,6 +28,7 @@
 - (void)loadView {
     self.view = [[DBCreateFeedView alloc] init];
     self.title = NSLocalizedString(@"Create a post", @"");
+
 }
 
 - (void)viewDidLoad {
@@ -31,6 +37,7 @@
     self.createFeedView.descriptionTextView.delegate = self;
     [self.createFeedView.captureVideoButton addTarget:self action:@selector(captureVideo:) forControlEvents:UIControlEventTouchUpInside];
     [self.createFeedView.postButton addTarget:self action:@selector(postButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
+
 }
 
 #pragma mark - UIImagePickerControllerSourceType
@@ -61,31 +68,30 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     if ([picker isEqual:self.imagePickerController]) {
-        
         UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
         [self.createFeedView.captureVideoButton setImage:chosenImage forState:UIControlStateNormal];
         self.createFeedView.captureVideoButton.clipsToBounds = YES;
-        
-        // Create path.
-        NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
-        NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:TAKE_VIDEO_ICON];
-        
-        // Save image.
-        [UIImageJPEGRepresentation(chosenImage, 1) writeToFile:filePath atomically:YES];
-        
+        [DBS3Manager uploadFileWithKey:@"testFromAppp.jpg" data:UIImageJPEGRepresentation(chosenImage, 1) completionBlock:^(BOOL success, NSError *error) {
+            
+        }];
         [picker dismissViewControllerAnimated:YES completion:nil];
-        
-        [self.imagePickerController dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
 #pragma mark - UserAction
 
 - (void)postButtonDidPress {
-    PFObject *question = [PFObject objectWithClassName:@"Question"];
-    question[@"title"] = self.createFeedView.titleTextField.text;
-    question[@"questionDescription"] = self.createFeedView.descriptionTextView.text;
-    [question save];
+    DBQuestion *question = [DBQuestion object];
+    NSArray *testArray = @[@"Nejake", @"Data"];
+//    NSString *testName = question.parseClassName;
+//    NSLog(@"question name: %@\ntitle name: %@", testName, self.createFeedView.titleTextField.text);
+    question.title = self.createFeedView.titleTextField.text;
+    question.questionDescription = self.createFeedView.descriptionTextView.text;
+    
+//    zatim jen testovaci pole - zmenit pote co se zprovozni S3
+    question.videosAndPhotos = testArray;
+    
+    [question saveInBackground];
 }
 
 #pragma mark - Properties
@@ -95,3 +101,38 @@
 }
 
 @end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

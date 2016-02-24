@@ -6,6 +6,7 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
+
 // View
 #import "DBCreateFeedView.h"
 // Core
@@ -25,8 +26,9 @@
     if (self) {
         
 // Background color
-            self.backgroundColor = [UIColor lightGrayColor];
-            
+        self.backgroundColor = [UIColor lightGrayColor];
+
+        
 // Title label
         _titlePostLabel = [[UILabel alloc] init];
         self.titlePostLabel.text = NSLocalizedString(@"Title", @"");
