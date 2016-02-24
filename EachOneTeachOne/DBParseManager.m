@@ -7,7 +7,21 @@
 //
 
 #import "DBParseManager.h"
+#import "DBQuestion.h"
 
 @implementation DBParseManager
+
++ (void)uploadQuestionWithTitle:(NSString *)title questionDescription:(NSString *)questionDescription videosAndPhotosNames:(NSArray *)videosAndPhotosNames {
+
+    DBQuestion *question = [DBQuestion object];
+    
+    question.title = title;
+    question.questionDescription = questionDescription;
+    question.videosAndPhotosNames = videosAndPhotosNames;
+    
+    [question saveInBackground];
+
+}
+
 
 @end

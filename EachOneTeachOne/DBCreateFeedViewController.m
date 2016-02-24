@@ -12,10 +12,7 @@
 // Views
 #import "DBCreateFeedView.h"
 
-// Entities
-#import "DBQuestion.h"
-
-#import "DBS3Manager.h" // DELELTE
+#import "DBParseManager.h"  // DELETE
 
 @interface DBCreateFeedViewController ()
 
@@ -71,9 +68,9 @@
         UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
         [self.createFeedView.captureVideoButton setImage:chosenImage forState:UIControlStateNormal];
         self.createFeedView.captureVideoButton.clipsToBounds = YES;
-        [DBS3Manager uploadFileWithKey:@"testFromAppp.jpg" data:UIImageJPEGRepresentation(chosenImage, 1) completionBlock:^(BOOL success, NSError *error) {
-            
-        }];
+//        [DBS3Manager uploadFileWithKey:@"testFromAppp.jpg" data:UIImageJPEGRepresentation(chosenImage, 1) completionBlock:^(BOOL success, NSError *error) {
+//            
+//        }];
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -81,17 +78,16 @@
 #pragma mark - UserAction
 
 - (void)postButtonDidPress {
-    DBQuestion *question = [DBQuestion object];
-    NSArray *testArray = @[@"Nejake", @"Data"];
-//    NSString *testName = question.parseClassName;
-//    NSLog(@"question name: %@\ntitle name: %@", testName, self.createFeedView.titleTextField.text);
-    question.title = self.createFeedView.titleTextField.text;
-    question.questionDescription = self.createFeedView.descriptionTextView.text;
-    
-//    zatim jen testovaci pole - zmenit pote co se zprovozni S3
-    question.videosAndPhotos = testArray;
-    
-    [question saveInBackground];
+
+    // TEST DBParseManager - DELETE
+//    NSString *myTitle = self.createFeedView.titleTextField.text;
+//    NSString *myDescription = self.createFeedView.descriptionTextView.text;
+//    
+//    NSArray *myArray = @[@"Nejake", @"Data"];
+//    
+//    
+//    [DBParseManager uploadQuestionWithTitle:myTitle questionDescription:myDescription videosAndPhotosNames:myArray];
+
 }
 
 #pragma mark - Properties

@@ -12,7 +12,7 @@
 
 @property NSString *title;
 @property NSString *questionDescription;
-@property NSArray *videosAndPhotos;
+@property NSArray *videosAndPhotosNames;
 
 
 @end

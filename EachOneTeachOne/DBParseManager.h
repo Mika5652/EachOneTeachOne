@@ -10,4 +10,6 @@
 
 @interface DBParseManager : NSObject
 
++ (void)uploadQuestionWithTitle:(NSString *)title questionDescription:(NSString *)questionDescription videosAndPhotosNames:(NSArray *)videosAndPhotosNames;
+
 @end

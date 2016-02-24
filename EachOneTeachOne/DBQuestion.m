@@ -12,7 +12,7 @@
 
 @dynamic title;
 @dynamic questionDescription;
-@dynamic videosAndPhotos;
+@dynamic videosAndPhotosNames;
 
 + (NSString *)parseClassName
 {

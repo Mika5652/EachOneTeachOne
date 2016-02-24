@@ -13,7 +13,6 @@ typedef void (^DBS3ManagerUploadCompletionBlock)(BOOL success, NSError *error);
 
 @interface DBS3Manager : NSObject
 
-+ (DBS3Manager *)sharedManager;
 + (void)uploadFileWithKey:(NSString *)keyName data:(NSData *)data completionBlock:(DBS3ManagerUploadCompletionBlock)completionBlock;
 
 @end
