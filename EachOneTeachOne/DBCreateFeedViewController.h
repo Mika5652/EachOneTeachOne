@@ -21,15 +21,8 @@
 @interface DBCreateFeedViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate ,UITextViewDelegate>
 
 @property (readonly) DBCreateFeedView* createFeedView;
-
 @property NSString *titleTextString;
 @property NSString *descriptionTextString;
-
 @property UIImagePickerController *picker;
-
-- (IBAction)captureVideo:(id)sender;
-
-
-
 
 @end
