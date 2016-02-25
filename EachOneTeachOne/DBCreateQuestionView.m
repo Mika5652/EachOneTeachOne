@@ -8,7 +8,7 @@
 
 
 // View
-#import "DBCreateFeedView.h"
+#import "DBCreateQuestionView.h"
 // Core
 #import "Core.h"
 // Macros
@@ -19,7 +19,7 @@
 
 #define TEXT_FIELD_COLOR                [UIColor whiteColor]
 
-@implementation DBCreateFeedView
+@implementation DBCreateQuestionView
 
 - (instancetype)init {
     self = [super init];

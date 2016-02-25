@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBCreateFeedView : UIView
+@interface DBCreateQuestionView : UIView
 
 @property UITextField *titleTextField;
 

@@ -17,7 +17,7 @@
 
 @class DBCreateFeedView;
 
-@interface DBCreateFeedViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate ,UITextViewDelegate>
+@interface DBCreateQuestionViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate ,UITextViewDelegate>
 
 @property (readonly) DBCreateFeedView* createFeedView;
 @property NSString *titleTextString;

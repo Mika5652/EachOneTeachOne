@@ -7,7 +7,7 @@
 //
 
 // View Controllers
-#import "DBCreateFeedViewController.h"
+#import "DBCreateQuestionViewController.h"
 
 // Views
 #import "DBCreateFeedView.h"
@@ -21,13 +21,14 @@
 #import "DBS3Manager.h" // DELELTE
 #import "DBParseManager.h"  // DELETE
 
-@interface DBCreateFeedViewController ()
+@interface DBCreateQuestionViewController ()
 
 @property UIImagePickerController *imagePickerController;
+@property (copy, nonatomic, readonly) NSString *parseObjectID;      // ID objektu na Parsu
 
 @end
 
-@implementation DBCreateFeedViewController
+@implementation DBCreateQuestionViewController
 
 - (void)loadView {
     self.view = [[DBCreateFeedView alloc] init];
@@ -73,6 +74,7 @@
         NSString *fileKey;
         NSData *dataToSend;
         NSString *mimeType;
+        
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
             mimeType = @"image/jpg";
             UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
@@ -81,7 +83,7 @@
             fileKey = @"testFromApp.jpg";
         } else {
             mimeType = @"video/quicktime";
-            [self.createFeedView.captureVideoButton setImage:[DBCreateFeedViewController thumbnailImageForVideo:info[UIImagePickerControllerMediaURL] atTime:0] forState:UIControlStateNormal];
+            [self.createFeedView.captureVideoButton setImage:[DBCreateQuestionViewController thumbnailImageForVideo:info[UIImagePickerControllerMediaURL] atTime:0] forState:UIControlStateNormal];
             dataToSend = [NSData dataWithContentsOfURL:info[UIImagePickerControllerMediaURL]];
             fileKey = @"testFromApp.mov";
         }
@@ -98,15 +100,15 @@
 
 - (void)postButtonDidPress {
 
-    // TEST DBParseManager - DELETE
-//    NSString *myTitle = self.createFeedView.titleTextField.text;
-//    NSString *myDescription = self.createFeedView.descriptionTextView.text;
-//    
-//    NSArray *myArray = @[@"Nejake", @"Data"];
-//    
-//    
-//    [DBParseManager uploadQuestionWithTitle:myTitle questionDescription:myDescription videosAndPhotosNames:myArray];
-
+    NSString *title = self.createFeedView.titleTextField.text;
+    NSString *description = self.createFeedView.descriptionTextView.text;
+    
+    NSArray *myArray = @[@"Nejake", @"Data"];
+    
+    [DBParseManager uploadQuestionWithTitle:title questionDescription:description videosAndPhotosNames:myArray completionBlock:^(NSString *objectIDString, NSError *error) {
+        _parseObjectID = objectIDString;
+        NSLog(@"objectID > %@", self.parseObjectID); // Test vypis - smazat
+    }];
 }
 
 #pragma mark - Properties
