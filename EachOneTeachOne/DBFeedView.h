@@ -1,5 +1,5 @@
 //
-//  DBMainViewController.h
+//  DBMainView.h
 //  EachOneTeachOne
 //
 //  Created by Michael Pohl on 19.01.16.
@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBMainViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@interface DBFeedView : UIView
 
 @end

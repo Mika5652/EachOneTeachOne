@@ -6,9 +6,9 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
-#import "DBMainView.h"
+#import "DBFeedView.h"
 
-@implementation DBMainView
+@implementation DBFeedView
 
 - (instancetype)init {
     self = [super init];

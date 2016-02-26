@@ -9,7 +9,7 @@
 #import <Parse/Parse.h>
 
 #import "AppDelegate.h"
-#import "DBMainViewController.h"
+#import "DBFeedViewController.h"
 
 // Amazon S3
 #import <AWSCore/AWSCore.h>
@@ -26,7 +26,7 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    DBMainViewController *mainViewController = [[DBMainViewController alloc] init];
+    DBFeedViewController *mainViewController = [[DBFeedViewController alloc] init];
     
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
     
@@ -49,6 +49,7 @@
     AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:AWSRegionEUCentral1 credentialsProvider:credentialsProvider];
     
     [AWSServiceManager defaultServiceManager].defaultServiceConfiguration = configuration;
+    
     
     return YES;
 }

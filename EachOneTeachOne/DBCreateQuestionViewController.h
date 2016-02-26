@@ -17,7 +17,7 @@
 
 @class DBCreateQuestionView;
 
-@interface DBCreateQuestionViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate ,UITextViewDelegate>
+@interface DBCreateQuestionViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UICollectionViewDelegate>
 
 @property (readonly) DBCreateQuestionView* createQuestionView;
 @property NSString *titleTextString;

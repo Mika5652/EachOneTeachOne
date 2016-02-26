@@ -17,6 +17,7 @@ NSString * const kBucketName = @"eachoneteachonebucket";
 @implementation DBS3Manager
 
 + (void)uploadFileWithKey:(NSString *)keyName data:(NSData *)data mimeType:(NSString *)mimeType completionBlock:(DBS3ManagerUploadCompletionBlock)completionBlock {
+    keyName = ([mimeType  isEqual: @"image/jpg"]) ? ([keyName stringByAppendingString:@".jpg"]) : ([keyName stringByAppendingString:@".mov"]);
     AWSS3TransferUtilityUploadExpression *expression = [AWSS3TransferUtilityUploadExpression new];
     expression.uploadProgress = ^(AWSS3TransferUtilityTask *task, int64_t bytesSent, int64_t totalBytesSent, int64_t totalBytesExpectedToSend) {
         dispatch_async(dispatch_get_main_queue(), ^{

@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 
 
-typedef void (^DBParseManagerCompletionBlock)(NSString *objectIDString, NSError *error);
+typedef void (^DBParseManagerUploadCompletionBlock)(NSString *objectIDString, NSError *error);
+typedef void (^DBParseManagerCountCompletionBlock)(NSInteger count, NSError *error);
 
 @interface DBParseManager : NSObject
 
-+ (void)uploadQuestionWithTitle:(NSString *)title questionDescription:(NSString *)questionDescription videosAndPhotosNames:(NSArray *)videosAndPhotosNames completionBlock:(DBParseManagerCompletionBlock)completionBlock;
++ (void)uploadQuestionWithTitle:(NSString *)title questionDescription:(NSString *)questionDescription videosAndPhotosNames:(NSArray *)videosAndPhotosNames completionBlock:(DBParseManagerUploadCompletionBlock)completionBlock;
++ (void)numberOfObjectsOnParse:(NSString *)className completionBlock:(DBParseManagerCountCompletionBlock)completionBlock;
+
 @end

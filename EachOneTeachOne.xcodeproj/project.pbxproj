@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0903E2101C803190003FC892 /* DBCreateQuestionCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E20F1C803190003FC892 /* DBCreateQuestionCollectionViewCell.m */; };
+		0903E2131C8031AD003FC892 /* DBCreateQuestionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E2121C8031AD003FC892 /* DBCreateQuestionDataSource.m */; };
+		0903E2161C8034C2003FC892 /* DBQuestionPhotoAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E2151C8034C2003FC892 /* DBQuestionPhotoAttachment.m */; };
+		0903E2191C803691003FC892 /* DBQuestionVideoAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E2181C803691003FC892 /* DBQuestionVideoAttachment.m */; };
+		0903E21C1C804298003FC892 /* DBFeedViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21B1C804298003FC892 /* DBFeedViewCell.m */; };
+		0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21E1C804461003FC892 /* DBFeedDataSource.m */; };
 		09385D961C75F16F00F0FB0D /* myText.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 09385D951C75F16F00F0FB0D /* myText.rtf */; };
 		09A7C3F51C7D9336009DABE5 /* DBS3Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A7C3F41C7D9336009DABE5 /* DBS3Manager.m */; };
 		09A7C3F91C7DE94A009DABE5 /* DBParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A7C3F81C7DE94A009DABE5 /* DBParseManager.m */; };
@@ -21,8 +27,8 @@
 		F62970541C4E7159007174C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62970521C4E7159007174C0 /* LaunchScreen.storyboard */; };
 		F629705F1C4E715A007174C0 /* EachOneTeachOneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F629705E1C4E715A007174C0 /* EachOneTeachOneTests.m */; };
 		F629706A1C4E715A007174C0 /* EachOneTeachOneUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970691C4E715A007174C0 /* EachOneTeachOneUITests.m */; };
-		F629707E1C4E7A76007174C0 /* DBMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = F629707D1C4E7A76007174C0 /* DBMainView.m */; };
-		F62970811C4E7A9D007174C0 /* DBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970801C4E7A9D007174C0 /* DBMainViewController.m */; };
+		F629707E1C4E7A76007174C0 /* DBFeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F629707D1C4E7A76007174C0 /* DBFeedView.m */; };
+		F62970811C4E7A9D007174C0 /* DBFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970801C4E7A9D007174C0 /* DBFeedViewController.m */; };
 		F62970861C4E8308007174C0 /* DBCreateQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970851C4E8308007174C0 /* DBCreateQuestionViewController.m */; };
 		F629708A1C4E8330007174C0 /* DBCreateQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970891C4E8330007174C0 /* DBCreateQuestionView.m */; };
 		F629708F1C512D13007174C0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F629708E1C512D13007174C0 /* MediaPlayer.framework */; };
@@ -48,6 +54,18 @@
 
 /* Begin PBXFileReference section */
 		03EE3D9235AF85CB51148BA1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
+		0903E20E1C803190003FC892 /* DBCreateQuestionCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateQuestionCollectionViewCell.h; sourceTree = "<group>"; };
+		0903E20F1C803190003FC892 /* DBCreateQuestionCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateQuestionCollectionViewCell.m; sourceTree = "<group>"; };
+		0903E2111C8031AD003FC892 /* DBCreateQuestionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateQuestionDataSource.h; sourceTree = "<group>"; };
+		0903E2121C8031AD003FC892 /* DBCreateQuestionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateQuestionDataSource.m; sourceTree = "<group>"; };
+		0903E2141C8034C2003FC892 /* DBQuestionPhotoAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBQuestionPhotoAttachment.h; sourceTree = "<group>"; };
+		0903E2151C8034C2003FC892 /* DBQuestionPhotoAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBQuestionPhotoAttachment.m; sourceTree = "<group>"; };
+		0903E2171C803691003FC892 /* DBQuestionVideoAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBQuestionVideoAttachment.h; sourceTree = "<group>"; };
+		0903E2181C803691003FC892 /* DBQuestionVideoAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBQuestionVideoAttachment.m; sourceTree = "<group>"; };
+		0903E21A1C804298003FC892 /* DBFeedViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFeedViewCell.h; sourceTree = "<group>"; };
+		0903E21B1C804298003FC892 /* DBFeedViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFeedViewCell.m; sourceTree = "<group>"; };
+		0903E21D1C804461003FC892 /* DBFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFeedDataSource.h; sourceTree = "<group>"; };
+		0903E21E1C804461003FC892 /* DBFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFeedDataSource.m; sourceTree = "<group>"; };
 		09385D951C75F16F00F0FB0D /* myText.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = myText.rtf; sourceTree = "<group>"; };
 		09A7C3F31C7B06A6009DABE5 /* DBS3Manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBS3Manager.h; sourceTree = "<group>"; };
 		09A7C3F41C7D9336009DABE5 /* DBS3Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBS3Manager.m; sourceTree = "<group>"; };
@@ -73,10 +91,10 @@
 		F62970651C4E715A007174C0 /* EachOneTeachOneUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EachOneTeachOneUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F62970691C4E715A007174C0 /* EachOneTeachOneUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EachOneTeachOneUITests.m; sourceTree = "<group>"; };
 		F629706B1C4E715A007174C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F629707C1C4E7A76007174C0 /* DBMainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBMainView.h; sourceTree = "<group>"; };
-		F629707D1C4E7A76007174C0 /* DBMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBMainView.m; sourceTree = "<group>"; };
-		F629707F1C4E7A9D007174C0 /* DBMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBMainViewController.h; sourceTree = "<group>"; };
-		F62970801C4E7A9D007174C0 /* DBMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBMainViewController.m; sourceTree = "<group>"; };
+		F629707C1C4E7A76007174C0 /* DBFeedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFeedView.h; sourceTree = "<group>"; };
+		F629707D1C4E7A76007174C0 /* DBFeedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFeedView.m; sourceTree = "<group>"; };
+		F629707F1C4E7A9D007174C0 /* DBFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFeedViewController.h; sourceTree = "<group>"; };
+		F62970801C4E7A9D007174C0 /* DBFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFeedViewController.m; sourceTree = "<group>"; };
 		F62970841C4E8308007174C0 /* DBCreateQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateQuestionViewController.h; sourceTree = "<group>"; };
 		F62970851C4E8308007174C0 /* DBCreateQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateQuestionViewController.m; sourceTree = "<group>"; };
 		F62970881C4E8330007174C0 /* DBCreateQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateQuestionView.h; sourceTree = "<group>"; };
@@ -116,6 +134,42 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0903E20C1C803152003FC892 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				0903E2111C8031AD003FC892 /* DBCreateQuestionDataSource.h */,
+				0903E2121C8031AD003FC892 /* DBCreateQuestionDataSource.m */,
+			);
+			name = DataSource;
+			sourceTree = "<group>";
+		};
+		0903E20D1C80315E003FC892 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0903E20E1C803190003FC892 /* DBCreateQuestionCollectionViewCell.h */,
+				0903E20F1C803190003FC892 /* DBCreateQuestionCollectionViewCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		0903E2201C8046C5003FC892 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				0903E21A1C804298003FC892 /* DBFeedViewCell.h */,
+				0903E21B1C804298003FC892 /* DBFeedViewCell.m */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		0903E2211C8046E3003FC892 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				0903E21D1C804461003FC892 /* DBFeedDataSource.h */,
+				0903E21E1C804461003FC892 /* DBFeedDataSource.m */,
+			);
+			name = DataSource;
+			sourceTree = "<group>";
+		};
 		09A7C3F11C7B0632009DABE5 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +205,10 @@
 			children = (
 				F60D1C6D1C590FD9008A460F /* DBQuestion.h */,
 				F60D1C6E1C590FD9008A460F /* DBQuestion.m */,
+				0903E2141C8034C2003FC892 /* DBQuestionPhotoAttachment.h */,
+				0903E2151C8034C2003FC892 /* DBQuestionPhotoAttachment.m */,
+				0903E2171C803691003FC892 /* DBQuestionVideoAttachment.h */,
+				0903E2181C803691003FC892 /* DBQuestionVideoAttachment.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -233,8 +291,9 @@
 		F629707B1C4E7A5B007174C0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F629707C1C4E7A76007174C0 /* DBMainView.h */,
-				F629707D1C4E7A76007174C0 /* DBMainView.m */,
+				0903E2201C8046C5003FC892 /* Cell */,
+				F629707C1C4E7A76007174C0 /* DBFeedView.h */,
+				F629707D1C4E7A76007174C0 /* DBFeedView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -242,9 +301,10 @@
 		F62970821C4E82B2007174C0 /* MainView */ = {
 			isa = PBXGroup;
 			children = (
+				0903E2211C8046E3003FC892 /* DataSource */,
 				F629707B1C4E7A5B007174C0 /* View */,
-				F629707F1C4E7A9D007174C0 /* DBMainViewController.h */,
-				F62970801C4E7A9D007174C0 /* DBMainViewController.m */,
+				F629707F1C4E7A9D007174C0 /* DBFeedViewController.h */,
+				F62970801C4E7A9D007174C0 /* DBFeedViewController.m */,
 			);
 			name = MainView;
 			sourceTree = "<group>";
@@ -252,6 +312,7 @@
 		F62970831C4E82E1007174C0 /* CreateFeed */ = {
 			isa = PBXGroup;
 			children = (
+				0903E20C1C803152003FC892 /* DataSource */,
 				F62970871C4E830D007174C0 /* View */,
 				F62970841C4E8308007174C0 /* DBCreateQuestionViewController.h */,
 				F62970851C4E8308007174C0 /* DBCreateQuestionViewController.m */,
@@ -262,6 +323,7 @@
 		F62970871C4E830D007174C0 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				0903E20D1C80315E003FC892 /* Cell */,
 				F62970881C4E8330007174C0 /* DBCreateQuestionView.h */,
 				F62970891C4E8330007174C0 /* DBCreateQuestionView.m */,
 			);
@@ -483,15 +545,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F629707E1C4E7A76007174C0 /* DBMainView.m in Sources */,
+				0903E2161C8034C2003FC892 /* DBQuestionPhotoAttachment.m in Sources */,
+				F629707E1C4E7A76007174C0 /* DBFeedView.m in Sources */,
 				09A7C3F51C7D9336009DABE5 /* DBS3Manager.m in Sources */,
+				0903E2191C803691003FC892 /* DBQuestionVideoAttachment.m in Sources */,
+				0903E21C1C804298003FC892 /* DBFeedViewCell.m in Sources */,
+				0903E2101C803190003FC892 /* DBCreateQuestionCollectionViewCell.m in Sources */,
 				F629708A1C4E8330007174C0 /* DBCreateQuestionView.m in Sources */,
 				F62970861C4E8308007174C0 /* DBCreateQuestionViewController.m in Sources */,
 				F62970491C4E7159007174C0 /* AppDelegate.m in Sources */,
+				0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */,
 				F60D1C6F1C590FD9008A460F /* DBQuestion.m in Sources */,
 				09A7C3F91C7DE94A009DABE5 /* DBParseManager.m in Sources */,
-				F62970811C4E7A9D007174C0 /* DBMainViewController.m in Sources */,
+				F62970811C4E7A9D007174C0 /* DBFeedViewController.m in Sources */,
 				F62970461C4E7159007174C0 /* main.m in Sources */,
+				0903E2131C8031AD003FC892 /* DBCreateQuestionDataSource.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

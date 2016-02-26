@@ -6,21 +6,23 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
-#import "DBMainViewController.h"
-#import "DBMainView.h"
+#import "DBFeedViewController.h"
+#import "DBFeedView.h"
 #import "DBCreateQuestionViewController.h"
 
-@interface DBMainViewController ()
+#import "DBParseManager.h" // DELETE
+
+@interface DBFeedViewController ()
 
 @end
 
-@implementation DBMainViewController
+@implementation DBFeedViewController
 {
     NSArray *feedTableData;
 }
 
 - (void)loadView {
-    self.view = [[DBMainView alloc] init];
+    self.view = [[DBFeedView alloc] init];
     self.title = NSLocalizedString(@"Feed", @"");
 }
 
@@ -63,8 +65,8 @@
 
 #pragma mark - Properties
 
-- (DBMainView *)mainMenuView {
-    return (DBMainView *) self.view;
+- (DBFeedView *)mainMenuView {
+    return (DBFeedView *) self.view;
 }
 
 
