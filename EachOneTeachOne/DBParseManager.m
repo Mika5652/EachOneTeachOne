@@ -9,9 +9,11 @@
 #import "DBParseManager.h"
 #import "DBQuestion.h"
 
+static NSInteger const kLimit = 20;
+
 @implementation DBParseManager
 
-+ (void)uploadQuestionWithTitle:(NSString *)title questionDescription:(NSString *)questionDescription videosAndPhotosNames:(NSArray *)videosAndPhotosNames  completionBlock:(DBParseManagerUploadCompletionBlock)completionBlock {
++ (void)uploadQuestionWithTitle:(NSString *)title questionDescription:(NSString *)questionDescription videosAndPhotosNames:(NSArray *)videosAndPhotosNames completion:(DBParseManagerUploadCompletion)completion {
 
     DBQuestion *question = [DBQuestion object];
     
@@ -20,14 +22,19 @@
     question.videosAndPhotosNames = videosAndPhotosNames;
     
     [question saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        completionBlock(question.objectId, error);
+        completion(question.objectId, error);
     }];
 }
 
-+ (void)numberOfObjectsOnParse:(NSString *)className completionBlock:(DBParseManagerCountCompletionBlock)completionBlock {
-    PFQuery *query = [PFQuery queryWithClassName:className];
-    [query countObjectsInBackgroundWithBlock:^(int count, NSError *error) {
-        completionBlock(count, error);
++ (void)getNewQuestionsWithSkip:(NSInteger)skip completion:(DBParseManagerGetQuestionsCompletion)completion {
+    PFQuery *query = [PFQuery queryWithClassName:[DBQuestion parseClassName]];
+    
+    query.skip = skip;
+    query.limit = kLimit;
+    [query orderByDescending:@"createdAt"];
+    
+    [query findObjectsInBackgroundWithBlock:^(NSArray *questions, NSError *error) {
+        completion(questions, error);
     }];
 }
 

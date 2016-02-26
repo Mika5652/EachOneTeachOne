@@ -8,7 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBFeedViewCell : UITableViewCell
+extern NSString * const kDBFeedViewTableViewCellIdentifier;
+
+@interface DBFeedViewTableViewCell : UITableViewCell
 
 @property UIImageView *photoImageView;
 @property UILabel *titleLabel;

@@ -9,51 +9,46 @@
 #import "DBFeedViewController.h"
 #import "DBFeedView.h"
 #import "DBCreateQuestionViewController.h"
-
-#import "DBParseManager.h" // DELETE
+#import "DBFeedDataSource.h"
+#import "DBFeedViewTableViewCell.h"
+#import "DBParseManager.h"
 
 @interface DBFeedViewController ()
+
+@property DBFeedDataSource *feedDataSource;
 
 @end
 
 @implementation DBFeedViewController
-{
-    NSArray *feedTableData;
+
+- (instancetype)init {
+    self = [super init];
+    
+    if (self) {
+        _feedDataSource = [[DBFeedDataSource alloc] init];
+    }
+    
+    return self;
 }
 
 - (void)loadView {
     self.view = [[DBFeedView alloc] init];
-    self.title = NSLocalizedString(@"Feed", @"");
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Create" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDidPress)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
-    /*
-    feedTableData = [NSArray arrayWithObjects:@"Egg Benedict", @"Mushroom Risotto", @"Full Breakfast", @"Hamburger", @"Ham and Egg Sandwich", @"Creme Brelee", @"White Chocolate Donut", @"Starbucks Coffee", @"Vegetable Curry", @"Instant Noodle with Egg", @"Noodle with BBQ Pork", @"Japanese Noodle with Pork", @"Green Tea", @"Thai Shrimp Cake", @"Angry Birds Cake", @"Ham and Cheese Panini", nil];
-     */
-}
-
-#pragma mark - UITableViewDataSource
-
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    return [feedTableData count];
-}
-
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    static NSString *simpleTableIdentifier = @"SimpleTableItem";
+    self.title = NSLocalizedString(@"Feed", @"");
+    self.feedView.tableView.dataSource = self.feedDataSource;
+    self.feedView.tableView.delegate = self;
+    [self.feedView.tableView registerClass:[DBFeedViewTableViewCell class] forCellReuseIdentifier:kDBFeedViewTableViewCellIdentifier];
+    [DBParseManager getNewQuestionsWithSkip:0 completion:^(NSArray *questions, NSError *error) {
+        [self.feedDataSource.items addObjectsFromArray:questions];
+        [self.feedView.tableView reloadData];
+    }];
     
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:simpleTableIdentifier];
     
-    if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:simpleTableIdentifier];
-    }
-    
-    cell.textLabel.text = [feedTableData objectAtIndex:indexPath.row];
-    return cell;
 }
 
 #pragma mark - UserAction
@@ -65,8 +60,8 @@
 
 #pragma mark - Properties
 
-- (DBFeedView *)mainMenuView {
-    return (DBFeedView *) self.view;
+- (DBFeedView *)feedView {
+    return (DBFeedView *)self.view;
 }
 
 

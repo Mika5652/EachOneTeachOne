@@ -11,11 +11,13 @@
 		0903E2131C8031AD003FC892 /* DBCreateQuestionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E2121C8031AD003FC892 /* DBCreateQuestionDataSource.m */; };
 		0903E2161C8034C2003FC892 /* DBQuestionPhotoAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E2151C8034C2003FC892 /* DBQuestionPhotoAttachment.m */; };
 		0903E2191C803691003FC892 /* DBQuestionVideoAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E2181C803691003FC892 /* DBQuestionVideoAttachment.m */; };
-		0903E21C1C804298003FC892 /* DBFeedViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21B1C804298003FC892 /* DBFeedViewCell.m */; };
+		0903E21C1C804298003FC892 /* DBFeedViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21B1C804298003FC892 /* DBFeedViewTableViewCell.m */; };
 		0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21E1C804461003FC892 /* DBFeedDataSource.m */; };
+		090BB6461C809AD1007E29EB /* DBNetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 090BB6451C809AD1007E29EB /* DBNetworkingManager.m */; };
 		09385D961C75F16F00F0FB0D /* myText.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 09385D951C75F16F00F0FB0D /* myText.rtf */; };
 		09A7C3F51C7D9336009DABE5 /* DBS3Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A7C3F41C7D9336009DABE5 /* DBS3Manager.m */; };
 		09A7C3F91C7DE94A009DABE5 /* DBParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A7C3F81C7DE94A009DABE5 /* DBParseManager.m */; };
+		09B1D11F1C805AE400BDA7A4 /* libPureLayout.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B1D11E1C805AE400BDA7A4 /* libPureLayout.a */; };
 		101D6D961C7DF9FB004F90E3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101D6D951C7DF9FB004F90E3 /* AVFoundation.framework */; };
 		64ADAFFCFE98F21A4D5D51B8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D443A8CB6401AC603A4C18 /* libPods.a */; };
 		F60D1C6B1C5900D0008A460F /* libParse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F60D1C6A1C5900D0008A460F /* libParse.a */; };
@@ -62,15 +64,18 @@
 		0903E2151C8034C2003FC892 /* DBQuestionPhotoAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBQuestionPhotoAttachment.m; sourceTree = "<group>"; };
 		0903E2171C803691003FC892 /* DBQuestionVideoAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBQuestionVideoAttachment.h; sourceTree = "<group>"; };
 		0903E2181C803691003FC892 /* DBQuestionVideoAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBQuestionVideoAttachment.m; sourceTree = "<group>"; };
-		0903E21A1C804298003FC892 /* DBFeedViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFeedViewCell.h; sourceTree = "<group>"; };
-		0903E21B1C804298003FC892 /* DBFeedViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFeedViewCell.m; sourceTree = "<group>"; };
+		0903E21A1C804298003FC892 /* DBFeedViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFeedViewTableViewCell.h; sourceTree = "<group>"; };
+		0903E21B1C804298003FC892 /* DBFeedViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFeedViewTableViewCell.m; sourceTree = "<group>"; };
 		0903E21D1C804461003FC892 /* DBFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFeedDataSource.h; sourceTree = "<group>"; };
 		0903E21E1C804461003FC892 /* DBFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFeedDataSource.m; sourceTree = "<group>"; };
+		090BB6441C809AD1007E29EB /* DBNetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBNetworkingManager.h; sourceTree = "<group>"; };
+		090BB6451C809AD1007E29EB /* DBNetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBNetworkingManager.m; sourceTree = "<group>"; };
 		09385D951C75F16F00F0FB0D /* myText.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = myText.rtf; sourceTree = "<group>"; };
 		09A7C3F31C7B06A6009DABE5 /* DBS3Manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBS3Manager.h; sourceTree = "<group>"; };
 		09A7C3F41C7D9336009DABE5 /* DBS3Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBS3Manager.m; sourceTree = "<group>"; };
 		09A7C3F71C7DE94A009DABE5 /* DBParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBParseManager.h; sourceTree = "<group>"; };
 		09A7C3F81C7DE94A009DABE5 /* DBParseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBParseManager.m; sourceTree = "<group>"; };
+		09B1D11E1C805AE400BDA7A4 /* libPureLayout.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPureLayout.a; path = "Pods/../build/Debug-iphoneos/libPureLayout.a"; sourceTree = "<group>"; };
 		101D6D951C7DF9FB004F90E3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		50D443A8CB6401AC603A4C18 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		599559C5D9391F9736A02E83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -109,6 +114,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09B1D11F1C805AE400BDA7A4 /* libPureLayout.a in Frameworks */,
 				101D6D961C7DF9FB004F90E3 /* AVFoundation.framework in Frameworks */,
 				F60D1C6B1C5900D0008A460F /* libParse.a in Frameworks */,
 				F62970911C512D2A007174C0 /* MobileCoreServices.framework in Frameworks */,
@@ -155,8 +161,8 @@
 		0903E2201C8046C5003FC892 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
-				0903E21A1C804298003FC892 /* DBFeedViewCell.h */,
-				0903E21B1C804298003FC892 /* DBFeedViewCell.m */,
+				0903E21A1C804298003FC892 /* DBFeedViewTableViewCell.h */,
+				0903E21B1C804298003FC892 /* DBFeedViewTableViewCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -177,6 +183,8 @@
 				09A7C3F41C7D9336009DABE5 /* DBS3Manager.m */,
 				09A7C3F71C7DE94A009DABE5 /* DBParseManager.h */,
 				09A7C3F81C7DE94A009DABE5 /* DBParseManager.m */,
+				090BB6441C809AD1007E29EB /* DBNetworkingManager.h */,
+				090BB6451C809AD1007E29EB /* DBNetworkingManager.m */,
 			);
 			name = Manager;
 			sourceTree = "<group>";
@@ -193,6 +201,7 @@
 		830E87CD4348C160D2091E25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				09B1D11E1C805AE400BDA7A4 /* libPureLayout.a */,
 				101D6D951C7DF9FB004F90E3 /* AVFoundation.framework */,
 				F60D1C6A1C5900D0008A460F /* libParse.a */,
 				50D443A8CB6401AC603A4C18 /* libPods.a */,
@@ -549,11 +558,12 @@
 				F629707E1C4E7A76007174C0 /* DBFeedView.m in Sources */,
 				09A7C3F51C7D9336009DABE5 /* DBS3Manager.m in Sources */,
 				0903E2191C803691003FC892 /* DBQuestionVideoAttachment.m in Sources */,
-				0903E21C1C804298003FC892 /* DBFeedViewCell.m in Sources */,
+				0903E21C1C804298003FC892 /* DBFeedViewTableViewCell.m in Sources */,
 				0903E2101C803190003FC892 /* DBCreateQuestionCollectionViewCell.m in Sources */,
 				F629708A1C4E8330007174C0 /* DBCreateQuestionView.m in Sources */,
 				F62970861C4E8308007174C0 /* DBCreateQuestionViewController.m in Sources */,
 				F62970491C4E7159007174C0 /* AppDelegate.m in Sources */,
+				090BB6461C809AD1007E29EB /* DBNetworkingManager.m in Sources */,
 				0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */,
 				F60D1C6F1C590FD9008A460F /* DBQuestion.m in Sources */,
 				09A7C3F91C7DE94A009DABE5 /* DBParseManager.m in Sources */,

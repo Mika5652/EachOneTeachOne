@@ -10,4 +10,6 @@
 
 @interface DBFeedView : UIView
 
+@property UITableView *tableView;
+
 @end

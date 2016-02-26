@@ -7,26 +7,35 @@
 //
 
 #import "DBFeedDataSource.h"
+#import "DBFeedViewTableViewCell.h"
+#import "DBQuestion.h"
+#import "DBNetworkingManager.h"
 
 @implementation DBFeedDataSource
 
-- (instancetype)init
-{
+- (instancetype)init {
     self = [super init];
+    
     if (self) {
         _items = [[NSMutableArray alloc] init];
     }
+    
     return self;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.items.count;
 }
 
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
-    
-    cell.backgroundColor=[UIColor greenColor];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DBFeedViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBFeedViewTableViewCellIdentifier forIndexPath:indexPath];
+    DBQuestion *question = self.items[indexPath.row];
+    cell.titleLabel.text = question.title;
+    cell.descriptionLabel.text = question.questionDescription;
+    NSURL *photoURL = [NSURL URLWithString:[kAWSS3BaseURL stringByAppendingPathComponent:question.videosAndPhotosNames.firstObject]];
+    NSData *imageData = [NSData dataWithContentsOfURL:photoURL];
+    cell.photoImageView.image = [UIImage imageWithData:imageData];
+
     return cell;
 }
 

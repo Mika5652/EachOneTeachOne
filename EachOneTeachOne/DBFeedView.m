@@ -7,6 +7,7 @@
 //
 
 #import "DBFeedView.h"
+#import <PureLayout/PureLayout.h>
 
 @implementation DBFeedView
 
@@ -14,6 +15,12 @@
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
+        
+        _tableView = [[UITableView alloc] init];
+        self.tableView.contentInset = UIEdgeInsetsMake(32, 0, 0, 0);
+        [self addSubview:self.tableView];
+        
+        [self.tableView autoPinEdgesToSuperviewEdges];
     }
     return self;
 }

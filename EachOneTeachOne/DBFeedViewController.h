@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBFeedViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
+@class DBFeedView;
+
+@interface DBFeedViewController : UIViewController <UITableViewDelegate>
+
+@property (nonatomic) DBFeedView *feedView;
 
 @end

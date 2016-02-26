@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBFeedDataSource : NSObject <UICollectionViewDataSource>
+@interface DBFeedDataSource : NSObject <UITableViewDataSource>
 
 @property NSMutableArray *items;
 

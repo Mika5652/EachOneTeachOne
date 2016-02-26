@@ -43,6 +43,7 @@ PODS:
   - IQKeyboardManager (4.0.0)
   - Parse (1.12.0):
     - Bolts/Tasks (~> 1.5)
+  - PureLayout (3.0.1)
 
 DEPENDENCIES:
   - AWSAutoScaling
@@ -65,6 +66,7 @@ DEPENDENCIES:
   - FBSDKCoreKit (~> 4.9.1)
   - IQKeyboardManager
   - Parse (~> 1.12.0)
+  - PureLayout
 
 SPEC CHECKSUMS:
   AWSAutoScaling: 58757e3fae42c8ba72ca742863c7bf7db879352d
@@ -88,5 +90,6 @@ SPEC CHECKSUMS:
   FBSDKCoreKit: aee20b6d9855f15b618d4fddd1a5ad45f5a4a59d
   IQKeyboardManager: b91928f7927ba55a5829b4dcf4b7a6736ac9fc22
   Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
+  PureLayout: f35f5384c9c4e4479df041dbe33ad7577b71ddfb
 
 COCOAPODS: 0.39.0
