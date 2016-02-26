@@ -8,8 +8,10 @@
 
 #import <Foundation/Foundation.h>
 
+
+typedef void (^DBParseManagerCompletionBlock)(NSString *objectIDString, NSError *error);
+
 @interface DBParseManager : NSObject
 
-+ (void)uploadQuestionWithTitle:(NSString *)title questionDescription:(NSString *)questionDescription videosAndPhotosNames:(NSArray *)videosAndPhotosNames;
-
++ (void)uploadQuestionWithTitle:(NSString *)title questionDescription:(NSString *)questionDescription videosAndPhotosNames:(NSArray *)videosAndPhotosNames completionBlock:(DBParseManagerCompletionBlock)completionBlock;
 @end

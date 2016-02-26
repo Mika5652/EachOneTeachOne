@@ -8,7 +8,7 @@
 
 #import "DBMainViewController.h"
 #import "DBMainView.h"
-#import "DBCreateFeedViewController.h"
+#import "DBCreateQuestionViewController.h"
 
 @interface DBMainViewController ()
 
@@ -57,7 +57,7 @@
 #pragma mark - UserAction
 
 - (void)rightBarButtonDidPress {
-    DBCreateFeedViewController *createFeedViewController = [[DBCreateFeedViewController alloc] init];
+    DBCreateQuestionViewController *createFeedViewController = [[DBCreateQuestionViewController alloc] init];
     [self.navigationController pushViewController:createFeedViewController animated:YES];
 }
 

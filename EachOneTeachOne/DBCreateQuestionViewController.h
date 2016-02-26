@@ -15,11 +15,11 @@
 // Macros
 #define TAKE_VIDEO_ICON                 @"camera_icon"
 
-@class DBCreateFeedView;
+@class DBCreateQuestionView;
 
 @interface DBCreateQuestionViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate ,UITextViewDelegate>
 
-@property (readonly) DBCreateFeedView* createFeedView;
+@property (readonly) DBCreateQuestionView* createQuestionView;
 @property NSString *titleTextString;
 @property NSString *descriptionTextString;
 @property UIImagePickerController *picker;

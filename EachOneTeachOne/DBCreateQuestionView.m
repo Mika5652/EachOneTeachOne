@@ -28,7 +28,6 @@
 // Background color
         self.backgroundColor = [UIColor lightGrayColor];
 
-        
 // Title label
         _titlePostLabel = [[UILabel alloc] init];
         self.titlePostLabel.text = NSLocalizedString(@"Title", @"");
@@ -75,7 +74,7 @@
         TMAL_ADDS_CENTERX(_titlePostLabel, self.titlePostLabel.superview);
         TMAL_ADDS_VISUAL(@"V:|-80-[_titlePostLabel]");
 // Title text field
-        TMAL_ADDS_VISUALM(@"H:|-TEXT_FIELD_SIDE_INDENTATION-[_titleTextField]-TEXT_FIELD_SIDE_INDENTATION-|", metrics);
+        TMAL_ADDS_VISUALM(@"H:|-TEXT_FIELD_SIDE_INDENTATION-[_titleTextField(==220)]-TEXT_FIELD_SIDE_INDENTATION-|", metrics);
         TMAL_ADDS_VISUAL(@"V:[_titlePostLabel]-10-[_titleTextField]");
 // Capture video button image
         TMAL_ADDS_CENTERX(_captureVideoButton, self.captureVideoButton.superview);
@@ -89,7 +88,7 @@
         TMAL_ADDS_VISUAL(@"V:[_descriptionLabel]-10-[_descriptionTextView(==150)]");
 // Post button
         TMAL_ADDS_CENTERX(_postButton, self.postButton.superview);
-        TMAL_ADDS_VISUAL(@"V:[_descriptionTextView]-30-[_postButton]");
+        TMAL_ADDS_VISUAL(@"V:[_descriptionTextView]-30-[_postButton]-30-|");
         
     }
     return self;

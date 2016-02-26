@@ -1,5 +1,5 @@
 //
-//  DBCreateFeedViewController.m
+//  DBcreateQuestionViewController.m
 //  EachOneTeachOne
 //
 //  Created by Michael Pohl on 19.01.16.
@@ -10,7 +10,7 @@
 #import "DBCreateQuestionViewController.h"
 
 // Views
-#import "DBCreateFeedView.h"
+#import "DBCreateQuestionView.h"
 
 // Entities
 #import "DBQuestion.h"
@@ -25,23 +25,25 @@
 
 @property UIImagePickerController *imagePickerController;
 @property (copy, nonatomic, readonly) NSString *parseObjectID;      // ID objektu na Parsu
+@property (nonatomic, readonly) NSData *dataToSend;
+@property (nonatomic, readonly) NSString *mimeType;
 
 @end
 
 @implementation DBCreateQuestionViewController
 
 - (void)loadView {
-    self.view = [[DBCreateFeedView alloc] init];
+    self.view = [[DBCreateQuestionView alloc] init];
     self.title = NSLocalizedString(@"Create a post", @"");
 
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.createFeedView.titleTextField.delegate = self;
-    self.createFeedView.descriptionTextView.delegate = self;
-    [self.createFeedView.captureVideoButton addTarget:self action:@selector(captureVideo) forControlEvents:UIControlEventTouchUpInside];
-    [self.createFeedView.postButton addTarget:self action:@selector(postButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
+    self.createQuestionView.titleTextField.delegate = self;
+    self.createQuestionView.descriptionTextView.delegate = self;
+    [self.createQuestionView.captureVideoButton addTarget:self action:@selector(captureVideo) forControlEvents:UIControlEventTouchUpInside];
+    [self.createQuestionView.postButton addTarget:self action:@selector(postButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
 
 }
 
@@ -71,27 +73,18 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     if ([picker isEqual:self.imagePickerController]) {
-        NSString *fileKey;
-        NSData *dataToSend;
-        NSString *mimeType;
-        
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
-            mimeType = @"image/jpg";
+            _mimeType = @"image/jpg";
             UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-            [self.createFeedView.captureVideoButton setImage:chosenImage forState:UIControlStateNormal];
-            dataToSend = UIImageJPEGRepresentation(chosenImage, 1);
-            fileKey = @"testFromApp.jpg";
+            [self.createQuestionView.captureVideoButton setImage:chosenImage forState:UIControlStateNormal];
+            _dataToSend = UIImageJPEGRepresentation(chosenImage, 1);
         } else {
-            mimeType = @"video/quicktime";
-            [self.createFeedView.captureVideoButton setImage:[DBCreateQuestionViewController thumbnailImageForVideo:info[UIImagePickerControllerMediaURL] atTime:0] forState:UIControlStateNormal];
-            dataToSend = [NSData dataWithContentsOfURL:info[UIImagePickerControllerMediaURL]];
-            fileKey = @"testFromApp.mov";
+            _mimeType = @"video/quicktime";
+            [self.createQuestionView.captureVideoButton setImage:[DBCreateQuestionViewController thumbnailImageForVideo:info[UIImagePickerControllerMediaURL] atTime:0] forState:UIControlStateNormal];
+            _dataToSend = [NSData dataWithContentsOfURL:info[UIImagePickerControllerMediaURL]];
         }
 
-        self.createFeedView.captureVideoButton.clipsToBounds = YES;
-        [DBS3Manager uploadFileWithKey:fileKey data:dataToSend mimeType:mimeType completionBlock:^(BOOL success, NSError *error) {
-            
-        }];
+        self.createQuestionView.captureVideoButton.clipsToBounds = YES;
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -100,21 +93,30 @@
 
 - (void)postButtonDidPress {
 
-    NSString *title = self.createFeedView.titleTextField.text;
-    NSString *description = self.createFeedView.descriptionTextView.text;
+    NSString *title = self.createQuestionView.titleTextField.text;
+    NSString *description = self.createQuestionView.descriptionTextView.text;
     
     NSArray *myArray = @[@"Nejake", @"Data"];
-    
-    [DBParseManager uploadQuestionWithTitle:title questionDescription:description videosAndPhotosNames:myArray completionBlock:^(NSString *objectIDString, NSError *error) {
-        _parseObjectID = objectIDString;
-        NSLog(@"objectID > %@", self.parseObjectID); // Test vypis - smazat
-    }];
+    if (_dataToSend != nil) {
+        [DBParseManager uploadQuestionWithTitle:title questionDescription:description videosAndPhotosNames:myArray completionBlock:^(NSString *objectIDString, NSError *error) {
+            _parseObjectID = objectIDString;
+            [DBS3Manager uploadFileWithKey:
+             ([self.mimeType  isEqual: @"image/jpg"]) ? ([self.parseObjectID stringByAppendingString:@".jpg"]) : ([self.parseObjectID stringByAppendingString:@".mov"])
+                                    data:self.dataToSend
+                                    mimeType:self.mimeType
+                            completionBlock:^(BOOL succes, NSError *error) {
+                
+            }];
+        }];
+    } else {
+        NSLog(@"Nebylo nic zadano...");
+    }
 }
 
 #pragma mark - Properties
 
-- (DBCreateFeedView *)createFeedView {
-    return (DBCreateFeedView *)self.view;
+- (DBCreateQuestionView *)createQuestionView {
+    return (DBCreateQuestionView *)self.view;
 }
 
 #pragma mark - Private

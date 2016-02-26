@@ -11,7 +11,7 @@
 
 @implementation DBParseManager
 
-+ (void)uploadQuestionWithTitle:(NSString *)title questionDescription:(NSString *)questionDescription videosAndPhotosNames:(NSArray *)videosAndPhotosNames {
++ (void)uploadQuestionWithTitle:(NSString *)title questionDescription:(NSString *)questionDescription videosAndPhotosNames:(NSArray *)videosAndPhotosNames  completionBlock:(DBParseManagerCompletionBlock)completionBlock {
 
     DBQuestion *question = [DBQuestion object];
     
@@ -19,9 +19,10 @@
     question.questionDescription = questionDescription;
     question.videosAndPhotosNames = videosAndPhotosNames;
     
-    [question saveInBackground];
+    [question saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
+        completionBlock(question.objectId, error);
+    }];
 
 }
-
 
 @end

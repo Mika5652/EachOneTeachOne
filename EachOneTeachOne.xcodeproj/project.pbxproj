@@ -16,7 +16,6 @@
 		F60D1C6F1C590FD9008A460F /* DBQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = F60D1C6E1C590FD9008A460F /* DBQuestion.m */; };
 		F62970461C4E7159007174C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970451C4E7159007174C0 /* main.m */; };
 		F62970491C4E7159007174C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970481C4E7159007174C0 /* AppDelegate.m */; };
-		F629704C1C4E7159007174C0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F629704B1C4E7159007174C0 /* ViewController.m */; };
 		F629704F1C4E7159007174C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F629704D1C4E7159007174C0 /* Main.storyboard */; };
 		F62970511C4E7159007174C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62970501C4E7159007174C0 /* Assets.xcassets */; };
 		F62970541C4E7159007174C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62970521C4E7159007174C0 /* LaunchScreen.storyboard */; };
@@ -24,8 +23,8 @@
 		F629706A1C4E715A007174C0 /* EachOneTeachOneUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970691C4E715A007174C0 /* EachOneTeachOneUITests.m */; };
 		F629707E1C4E7A76007174C0 /* DBMainView.m in Sources */ = {isa = PBXBuildFile; fileRef = F629707D1C4E7A76007174C0 /* DBMainView.m */; };
 		F62970811C4E7A9D007174C0 /* DBMainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970801C4E7A9D007174C0 /* DBMainViewController.m */; };
-		F62970861C4E8308007174C0 /* DBCreateFeedViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970851C4E8308007174C0 /* DBCreateFeedViewController.m */; };
-		F629708A1C4E8330007174C0 /* DBCreateFeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970891C4E8330007174C0 /* DBCreateFeedView.m */; };
+		F62970861C4E8308007174C0 /* DBCreateQuestionViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970851C4E8308007174C0 /* DBCreateQuestionViewController.m */; };
+		F629708A1C4E8330007174C0 /* DBCreateQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970891C4E8330007174C0 /* DBCreateQuestionView.m */; };
 		F629708F1C512D13007174C0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F629708E1C512D13007174C0 /* MediaPlayer.framework */; };
 		F62970911C512D2A007174C0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F62970901C512D2A007174C0 /* MobileCoreServices.framework */; };
 /* End PBXBuildFile section */
@@ -64,8 +63,6 @@
 		F62970451C4E7159007174C0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F62970471C4E7159007174C0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F62970481C4E7159007174C0 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F629704A1C4E7159007174C0 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F629704B1C4E7159007174C0 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		F629704E1C4E7159007174C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F62970501C4E7159007174C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F62970531C4E7159007174C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -80,10 +77,10 @@
 		F629707D1C4E7A76007174C0 /* DBMainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBMainView.m; sourceTree = "<group>"; };
 		F629707F1C4E7A9D007174C0 /* DBMainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBMainViewController.h; sourceTree = "<group>"; };
 		F62970801C4E7A9D007174C0 /* DBMainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBMainViewController.m; sourceTree = "<group>"; };
-		F62970841C4E8308007174C0 /* DBCreateFeedViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateFeedViewController.h; sourceTree = "<group>"; };
-		F62970851C4E8308007174C0 /* DBCreateFeedViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateFeedViewController.m; sourceTree = "<group>"; };
-		F62970881C4E8330007174C0 /* DBCreateFeedView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateFeedView.h; sourceTree = "<group>"; };
-		F62970891C4E8330007174C0 /* DBCreateFeedView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateFeedView.m; sourceTree = "<group>"; };
+		F62970841C4E8308007174C0 /* DBCreateQuestionViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateQuestionViewController.h; sourceTree = "<group>"; };
+		F62970851C4E8308007174C0 /* DBCreateQuestionViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateQuestionViewController.m; sourceTree = "<group>"; };
+		F62970881C4E8330007174C0 /* DBCreateQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateQuestionView.h; sourceTree = "<group>"; };
+		F62970891C4E8330007174C0 /* DBCreateQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateQuestionView.m; sourceTree = "<group>"; };
 		F629708D1C4E8DE1007174C0 /* Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 		F629708E1C512D13007174C0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F62970901C512D2A007174C0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -188,8 +185,6 @@
 				F62970771C4E7A16007174C0 /* View Controller */,
 				F62970471C4E7159007174C0 /* AppDelegate.h */,
 				F62970481C4E7159007174C0 /* AppDelegate.m */,
-				F629704A1C4E7159007174C0 /* ViewController.h */,
-				F629704B1C4E7159007174C0 /* ViewController.m */,
 				F629704D1C4E7159007174C0 /* Main.storyboard */,
 				F62970501C4E7159007174C0 /* Assets.xcassets */,
 				F62970521C4E7159007174C0 /* LaunchScreen.storyboard */,
@@ -258,8 +253,8 @@
 			isa = PBXGroup;
 			children = (
 				F62970871C4E830D007174C0 /* View */,
-				F62970841C4E8308007174C0 /* DBCreateFeedViewController.h */,
-				F62970851C4E8308007174C0 /* DBCreateFeedViewController.m */,
+				F62970841C4E8308007174C0 /* DBCreateQuestionViewController.h */,
+				F62970851C4E8308007174C0 /* DBCreateQuestionViewController.m */,
 			);
 			name = CreateFeed;
 			sourceTree = "<group>";
@@ -267,8 +262,8 @@
 		F62970871C4E830D007174C0 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				F62970881C4E8330007174C0 /* DBCreateFeedView.h */,
-				F62970891C4E8330007174C0 /* DBCreateFeedView.m */,
+				F62970881C4E8330007174C0 /* DBCreateQuestionView.h */,
+				F62970891C4E8330007174C0 /* DBCreateQuestionView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -373,7 +368,7 @@
 				TargetAttributes = {
 					F62970401C4E7159007174C0 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 4C9JEQNS82;
+						DevelopmentTeam = 2W9YFR7B89;
 					};
 					F62970591C4E715A007174C0 = {
 						CreatedOnToolsVersion = 7.2;
@@ -490,9 +485,8 @@
 			files = (
 				F629707E1C4E7A76007174C0 /* DBMainView.m in Sources */,
 				09A7C3F51C7D9336009DABE5 /* DBS3Manager.m in Sources */,
-				F629704C1C4E7159007174C0 /* ViewController.m in Sources */,
-				F629708A1C4E8330007174C0 /* DBCreateFeedView.m in Sources */,
-				F62970861C4E8308007174C0 /* DBCreateFeedViewController.m in Sources */,
+				F629708A1C4E8330007174C0 /* DBCreateQuestionView.m in Sources */,
+				F62970861C4E8308007174C0 /* DBCreateQuestionViewController.m in Sources */,
 				F62970491C4E7159007174C0 /* AppDelegate.m in Sources */,
 				F60D1C6F1C590FD9008A460F /* DBQuestion.m in Sources */,
 				09A7C3F91C7DE94A009DABE5 /* DBParseManager.m in Sources */,
@@ -647,7 +641,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -666,7 +660,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

@@ -40,6 +40,7 @@ PODS:
   - Bolts/Tasks (1.6.0)
   - FBSDKCoreKit (4.9.1):
     - Bolts (~> 1.5)
+  - IQKeyboardManager (4.0.0)
   - Parse (1.12.0):
     - Bolts/Tasks (~> 1.5)
 
@@ -62,6 +63,7 @@ DEPENDENCIES:
   - AWSSNS
   - AWSSQS
   - FBSDKCoreKit (~> 4.9.1)
+  - IQKeyboardManager
   - Parse (~> 1.12.0)
 
 SPEC CHECKSUMS:
@@ -84,6 +86,7 @@ SPEC CHECKSUMS:
   AWSSQS: 96d02b4c65dc518af539dff0e751e595d48ee904
   Bolts: f52a250053bb517ca874523c3913776359ab3def
   FBSDKCoreKit: aee20b6d9855f15b618d4fddd1a5ad45f5a4a59d
+  IQKeyboardManager: b91928f7927ba55a5829b4dcf4b7a6736ac9fc22
   Parse: de2c52a9a1421b91ae7594ab8ce191afd184f19b
 
 COCOAPODS: 0.39.0

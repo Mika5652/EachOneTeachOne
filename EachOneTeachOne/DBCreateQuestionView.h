@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBCreateQuestionView : UIView
+@interface DBCreateQuestionView : UIScrollView
 
 @property UITextField *titleTextField;
 
