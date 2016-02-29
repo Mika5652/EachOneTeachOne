@@ -16,6 +16,8 @@ NSString * const kDBFeedViewTableViewCellIdentifier = @"kDBFeedViewTableViewCell
 
 CGFloat const kVerticalSpacing = 4;
 CGFloat const kHorizontalSpacing = 4;
+CGFloat const kTitleLabelFontSize = 24;
+CGFloat const kDescriptionLabelFontSize = 14;
 
 @interface DBFeedViewTableViewCell ()
 
@@ -34,11 +36,11 @@ CGFloat const kHorizontalSpacing = 4;
         [self.contentView addSubview:self.photoImageView];
         
         _titleLabel = [UILabel newAutoLayoutView];
-        [self.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:24]];
+        [self.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:kTitleLabelFontSize]];
         [self.contentView addSubview:self.titleLabel];
         
         _descriptionLabel = [UILabel newAutoLayoutView];
-        self.descriptionLabel.font = [UIFont boldSystemFontOfSize:14];
+        self.descriptionLabel.font = [UIFont boldSystemFontOfSize:kDescriptionLabelFontSize];
         self.descriptionLabel.numberOfLines = 2;
 //        self.descriptionLabel.lineBreakMode = NSLineBreakByCharWrapping;
         [self.contentView addSubview:self.descriptionLabel];
