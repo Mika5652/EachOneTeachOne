@@ -48,8 +48,6 @@
         [self.feedDataSource.items addObjectsFromArray:questions];
         [self.feedView.tableView reloadData];
     }];
-    [self.feedView.tableView autoPinToBottomLayoutGuideOfViewController:self withInset:5];
-    
 }
 
 #pragma mark - UserAction
