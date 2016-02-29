@@ -14,8 +14,8 @@
 
 NSString * const kDBFeedViewTableViewCellIdentifier = @"kDBFeedViewTableViewCellIdentifier";
 
-CGFloat const kVerticalSpacing = 5;
-CGFloat const kHorizontalSpacing = 5;
+CGFloat const kVerticalSpacing = 4;
+CGFloat const kHorizontalSpacing = 4;
 
 @interface DBFeedViewTableViewCell ()
 
@@ -34,7 +34,6 @@ CGFloat const kHorizontalSpacing = 5;
         [self.contentView addSubview:self.photoImageView];
         
         _titleLabel = [UILabel newAutoLayoutView];
-//        self.titleLabel.font = [UIFont boldSystemFontOfSize:20];
         [self.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:24]];
         [self.contentView addSubview:self.titleLabel];
         
@@ -60,13 +59,10 @@ CGFloat const kHorizontalSpacing = 5;
         [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
         [self.titleLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.photoImageView withOffset:kHorizontalSpacing];
         [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
-        [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kVerticalSpacing];
-//        [self.titleLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoImageView];
-        //        [self.titleLabel autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.photoImageView withMultiplier:0.3];
+        [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTop];
         
-        [self.descriptionLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel withOffset:kVerticalSpacing];
+        [self.descriptionLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel];
         [self.descriptionLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.photoImageView withOffset:kHorizontalSpacing];
-//        [self.descriptionLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.photoImageView];
         [self.descriptionLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalSpacing];
         [self.descriptionLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
         
