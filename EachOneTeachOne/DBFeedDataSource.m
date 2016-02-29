@@ -36,6 +36,9 @@
     NSData *imageData = [NSData dataWithContentsOfURL:photoURL];
     cell.photoImageView.image = [UIImage imageWithData:imageData];
 
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+    
     return cell;
 }
 

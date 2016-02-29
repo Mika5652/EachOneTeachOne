@@ -14,6 +14,16 @@
 
 NSString * const kDBFeedViewTableViewCellIdentifier = @"kDBFeedViewTableViewCellIdentifier";
 
+CGFloat const kVerticalSpacing = 5;
+CGFloat const kHorizontalSpacing = 5;
+
+@interface DBFeedViewTableViewCell ()
+
+@property (nonatomic, assign) BOOL didSetupConstraints;
+
+@end
+
+
 @implementation DBFeedViewTableViewCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
@@ -21,42 +31,49 @@ NSString * const kDBFeedViewTableViewCellIdentifier = @"kDBFeedViewTableViewCell
     
     if (self) {
         _photoImageView = [[UIImageView alloc] init];
-        [self addSubview:self.photoImageView];
+        [self.contentView addSubview:self.photoImageView];
         
         _titleLabel = [UILabel newAutoLayoutView];
 //        self.titleLabel.font = [UIFont boldSystemFontOfSize:20];
-        [self.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:26]];
-        self.titleLabel.minimumScaleFactor = 0;
-        self.titleLabel.adjustsFontSizeToFitWidth = YES;
-        [self addSubview:self.titleLabel];
+        [self.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:24]];
+        [self.contentView addSubview:self.titleLabel];
         
         _descriptionLabel = [UILabel newAutoLayoutView];
-        self.descriptionLabel.font = [UIFont boldSystemFontOfSize:20];
-        self.descriptionLabel.numberOfLines = 0;
+        self.descriptionLabel.font = [UIFont boldSystemFontOfSize:14];
+        self.descriptionLabel.numberOfLines = 2;
 //        self.descriptionLabel.lineBreakMode = NSLineBreakByCharWrapping;
-        self.descriptionLabel.minimumScaleFactor = 0.6;
-        self.descriptionLabel.adjustsFontSizeToFitWidth = YES;
-        [self addSubview:self.descriptionLabel];
-        
-        [self.photoImageView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionWidth ofView:self withMultiplier:0.2];
-        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:5];
-        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:5];
-        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:5];
-        [self.photoImageView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionHeight ofView:self.photoImageView];
-        
-        [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-        [self.titleLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.photoImageView withOffset:10];
-        [self.titleLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoImageView];
-//        [self.titleLabel autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.photoImageView withMultiplier:0.3];
-        
-        [self.descriptionLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel withOffset:5];
-        [self.descriptionLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.photoImageView withOffset:10];
-        [self.descriptionLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.photoImageView];
-        [self.descriptionLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:5];
-
+        [self.contentView addSubview:self.descriptionLabel];
     }
     
     return self;
+}
+
+- (void) updateConstraints {
+    if (!self.didSetupConstraints) {
+        
+        [self.photoImageView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionWidth ofView:self.contentView withMultiplier:0.2];
+        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kVerticalSpacing];
+        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
+        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalSpacing];
+        [self.photoImageView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionHeight ofView:self.photoImageView];
+        
+        [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+        [self.titleLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.photoImageView withOffset:kHorizontalSpacing];
+        [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
+        [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kVerticalSpacing];
+//        [self.titleLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeTop ofView:self.photoImageView];
+        //        [self.titleLabel autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self.photoImageView withMultiplier:0.3];
+        
+        [self.descriptionLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel withOffset:kVerticalSpacing];
+        [self.descriptionLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.photoImageView withOffset:kHorizontalSpacing];
+//        [self.descriptionLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeBottom ofView:self.photoImageView];
+        [self.descriptionLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalSpacing];
+        [self.descriptionLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
+        
+        self.didSetupConstraints = YES;
+    }
+    
+    [super updateConstraints];
 }
 
 @end
