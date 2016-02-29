@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DBQuestion.h"
 
 extern NSString * const kAWSS3BaseURL;
 
 @interface DBNetworkingManager : NSObject
+
++ (void)uploadManager:(DBQuestion *)question data:(NSData *)data mimeType:(NSString *)mimeType;
 
 @end

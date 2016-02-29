@@ -8,6 +8,8 @@
 
 #import "DBQuestionVideoAttachment.h"
 
+NSString * const kMimeTypeVideoMOV = @"video/quicktime";
+
 @implementation DBQuestionVideoAttachment
 
 @end

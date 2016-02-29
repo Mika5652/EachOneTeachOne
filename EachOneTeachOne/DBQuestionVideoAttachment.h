@@ -8,6 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
+extern NSString * const kMimeTypeVideoMOV;
+
 @interface DBQuestionVideoAttachment : NSObject
 
 @property NSURL *videoURL;

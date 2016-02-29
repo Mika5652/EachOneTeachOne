@@ -23,14 +23,15 @@
 // Frameworks
 #import <AVFoundation/AVFoundation.h>
 
-#import "DBS3Manager.h" // DELELTE
-#import "DBParseManager.h"  // DELETE
+#import "DBNetworkingManager.h"
 
 @interface DBCreateQuestionViewController ()
 
 @property UIImagePickerController *imagePickerController;
 @property (copy, nonatomic, readonly) NSString *parseObjectID;      // ID objektu na Parsu
 @property DBCreateQuestionDataSource *createQuestionDataSource;
+@property (nonatomic, readonly) NSData *dataToSend;     // DELETE = pouze test
+@property (nonatomic, readonly) NSString *mimeType;     // DELETE = pouze test
 
 @end
 
@@ -82,47 +83,43 @@
 #pragma mark - UIImagePickerControllerDelegate
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
-//    if ([picker isEqual:self.imagePickerController]) {
-//        if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
-//            DBQuestionPhotoAttachment *photoAttachment = [[DBQuestionPhotoAttachment alloc] init];
-//            photoAttachment.mimeType = kMimeTypeImageJPG;
-//            UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-//            [self.createQuestionView.captureVideoButton setImage:chosenImage forState:UIControlStateNormal];
-//            _dataToSend = UIImageJPEGRepresentation(chosenImage, 1);
+    if ([picker isEqual:self.imagePickerController]) {
+        if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
+            DBQuestionPhotoAttachment *photoAttachment = [[DBQuestionPhotoAttachment alloc] init];
+            photoAttachment.mimeType = kMimeTypeImageJPG;
+            UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
+            _mimeType = kMimeTypeImageJPG;
+            [self.createQuestionView.captureVideoButton setImage:chosenImage forState:UIControlStateNormal];
+            _dataToSend = UIImageJPEGRepresentation(chosenImage, 1);
 //            [self.createQuestionDataSource.items addObject:photoAttachment];
-//        } else {
-//            _mimeType = @"video/quicktime";
-//            [self.createQuestionView.captureVideoButton setImage:[DBCreateQuestionViewController thumbnailImageForVideo:info[UIImagePickerControllerMediaURL] atTime:0] forState:UIControlStateNormal];
-//            _dataToSend = [NSData dataWithContentsOfURL:info[UIImagePickerControllerMediaURL]];
+        } else {
+//            _mimeType = kMimeTypeVideoMOV;
+            [self.createQuestionView.captureVideoButton setImage:[DBCreateQuestionViewController thumbnailImageForVideo:info[UIImagePickerControllerMediaURL] atTime:0] forState:UIControlStateNormal];
+            _dataToSend = [NSData dataWithContentsOfURL:info[UIImagePickerControllerMediaURL]];
 //            [self.createQuestionDataSource.items addObject:videoAttachment];
-//        }
-//
-//        self.createQuestionView.captureVideoButton.clipsToBounds = YES;
-//        [picker dismissViewControllerAnimated:YES completion:nil];
-//    }
+        }
+
+        self.createQuestionView.captureVideoButton.clipsToBounds = YES;
+        [picker dismissViewControllerAnimated:YES completion:nil];
+    }
 }
 
 #pragma mark - UserAction
 
 - (void)postButtonDidPress {
-
-//    NSString *title = self.createQuestionView.titleTextField.text;
-//    NSString *description = self.createQuestionView.descriptionTextView.text;
-//    
-//    NSArray *myArray = @[@"Nejake", @"Data"];       // upravit - zatim jen testovaci
-//    if (_dataToSend != nil) {
-//        [DBParseManager uploadQuestionWithTitle:title questionDescription:description videosAndPhotosNames:myArray completionBlock:^(NSString *objectIDString, NSError *error) {
-//            _parseObjectID = objectIDString;
-//            [DBS3Manager uploadFileWithKey:objectIDString
-//                                      data:self.dataToSend
-//                                  mimeType:self.mimeType
-//                           completionBlock:^(BOOL succes, NSError *error) {
-//                
-//            }];
-//        }];
-//    } else {
-//        NSLog(@"Nebylo nic zadano...");
-//    }
+    NSArray *myArray = @[@"Nejake", @"Data"];       // upravit - zatim jen testovaci
+    
+    DBQuestion *question = [DBQuestion object];
+    
+    question.title = self.createQuestionView.titleTextField.text;
+    question.questionDescription = self.createQuestionView.descriptionTextView.text;
+    question.videosAndPhotosNames = myArray;
+    
+    if (_dataToSend != nil) {
+        [DBNetworkingManager uploadManager:question data:_dataToSend mimeType:_mimeType];
+    } else {
+        NSLog(@"Nebylo nic zadano...");
+    }
 }
 
 #pragma mark - Properties
