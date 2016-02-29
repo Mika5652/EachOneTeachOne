@@ -32,7 +32,7 @@ CGFloat const kDescriptionLabelFontSize = 14;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
-        _photoImageView = [[UIImageView alloc] init];
+        _photoImageView = [UIImageView newAutoLayoutView];
         [self.contentView addSubview:self.photoImageView];
         
         _titleLabel = [UILabel newAutoLayoutView];
@@ -41,8 +41,8 @@ CGFloat const kDescriptionLabelFontSize = 14;
         
         _descriptionLabel = [UILabel newAutoLayoutView];
         self.descriptionLabel.font = [UIFont boldSystemFontOfSize:kDescriptionLabelFontSize];
-        self.descriptionLabel.numberOfLines = 2;
-//        self.descriptionLabel.lineBreakMode = NSLineBreakByCharWrapping;
+        self.descriptionLabel.numberOfLines = 0;
+        self.descriptionLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [self.contentView addSubview:self.descriptionLabel];
     }
     
@@ -52,21 +52,27 @@ CGFloat const kDescriptionLabelFontSize = 14;
 - (void) updateConstraints {
     if (!self.didSetupConstraints) {
         
-        [self.photoImageView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionWidth ofView:self.contentView withMultiplier:0.2];
-        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kVerticalSpacing];
-        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
-        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalSpacing];
-        [self.photoImageView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionHeight ofView:self.photoImageView];
+        [NSLayoutConstraint autoSetPriority:801 forConstraints:^{
+            [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kVerticalSpacing];
+            [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
+            [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalSpacing];
+            [self.photoImageView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionWidth ofView:self.contentView withMultiplier:0.2];
+            [self.photoImageView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionHeight ofView:self.photoImageView];
+            [self.photoImageView setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisVertical];
+            [self.photoImageView setContentCompressionResistancePriority:UILayoutPriorityDefaultLow forAxis:UILayoutConstraintAxisHorizontal];
+        }];
         
-        [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
-        [self.titleLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.photoImageView withOffset:kHorizontalSpacing];
-        [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
-        [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTop];
-        
-        [self.descriptionLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel];
-        [self.descriptionLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.photoImageView withOffset:kHorizontalSpacing];
-        [self.descriptionLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalSpacing];
-        [self.descriptionLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
+        [NSLayoutConstraint autoSetPriority:799 forConstraints:^{
+            [self.titleLabel setContentCompressionResistancePriority:UILayoutPriorityRequired forAxis:UILayoutConstraintAxisVertical];
+            [self.titleLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.photoImageView withOffset:kHorizontalSpacing];
+            [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
+            [self.titleLabel autoPinEdgeToSuperviewEdge:ALEdgeTop];
+            
+            [self.descriptionLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleLabel];
+            [self.descriptionLabel autoPinEdge:ALEdgeLeading toEdge:ALEdgeTrailing ofView:self.photoImageView withOffset:kHorizontalSpacing];
+            [self.descriptionLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
+            [self.descriptionLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalSpacing];
+        }];
         
         self.didSetupConstraints = YES;
     }

@@ -18,7 +18,7 @@
         
         _tableView = [[UITableView alloc] init];
         self.tableView.rowHeight = UITableViewAutomaticDimension;
-        self.tableView.estimatedRowHeight = 2;
+        self.tableView.estimatedRowHeight = 50;
         [self addSubview:self.tableView];
         
         [self.tableView autoPinEdgesToSuperviewEdges];
