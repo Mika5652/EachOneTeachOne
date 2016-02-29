@@ -14,4 +14,15 @@ NSString * const kAWSS3BaseURL = @"https://s3.eu-central-1.amazonaws.com/eachone
 
 @implementation DBNetworkingManager
 
++ (void)uploadManager:(DBQuestion *)question data:(NSData *)data mimeType:(NSString *)mimeType {
+    [DBParseManager uploadQuestionWithTitle:question.title questionDescription:question.questionDescription videosAndPhotosNames:question.videosAndPhotosNames completion:^(NSString *objectIDString, NSError *error) {
+        [DBS3Manager uploadFileWithKey:objectIDString
+                                  data:data
+                              mimeType:mimeType
+                       completionBlock:^(BOOL success, NSError *error) {
+                           
+                       }];
+    }];
+}
+
 @end

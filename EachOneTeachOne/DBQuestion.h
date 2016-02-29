@@ -13,6 +13,6 @@
 @property NSString *title;
 @property NSString *questionDescription;
 @property NSArray *videosAndPhotosNames;
-
+@property NSArray *videosAndPhotosDescriptions;
 
 @end
