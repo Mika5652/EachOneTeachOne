@@ -12,6 +12,7 @@
 #import "DBFeedDataSource.h"
 #import "DBFeedViewTableViewCell.h"
 #import "DBParseManager.h"
+#import <PureLayout/PureLayout.h>
 
 @interface DBFeedViewController ()
 
@@ -47,7 +48,7 @@
         [self.feedDataSource.items addObjectsFromArray:questions];
         [self.feedView.tableView reloadData];
     }];
-    
+    [self.feedView.tableView autoPinToBottomLayoutGuideOfViewController:self withInset:5];
     
 }
 

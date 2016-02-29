@@ -17,7 +17,8 @@
         self.backgroundColor = [UIColor whiteColor];
         
         _tableView = [[UITableView alloc] init];
-        self.tableView.contentInset = UIEdgeInsetsMake(32, 0, 0, 0);
+        self.tableView.rowHeight = UITableViewAutomaticDimension;
+        self.tableView.estimatedRowHeight = 2;
         [self addSubview:self.tableView];
         
         [self.tableView autoPinEdgesToSuperviewEdges];
