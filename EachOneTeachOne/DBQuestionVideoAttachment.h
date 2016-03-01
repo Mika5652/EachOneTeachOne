@@ -6,16 +6,10 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "DBQuestionAttachment.h"
 
-extern NSString * const kMimeTypeVideoMOV;
-extern NSString * const kMOVExtenstion;
+@interface DBQuestionVideoAttachment : DBQuestionAttachment <DBQuestionAttachmentProtocol>
 
-@interface DBQuestionVideoAttachment : NSObject
-
-@property NSURL *videoURL;
-@property NSString *mimeType;
-@property (nonatomic) UIImage *thumbnailImage;
+@property (nonatomic) NSURL *videoURL;
 
 @end

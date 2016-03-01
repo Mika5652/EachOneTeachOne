@@ -7,23 +7,56 @@
 //
 
 #import "DBQuestionVideoAttachment.h"
-#import "UIImage+DBResizing.h"
 
-NSString * const kMimeTypeVideoMOV = @"video/quicktime";
-NSString * const kMOVExtenstion = @"MOV";
+// Frameworks
+#import <AVFoundation/AVFoundation.h>
 
 @implementation DBQuestionVideoAttachment
 
-#pragma mark - Constants
+#pragma mark - DBQuestionAttachmentProtocol
 
-+ (CGSize)kThumbnailImageSize {
-    return CGSizeMake(256, 256);
+- (void)setVideoURL:(NSURL *)videoURL {
+    _videoURL = videoURL;
+    self.thumbnailImage = [self thumbnailImageForVideo:videoURL atTime:0];
 }
 
-#pragma mark - Properties
+- (NSData *)dataForUpload {
+    return [NSData dataWithContentsOfURL:self.videoURL];
+}
 
-- (void)setThumbnailImage:(UIImage *)thumbnailImage {
-    _thumbnailImage = [thumbnailImage photoResizedToSize:[DBQuestionVideoAttachment kThumbnailImageSize]];
+- (NSString *)fileExtension {
+    return kMOVExtenstion;
+}
+
+- (NSString *)mimeType {
+    return kMimeTypeVideoMOV;
+}
+
+#pragma mark - Private
+
+- (UIImage *)thumbnailImageForVideo:(NSURL *)videoURL atTime:(NSTimeInterval)time {
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+    NSParameterAssert(asset);
+    AVAssetImageGenerator *assetIG = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    assetIG.appliesPreferredTrackTransform = YES;
+    assetIG.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+    
+    CGImageRef thumbnailImageRef = NULL;
+    CFTimeInterval thumbnailImageTime = time;
+    NSError *igError = nil;
+    thumbnailImageRef =
+    [assetIG copyCGImageAtTime:CMTimeMake(thumbnailImageTime, 60)
+                    actualTime:NULL
+                         error:&igError];
+    
+    if (!thumbnailImageRef)
+        NSLog(@"thumbnailImageGenerationError %@", igError );
+    
+    UIImage *thumbnailImage = thumbnailImageRef
+    ? [[UIImage alloc] initWithCGImage:thumbnailImageRef]
+    : nil;
+    
+    return thumbnailImage;
 }
 
 @end

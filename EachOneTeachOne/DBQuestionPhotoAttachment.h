@@ -6,16 +6,10 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "DBQuestionAttachment.h"
 
-extern NSString * const kMimeTypeImageJPG;
-extern NSString * const kJPGExtenstion;
-
-@interface DBQuestionPhotoAttachment : NSObject
+@interface DBQuestionPhotoAttachment : DBQuestionAttachment <DBQuestionAttachmentProtocol>
 
 @property (nonatomic) UIImage *photoImage;
-@property NSString *mimeType;
-@property (nonatomic) UIImage *thumbnailImage;
 
 @end

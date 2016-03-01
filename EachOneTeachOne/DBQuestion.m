@@ -14,6 +14,7 @@
 @dynamic questionDescription;
 @dynamic videosAndPhotosNames;
 @dynamic videosAndPhotosDescriptions;
+@dynamic thumbnailName;
 
 + (NSString *)parseClassName
 {

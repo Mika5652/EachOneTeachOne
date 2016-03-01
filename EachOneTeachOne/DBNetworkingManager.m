@@ -21,25 +21,25 @@ NSString * const kAWSS3BaseURL = @"https://s3.eu-central-1.amazonaws.com/eachone
         NSMutableArray *videosAndPhotosNamesArray = [[NSMutableArray alloc] init];
         
         for (int i = 0; i < [dataArray count]; i++) {
-            NSString *objectIDStringWithIndex = [question.objectId stringByAppendingString:[NSString stringWithFormat:@"_%d", i]];
             
             id attachment = [dataArray objectAtIndex:i];
+            NSString *objectIDStringWithIndex = question.objectId;
+            NSString *objectThumbnailName;
             
-            if ([attachment isKindOfClass:[DBQuestionVideoAttachment class]]) {
-                [objectIDStringWithIndex stringByAppendingPathExtension:kMOVExtenstion];
-                DBQuestionVideoAttachment *videoAttachment = (DBQuestionVideoAttachment *)attachment;
+            objectIDStringWithIndex = [objectIDStringWithIndex stringByAppendingString:[NSString stringWithFormat:@"_%d", i]];
+            if ([attachment conformsToProtocol:@protocol(DBQuestionAttachmentProtocol)] && [attachment isKindOfClass:[DBQuestionAttachment class]]) {
+                DBQuestionAttachment<DBQuestionAttachmentProtocol> *questionAttachment = (DBQuestionAttachment<DBQuestionAttachmentProtocol> *)attachment;
+                if (i == 0) {
+                    objectThumbnailName = [[question.objectId stringByAppendingString:@"_thumbnail"] stringByAppendingPathExtension:kJPGExtenstion];
+                    [DBS3Manager uploadFileWithKey:objectThumbnailName data:[questionAttachment thumbnailDataForUpload] mimeType:kJPGExtenstion completionBlock:^(BOOL success, NSError *error) {
+                        question.thumbnailName = objectThumbnailName;
+                        [question saveInBackground];
+                    }];
+                }
+                objectIDStringWithIndex = [objectIDStringWithIndex stringByAppendingPathExtension:[questionAttachment fileExtension]];
                 [DBS3Manager uploadFileWithKey:objectIDStringWithIndex
-                                          data:[NSData dataWithContentsOfURL:videoAttachment.videoURL]
-                                      mimeType:videoAttachment.mimeType
-                               completionBlock:^(BOOL success, NSError *error) {
-                                   
-                               }];
-            } else {
-                [objectIDStringWithIndex stringByAppendingPathExtension:kJPGExtenstion];
-                DBQuestionPhotoAttachment *photoAttachment = attachment;
-                [DBS3Manager uploadFileWithKey:objectIDStringWithIndex
-                                          data:UIImageJPEGRepresentation(photoAttachment.photoImage, 1)
-                                      mimeType:photoAttachment.mimeType
+                                          data:[questionAttachment dataForUpload]
+                                      mimeType:[questionAttachment mimeType]
                                completionBlock:^(BOOL success, NSError *error) {
                                    
                                }];

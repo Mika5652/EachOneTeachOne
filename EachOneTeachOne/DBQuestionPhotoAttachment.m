@@ -9,9 +9,6 @@
 #import "DBQuestionPhotoAttachment.h"
 #import "UIImage+DBResizing.h"
 
-NSString * const kMimeTypeImageJPG = @"image/jpg";
-NSString * const kJPGExtenstion = @"jpg";
-
 @implementation DBQuestionPhotoAttachment
 
 #pragma mark - Constants
@@ -20,19 +17,25 @@ NSString * const kJPGExtenstion = @"jpg";
     return CGSizeMake(1024,1024);
 }
 
-+ (CGSize)kThumbnailImageSize {
-    return CGSizeMake(256, 256);
+#pragma mark - DBQuestionAttachmentProtocol
+
+- (NSData *)dataForUpload {
+    return UIImageJPEGRepresentation(self.photoImage, 1);
+}
+
+- (NSString *)fileExtension {
+    return kMimeTypeImageJPG;
+}
+
+- (NSString *)mimeType {
+    return kMimeTypeImageJPG;
 }
 
 #pragma mark - Variables
 
 - (void)setPhotoImage:(UIImage *)photoImage {
     _photoImage = [photoImage photoResizedToSize:[DBQuestionPhotoAttachment kImageSize]];
+    self.thumbnailImage = photoImage;
 }
-
-- (void)setThumbnailImage:(UIImage *)thumbnailImage {
-    _thumbnailImage = [thumbnailImage photoResizedToSize:[DBQuestionPhotoAttachment kThumbnailImageSize]];
-}
-
 
 @end
