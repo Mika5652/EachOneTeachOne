@@ -31,7 +31,6 @@
 @property (copy, nonatomic, readonly) NSString *parseObjectID;      // ID objektu na Parsu
 @property DBCreateQuestionDataSource *createQuestionDataSource;
 @property (nonatomic, readonly) NSData *dataToSend;     // DELETE = pouze test
-@property (nonatomic, readonly) NSString *mimeType;     // DELETE = pouze test
 
 @end
 
@@ -87,16 +86,17 @@
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
             DBQuestionPhotoAttachment *photoAttachment = [[DBQuestionPhotoAttachment alloc] init];
             photoAttachment.mimeType = kMimeTypeImageJPG;
-            UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-            _mimeType = kMimeTypeImageJPG;
-            [self.createQuestionView.captureVideoButton setImage:chosenImage forState:UIControlStateNormal];
-            _dataToSend = UIImageJPEGRepresentation(chosenImage, 1);
-//            [self.createQuestionDataSource.items addObject:photoAttachment];
+            photoAttachment.photoImage = info[UIImagePickerControllerOriginalImage];
+            photoAttachment.thumbnailImage = photoAttachment.photoImage;
+            [self.createQuestionView.captureVideoButton setImage:photoAttachment.photoImage forState:UIControlStateNormal];
+            [self.createQuestionDataSource.items addObject:photoAttachment];
         } else {
-//            _mimeType = kMimeTypeVideoMOV;
-            [self.createQuestionView.captureVideoButton setImage:[DBCreateQuestionViewController thumbnailImageForVideo:info[UIImagePickerControllerMediaURL] atTime:0] forState:UIControlStateNormal];
-            _dataToSend = [NSData dataWithContentsOfURL:info[UIImagePickerControllerMediaURL]];
-//            [self.createQuestionDataSource.items addObject:videoAttachment];
+            DBQuestionVideoAttachment *videoAttachment = [[DBQuestionVideoAttachment alloc] init];
+            videoAttachment.mimeType = kMimeTypeVideoMOV;
+            videoAttachment.videoURL = info[UIImagePickerControllerMediaURL];
+            videoAttachment.thumbnailImage = [DBCreateQuestionViewController thumbnailImageForVideo:videoAttachment.videoURL atTime:0];
+            [self.createQuestionView.captureVideoButton setImage:videoAttachment.thumbnailImage forState:UIControlStateNormal];
+            [self.createQuestionDataSource.items addObject:videoAttachment];
         }
 
         self.createQuestionView.captureVideoButton.clipsToBounds = YES;
@@ -107,16 +107,15 @@
 #pragma mark - UserAction
 
 - (void)postButtonDidPress {
-    NSArray *myArray = @[@"Nejake", @"Data"];       // upravit - zatim jen testovaci
-    
     DBQuestion *question = [DBQuestion object];
     
     question.title = self.createQuestionView.titleTextField.text;
     question.questionDescription = self.createQuestionView.descriptionTextView.text;
-    question.videosAndPhotosNames = myArray;
+
+    NSArray *testArray = self.createQuestionDataSource.items;
     
-    if (_dataToSend != nil) {
-        [DBNetworkingManager uploadManager:question data:_dataToSend mimeType:_mimeType];
+    if (testArray != nil) {
+        [DBNetworkingManager uploadQuestion:question dataArray:self.createQuestionDataSource.items];
     } else {
         NSLog(@"Nebylo nic zadano...");
     }

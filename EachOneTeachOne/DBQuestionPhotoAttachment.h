@@ -10,10 +10,12 @@
 #import <UIKit/UIKit.h>
 
 extern NSString * const kMimeTypeImageJPG;
+extern NSString * const kJPGExtenstion;
 
 @interface DBQuestionPhotoAttachment : NSObject
 
-@property UIImage *photo;
+@property (nonatomic) UIImage *photoImage;
 @property NSString *mimeType;
+@property (nonatomic) UIImage *thumbnailImage;
 
 @end

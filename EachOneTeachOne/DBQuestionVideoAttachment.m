@@ -7,9 +7,23 @@
 //
 
 #import "DBQuestionVideoAttachment.h"
+#import "UIImage+DBResizing.h"
 
 NSString * const kMimeTypeVideoMOV = @"video/quicktime";
+NSString * const kMOVExtenstion = @"MOV";
 
 @implementation DBQuestionVideoAttachment
+
+#pragma mark - Constants
+
++ (CGSize)kThumbnailImageSize {
+    return CGSizeMake(256, 256);
+}
+
+#pragma mark - Properties
+
+- (void)setThumbnailImage:(UIImage *)thumbnailImage {
+    _thumbnailImage = [thumbnailImage photoResizedToSize:[DBQuestionVideoAttachment kThumbnailImageSize]];
+}
 
 @end
