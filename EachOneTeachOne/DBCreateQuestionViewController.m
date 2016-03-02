@@ -20,9 +20,6 @@
 // Data Sources
 #import "DBCreateQuestionDataSource.h"
 
-// Frameworks
-#import <AVFoundation/AVFoundation.h>
-
 #import "DBNetworkingManager.h"
 
 @interface DBCreateQuestionViewController ()
@@ -31,7 +28,6 @@
 @property (copy, nonatomic, readonly) NSString *parseObjectID;      // ID objektu na Parsu
 @property DBCreateQuestionDataSource *createQuestionDataSource;
 @property (nonatomic, readonly) NSData *dataToSend;     // DELETE = pouze test
-@property (nonatomic, readonly) NSString *mimeType;     // DELETE = pouze test
 
 @end
 
@@ -52,10 +48,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDidPress)];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
     self.createQuestionView.titleTextField.delegate = self;
     self.createQuestionView.descriptionTextView.delegate = self;
     [self.createQuestionView.captureVideoButton addTarget:self action:@selector(captureVideo) forControlEvents:UIControlEventTouchUpInside];
-    [self.createQuestionView.postButton addTarget:self action:@selector(postButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - UIImagePickerControllerSourceType
@@ -86,17 +83,14 @@
     if ([picker isEqual:self.imagePickerController]) {
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
             DBQuestionPhotoAttachment *photoAttachment = [[DBQuestionPhotoAttachment alloc] init];
-            photoAttachment.mimeType = kMimeTypeImageJPG;
-            UIImage *chosenImage = info[UIImagePickerControllerOriginalImage];
-            _mimeType = kMimeTypeImageJPG;
-            [self.createQuestionView.captureVideoButton setImage:chosenImage forState:UIControlStateNormal];
-            _dataToSend = UIImageJPEGRepresentation(chosenImage, 1);
-//            [self.createQuestionDataSource.items addObject:photoAttachment];
+            photoAttachment.photoImage = info[UIImagePickerControllerOriginalImage];
+            [self.createQuestionView.captureVideoButton setImage:photoAttachment.photoImage forState:UIControlStateNormal];
+            [self.createQuestionDataSource.items addObject:photoAttachment];
         } else {
-//            _mimeType = kMimeTypeVideoMOV;
-            [self.createQuestionView.captureVideoButton setImage:[DBCreateQuestionViewController thumbnailImageForVideo:info[UIImagePickerControllerMediaURL] atTime:0] forState:UIControlStateNormal];
-            _dataToSend = [NSData dataWithContentsOfURL:info[UIImagePickerControllerMediaURL]];
-//            [self.createQuestionDataSource.items addObject:videoAttachment];
+            DBQuestionVideoAttachment *videoAttachment = [[DBQuestionVideoAttachment alloc] init];
+            videoAttachment.videoURL = info[UIImagePickerControllerMediaURL];
+            [self.createQuestionView.captureVideoButton setImage:videoAttachment.thumbnailImage forState:UIControlStateNormal];
+            [self.createQuestionDataSource.items addObject:videoAttachment];
         }
 
         self.createQuestionView.captureVideoButton.clipsToBounds = YES;
@@ -106,17 +100,14 @@
 
 #pragma mark - UserAction
 
-- (void)postButtonDidPress {
-    NSArray *myArray = @[@"Nejake", @"Data"];       // upravit - zatim jen testovaci
-    
+- (void)rightBarButtonDidPress {
     DBQuestion *question = [DBQuestion object];
     
     question.title = self.createQuestionView.titleTextField.text;
     question.questionDescription = self.createQuestionView.descriptionTextView.text;
-    question.videosAndPhotosNames = myArray;
     
-    if (_dataToSend != nil) {
-        [DBNetworkingManager uploadManager:question data:_dataToSend mimeType:_mimeType];
+    if (self.createQuestionView.titleTextField.text != nil) {
+        [DBNetworkingManager uploadQuestion:question dataArray:self.createQuestionDataSource.items];
     } else {
         NSLog(@"Nebylo nic zadano...");
     }
@@ -126,36 +117,6 @@
 
 - (DBCreateQuestionView *)createQuestionView {
     return (DBCreateQuestionView *)self.view;
-}
-
-#pragma mark - Private
-
-+ (UIImage *)thumbnailImageForVideo:(NSURL *)videoURL
-                             atTime:(NSTimeInterval)time
-{
-    
-    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
-    NSParameterAssert(asset);
-    AVAssetImageGenerator *assetIG = [[AVAssetImageGenerator alloc] initWithAsset:asset];
-    assetIG.appliesPreferredTrackTransform = YES;
-    assetIG.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
-    
-    CGImageRef thumbnailImageRef = NULL;
-    CFTimeInterval thumbnailImageTime = time;
-    NSError *igError = nil;
-    thumbnailImageRef =
-    [assetIG copyCGImageAtTime:CMTimeMake(thumbnailImageTime, 60)
-                    actualTime:NULL
-                         error:&igError];
-    
-    if (!thumbnailImageRef)
-        NSLog(@"thumbnailImageGenerationError %@", igError );
-    
-    UIImage *thumbnailImage = thumbnailImageRef
-    ? [[UIImage alloc] initWithCGImage:thumbnailImageRef]
-    : nil;
-    
-    return thumbnailImage;
 }
 
 @end

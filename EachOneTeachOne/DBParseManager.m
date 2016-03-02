@@ -13,16 +13,9 @@ static NSInteger const kLimit = 20;
 
 @implementation DBParseManager
 
-+ (void)uploadQuestionWithTitle:(NSString *)title questionDescription:(NSString *)questionDescription videosAndPhotosNames:(NSArray *)videosAndPhotosNames completion:(DBParseManagerUploadCompletion)completion {
-
-    DBQuestion *question = [DBQuestion object];
-    
-    question.title = title;
-    question.questionDescription = questionDescription;
-    question.videosAndPhotosNames = videosAndPhotosNames;
-    
++ (void)uploadQuestion:(DBQuestion *)question completion:(DBParseManagerUploadCompletion)completion {
     [question saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        completion(question.objectId, error);
+        completion(question, error);
     }];
 }
 

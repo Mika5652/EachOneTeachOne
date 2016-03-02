@@ -8,12 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
-typedef void (^DBParseManagerUploadCompletion)(NSString *objectIDString, NSError *error);
+@class DBQuestion;
+
+typedef void (^DBParseManagerUploadCompletion)(DBQuestion *question, NSError *error);
 typedef void (^DBParseManagerGetQuestionsCompletion)(NSArray *questions, NSError *error);
 
 @interface DBParseManager : NSObject
 
-+ (void)uploadQuestionWithTitle:(NSString *)title questionDescription:(NSString *)questionDescription videosAndPhotosNames:(NSArray *)videosAndPhotosNames completion:(DBParseManagerUploadCompletion)completion;
++ (void)uploadQuestion:(DBQuestion *)question completion:(DBParseManagerUploadCompletion)completion;
 + (void)getNewQuestionsWithSkip:(NSInteger)skip completion:(DBParseManagerGetQuestionsCompletion)completion;
 
 @end

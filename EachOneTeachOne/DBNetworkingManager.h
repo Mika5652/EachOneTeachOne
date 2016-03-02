@@ -13,6 +13,6 @@ extern NSString * const kAWSS3BaseURL;
 
 @interface DBNetworkingManager : NSObject
 
-+ (void)uploadManager:(DBQuestion *)question data:(NSData *)data mimeType:(NSString *)mimeType;
++ (void)uploadQuestion:(DBQuestion *)question dataArray:(NSMutableArray *)dataArray;
 
 @end

@@ -14,5 +14,6 @@
 @property NSString *questionDescription;
 @property NSArray *videosAndPhotosNames;
 @property NSArray *videosAndPhotosDescriptions;
+@property NSString *thumbnailName;
 
 @end

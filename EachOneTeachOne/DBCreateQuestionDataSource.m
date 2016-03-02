@@ -7,6 +7,7 @@
 //
 
 #import "DBCreateQuestionDataSource.h"
+#import "DBCreateQuestionTableViewCell.h"
 
 @implementation DBCreateQuestionDataSource
 
@@ -18,15 +19,16 @@
     return self;
 }
 
-- (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.items.count;
 }
 
-
-- (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
-    UICollectionViewCell *cell=[collectionView dequeueReusableCellWithReuseIdentifier:@"cellIdentifier" forIndexPath:indexPath];
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    DBCreateQuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionTableViewCellIdentifier forIndexPath:indexPath];
     
-    cell.backgroundColor=[UIColor greenColor];
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
+    
     return cell;
 }
 

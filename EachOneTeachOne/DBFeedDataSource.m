@@ -32,7 +32,7 @@
     DBQuestion *question = self.items[indexPath.row];
     cell.titleLabel.text = question.title;
     cell.descriptionLabel.text = question.questionDescription;
-    NSURL *photoURL = [NSURL URLWithString:[kAWSS3BaseURL stringByAppendingPathComponent:question.videosAndPhotosNames.firstObject]];
+    NSURL *photoURL = [NSURL URLWithString:[kAWSS3BaseURL stringByAppendingPathComponent:question.thumbnailName]];
     NSData *imageData = [NSData dataWithContentsOfURL:photoURL];
     cell.photoImageView.image = [UIImage imageWithData:imageData];
 
