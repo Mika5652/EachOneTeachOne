@@ -15,8 +15,8 @@
 // Core
 #import "Core.h"
 
-CGFloat const kVerticalSpacing = 4;
-CGFloat const kHorizontalSpacing = 4;
+static CGFloat const kVerticalSpacing = 4;
+static CGFloat const kHorizontalSpacing = 4;
 
 @interface DBCreateQuestionView ()
 
@@ -63,7 +63,6 @@ CGFloat const kHorizontalSpacing = 4;
 - (void)updateConstraints {
     
     if (!self.didSetupConstraints) {
-        
         [self.titleTextField autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kVerticalSpacing];
         [self.titleTextField autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
         [self.titleTextField autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];

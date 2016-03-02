@@ -14,10 +14,10 @@
 
 NSString * const kDBFeedViewTableViewCellIdentifier = @"kDBFeedViewTableViewCellIdentifier";
 
-CGFloat const kVerticalSpacing = 4;
-CGFloat const kHorizontalSpacing = 4;
-CGFloat const kTitleLabelFontSize = 24;
-CGFloat const kDescriptionLabelFontSize = 14;
+static CGFloat const kVerticalSpacing = 4;
+static CGFloat const kHorizontalSpacing = 4;
+static CGFloat const kTitleLabelFontSize = 24;
+static CGFloat const kDescriptionLabelFontSize = 14;
 
 @interface DBFeedViewTableViewCell ()
 
