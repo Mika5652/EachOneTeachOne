@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBCreateQuestionDataSource : NSObject <UICollectionViewDataSource>
+@interface DBCreateQuestionDataSource : NSObject <UITableViewDataSource>
 
 @property NSMutableArray *items;
 

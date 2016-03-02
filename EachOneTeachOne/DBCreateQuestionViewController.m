@@ -48,10 +48,11 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDidPress)];
+    self.navigationItem.rightBarButtonItem = rightBarButton;
     self.createQuestionView.titleTextField.delegate = self;
     self.createQuestionView.descriptionTextView.delegate = self;
     [self.createQuestionView.captureVideoButton addTarget:self action:@selector(captureVideo) forControlEvents:UIControlEventTouchUpInside];
-    [self.createQuestionView.postButton addTarget:self action:@selector(postButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
 }
 
 #pragma mark - UIImagePickerControllerSourceType
@@ -99,7 +100,7 @@
 
 #pragma mark - UserAction
 
-- (void)postButtonDidPress {
+- (void)rightBarButtonDidPress {
     DBQuestion *question = [DBQuestion object];
     
     question.title = self.createQuestionView.titleTextField.text;

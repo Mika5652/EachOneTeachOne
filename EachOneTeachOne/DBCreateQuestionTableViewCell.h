@@ -8,6 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBCreateQuestionCollectionViewCell : UICollectionViewCell
+extern NSString * const kDBCreateQuestionTableViewCellIdentifier;
+
+@interface DBCreateQuestionTableViewCell : UITableViewCell
+
+@property NSMutableArray *data;
 
 @end

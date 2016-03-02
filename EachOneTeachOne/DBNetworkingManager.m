@@ -31,7 +31,7 @@ NSString * const kAWSS3BaseURL = @"https://s3.eu-central-1.amazonaws.com/eachone
                 DBQuestionAttachment<DBQuestionAttachmentProtocol> *questionAttachment = (DBQuestionAttachment<DBQuestionAttachmentProtocol> *)attachment;
                 if (i == 0) {
                     objectThumbnailName = [[question.objectId stringByAppendingString:@"_thumbnail"] stringByAppendingPathExtension:kJPGExtenstion];
-                    [DBS3Manager uploadFileWithKey:objectThumbnailName data:[questionAttachment thumbnailDataForUpload] mimeType:kJPGExtenstion completionBlock:^(BOOL success, NSError *error) {
+                    [DBS3Manager uploadFileWithKey:objectThumbnailName data:[questionAttachment thumbnailDataForUpload] mimeType:kJPGExtenstion completion:^(BOOL success, NSError *error) {
                         question.thumbnailName = objectThumbnailName;
                         [question saveInBackground];
                     }];
@@ -40,7 +40,7 @@ NSString * const kAWSS3BaseURL = @"https://s3.eu-central-1.amazonaws.com/eachone
                 [DBS3Manager uploadFileWithKey:objectIDStringWithIndex
                                           data:[questionAttachment dataForUpload]
                                       mimeType:[questionAttachment mimeType]
-                               completionBlock:^(BOOL success, NSError *error) {
+                               completion:^(BOOL success, NSError *error) {
                                    
                                }];
             }

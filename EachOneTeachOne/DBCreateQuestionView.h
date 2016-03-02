@@ -10,15 +10,15 @@
 
 @interface DBCreateQuestionView : UIScrollView
 
-@property UITextField *titleTextField;
+@property UITableView *tableView;
 
+@property UITextField *titleTextField;
 @property UITextView *descriptionTextView;
 
 @property UILabel *titlePostLabel;
 @property UILabel *descriptionLabel;
 
 @property UIButton *captureVideoButton;
-@property UIButton *postButton;
 
 
 @end
