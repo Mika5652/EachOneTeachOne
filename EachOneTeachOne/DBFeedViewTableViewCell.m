@@ -25,6 +25,7 @@ CGFloat const kDescriptionLabelFontSize = 14;
 
 @end
 
+#pragma mark - Lifecycles
 
 @implementation DBFeedViewTableViewCell
 
@@ -36,14 +37,15 @@ CGFloat const kDescriptionLabelFontSize = 14;
         [self.contentView addSubview:self.photoImageView];
         
         _titleLabel = [UILabel newAutoLayoutView];
-        [self.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:kTitleLabelFontSize]];
         [self.contentView addSubview:self.titleLabel];
         
         _descriptionLabel = [UILabel newAutoLayoutView];
-        self.descriptionLabel.font = [UIFont boldSystemFontOfSize:kDescriptionLabelFontSize];
         self.descriptionLabel.numberOfLines = 0;
         self.descriptionLabel.lineBreakMode = NSLineBreakByTruncatingTail;
         [self.contentView addSubview:self.descriptionLabel];
+        
+        [self setFonts];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeFontSizes) name:UIContentSizeCategoryDidChangeNotification object:nil];
     }
     
     return self;
@@ -75,6 +77,20 @@ CGFloat const kDescriptionLabelFontSize = 14;
     }
     
     [super updateConstraints];
+}
+
+#pragma mark - Public
+
+- (void)setFonts {
+    self.titleLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleHeadline];
+    self.descriptionLabel.font = [UIFont preferredFontForTextStyle:UIFontTextStyleSubheadline];
+}
+
+#pragma mark - Private
+
+- (void)changeFontSizes {
+    [self setFonts];
+    [self setNeedsLayout];
 }
 
 @end

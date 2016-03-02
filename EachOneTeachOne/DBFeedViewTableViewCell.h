@@ -16,4 +16,6 @@ extern NSString * const kDBFeedViewTableViewCellIdentifier;
 @property UILabel *titleLabel;
 @property UILabel *descriptionLabel;
 
+- (void)setFonts;
+    
 @end
