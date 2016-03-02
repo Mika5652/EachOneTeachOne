@@ -16,6 +16,7 @@ extern NSString * const kMOVExtenstion;
 @interface DBQuestionAttachment : NSObject
 
 @property (nonatomic) UIImage *thumbnailImage;
+@property NSString *attachmentDescription;
 
 - (NSData *)thumbnailDataForUpload;
 

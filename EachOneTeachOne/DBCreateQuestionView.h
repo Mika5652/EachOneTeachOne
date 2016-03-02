@@ -8,15 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBCreateQuestionView : UIScrollView
+@interface DBCreateQuestionView : UIView
 
 @property UITableView *tableView;
 
 @property UITextField *titleTextField;
 @property UITextView *descriptionTextView;
-
-@property UILabel *titlePostLabel;
-@property UILabel *descriptionLabel;
 
 @property UIButton *captureVideoButton;
 

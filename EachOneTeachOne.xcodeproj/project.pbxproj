@@ -20,6 +20,9 @@
 		09B1D11F1C805AE400BDA7A4 /* libPureLayout.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B1D11E1C805AE400BDA7A4 /* libPureLayout.a */; };
 		09CAF3331C85D5D0004508D2 /* UIImage+DBResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CAF3321C85D5D0004508D2 /* UIImage+DBResizing.m */; };
 		09CAF3361C85E2B0004508D2 /* DBQuestionAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CAF3351C85E2B0004508D2 /* DBQuestionAttachment.m */; };
+		09CAF3391C87347A004508D2 /* BDCreateQuestionTitleAndDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CAF3381C87347A004508D2 /* BDCreateQuestionTitleAndDescriptionTableViewCell.m */; };
+		09CAF33C1C8734B3004508D2 /* DBCreateQuestionVideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CAF33B1C8734B3004508D2 /* DBCreateQuestionVideoTableViewCell.m */; };
+		09CAF33F1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CAF33E1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.m */; };
 		101D6D961C7DF9FB004F90E3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101D6D951C7DF9FB004F90E3 /* AVFoundation.framework */; };
 		64ADAFFCFE98F21A4D5D51B8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D443A8CB6401AC603A4C18 /* libPods.a */; };
 		F60D1C6B1C5900D0008A460F /* libParse.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F60D1C6A1C5900D0008A460F /* libParse.a */; };
@@ -82,6 +85,12 @@
 		09CAF3321C85D5D0004508D2 /* UIImage+DBResizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DBResizing.m"; sourceTree = "<group>"; };
 		09CAF3341C85E2B0004508D2 /* DBQuestionAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBQuestionAttachment.h; sourceTree = "<group>"; };
 		09CAF3351C85E2B0004508D2 /* DBQuestionAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBQuestionAttachment.m; sourceTree = "<group>"; };
+		09CAF3371C87347A004508D2 /* BDCreateQuestionTitleAndDescriptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BDCreateQuestionTitleAndDescriptionTableViewCell.h; sourceTree = "<group>"; };
+		09CAF3381C87347A004508D2 /* BDCreateQuestionTitleAndDescriptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BDCreateQuestionTitleAndDescriptionTableViewCell.m; sourceTree = "<group>"; };
+		09CAF33A1C8734B3004508D2 /* DBCreateQuestionVideoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateQuestionVideoTableViewCell.h; sourceTree = "<group>"; };
+		09CAF33B1C8734B3004508D2 /* DBCreateQuestionVideoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateQuestionVideoTableViewCell.m; sourceTree = "<group>"; };
+		09CAF33D1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateQuestionPhotoTableViewCell.h; sourceTree = "<group>"; };
+		09CAF33E1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateQuestionPhotoTableViewCell.m; sourceTree = "<group>"; };
 		101D6D951C7DF9FB004F90E3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		50D443A8CB6401AC603A4C18 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		599559C5D9391F9736A02E83 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
@@ -160,6 +169,12 @@
 			children = (
 				0903E20E1C803190003FC892 /* DBCreateQuestionTableViewCell.h */,
 				0903E20F1C803190003FC892 /* DBCreateQuestionTableViewCell.m */,
+				09CAF3371C87347A004508D2 /* BDCreateQuestionTitleAndDescriptionTableViewCell.h */,
+				09CAF3381C87347A004508D2 /* BDCreateQuestionTitleAndDescriptionTableViewCell.m */,
+				09CAF33A1C8734B3004508D2 /* DBCreateQuestionVideoTableViewCell.h */,
+				09CAF33B1C8734B3004508D2 /* DBCreateQuestionVideoTableViewCell.m */,
+				09CAF33D1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.h */,
+				09CAF33E1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.m */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -449,7 +464,7 @@
 				TargetAttributes = {
 					F62970401C4E7159007174C0 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 675SJW39U6;
+						DevelopmentTeam = 2W9YFR7B89;
 					};
 					F62970591C4E715A007174C0 = {
 						CreatedOnToolsVersion = 7.2;
@@ -566,6 +581,7 @@
 			files = (
 				0903E2161C8034C2003FC892 /* DBQuestionPhotoAttachment.m in Sources */,
 				F629707E1C4E7A76007174C0 /* DBFeedView.m in Sources */,
+				09CAF33F1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.m in Sources */,
 				09A7C3F51C7D9336009DABE5 /* DBS3Manager.m in Sources */,
 				0903E2191C803691003FC892 /* DBQuestionVideoAttachment.m in Sources */,
 				0903E21C1C804298003FC892 /* DBFeedViewTableViewCell.m in Sources */,
@@ -578,10 +594,12 @@
 				F60D1C6F1C590FD9008A460F /* DBQuestion.m in Sources */,
 				09CAF3361C85E2B0004508D2 /* DBQuestionAttachment.m in Sources */,
 				09A7C3F91C7DE94A009DABE5 /* DBParseManager.m in Sources */,
+				09CAF3391C87347A004508D2 /* BDCreateQuestionTitleAndDescriptionTableViewCell.m in Sources */,
 				09CAF3331C85D5D0004508D2 /* UIImage+DBResizing.m in Sources */,
 				F62970811C4E7A9D007174C0 /* DBFeedViewController.m in Sources */,
 				F62970461C4E7159007174C0 /* main.m in Sources */,
 				0903E2131C8031AD003FC892 /* DBCreateQuestionDataSource.m in Sources */,
+				09CAF33C1C8734B3004508D2 /* DBCreateQuestionVideoTableViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -731,7 +749,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};
@@ -750,7 +768,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/build/Debug-iphoneos",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne3;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 			};

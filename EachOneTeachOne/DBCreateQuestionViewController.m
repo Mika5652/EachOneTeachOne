@@ -53,6 +53,11 @@
     self.createQuestionView.titleTextField.delegate = self;
     self.createQuestionView.descriptionTextView.delegate = self;
     [self.createQuestionView.captureVideoButton addTarget:self action:@selector(captureVideo) forControlEvents:UIControlEventTouchUpInside];
+
+    self.navigationController.toolbarHidden = NO;
+    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(captureVideo)];
+    NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
+    self.toolbarItems = toolbarItems;
 }
 
 #pragma mark - UIImagePickerControllerSourceType

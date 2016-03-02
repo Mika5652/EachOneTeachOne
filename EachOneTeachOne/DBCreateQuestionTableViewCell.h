@@ -12,6 +12,7 @@ extern NSString * const kDBCreateQuestionTableViewCellIdentifier;
 
 @interface DBCreateQuestionTableViewCell : UITableViewCell
 
-@property NSMutableArray *data;
+@property UIImageView *photoImageView;
+@property UILabel *descriptionLabel;
 
 @end
