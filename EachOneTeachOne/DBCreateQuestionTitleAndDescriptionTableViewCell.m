@@ -58,7 +58,7 @@ static CGFloat const kHorizontalSpacing = 4;
         [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
         [self.descriptionTextView autoSetDimension:ALDimensionHeight toSize:50];
         [NSLayoutConstraint autoSetPriority:999 forConstraints:^{
-            [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeBottom];
+            [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalSpacing];
         }];
         
         self.didSetupConstraints = YES;

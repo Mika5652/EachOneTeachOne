@@ -33,6 +33,9 @@ static CGFloat const kHorizontalSpacing = 4;
         [self.contentView addSubview:self.photoImageView];
         
         _descriptionTextView = [UITextView newAutoLayoutView];
+        self.descriptionTextView.backgroundColor = [UIColor lightGrayColor];
+        self.descriptionTextView.layer.cornerRadius = 7;
+        self.descriptionTextView.autocorrectionType = NO;
         self.descriptionTextView.delegate = self;
         [self.contentView addSubview:self.descriptionTextView];
         
@@ -42,17 +45,22 @@ static CGFloat const kHorizontalSpacing = 4;
 }
 
 - (void)updateConstraints {
+    
     if (!self.didSetupConstraints) {
         
-        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTop];
-        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeLeading];
-        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
-        [self.photoImageView autoSetDimension:ALDimensionHeight toSize:50];
+        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kHorizontalSpacing];
+        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
+        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
+        [self.photoImageView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionWidth ofView:self.contentView];
         
-        [self.descriptionTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.photoImageView withOffset:kVerticalSpacing];
+        [self.descriptionTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.photoImageView];
         [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
         [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
-        [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeBottom];
+        [self.descriptionTextView autoSetDimension:ALDimensionHeight toSize:50];
+        [NSLayoutConstraint autoSetPriority:999 forConstraints:^{
+            [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalSpacing];
+        }];
+        
         
         self.didSetupConstraints = YES;
     }

@@ -14,7 +14,8 @@ extern NSString * const kDBCreateQuestionVideoTableViewCellIdentifier;
 
 @interface DBCreateQuestionVideoTableViewCell : UITableViewCell
 
-@property UILabel *descriptionLabel;
+@property UITextView *descriptionTextView;
+@property (nonatomic) DBQuestionVideoAttachment *questionVideoAttachment;
 
 - (void)setContentWithQuestionVideoAttachment:(DBQuestionVideoAttachment *)videoAttachment;
 

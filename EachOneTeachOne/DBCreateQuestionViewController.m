@@ -70,8 +70,6 @@
     [self.createQuestionView.tableView registerClass:[DBCreateQuestionTitleAndDescriptionTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier];
     [self.createQuestionView.tableView registerClass:[DBCreateQuestionPhotoTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionPhotoTableViewCellIdentifier];
     [self.createQuestionView.tableView registerClass:[DBCreateQuestionVideoTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionVideoTableViewCellIdentifier];
-    [self.createQuestionView.tableView reloadData];
-    
 }
 
 #pragma mark - UIImagePickerControllerSourceType
@@ -109,7 +107,8 @@
             videoAttachment.videoURL = info[UIImagePickerControllerMediaURL];
             [self.createQuestionDataSource.items addObject:videoAttachment];
         }
-
+        
+        [self.createQuestionView.tableView reloadData];
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
 }

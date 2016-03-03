@@ -16,7 +16,7 @@ NSString * const kDBCreateQuestionVideoTableViewCellIdentifier = @"kDBCreateQues
 static CGFloat const kHorizontalSpacing = 4;
 static CGFloat const kVerticalSpacing = 4;
 
-@interface DBCreateQuestionVideoTableViewCell ()
+@interface DBCreateQuestionVideoTableViewCell () <UITextViewDelegate>
 
 @property (nonatomic, assign) BOOL didSetupConstraints;
 @property AVPlayer *videoPlayer;
@@ -34,8 +34,12 @@ static CGFloat const kVerticalSpacing = 4;
         _playerViewController = [[AVPlayerViewController alloc] init];
         [self.contentView addSubview:self.playerViewController.view];
         
-        _descriptionLabel = [UILabel newAutoLayoutView];
-        [self.contentView addSubview:self.descriptionLabel];
+        _descriptionTextView = [UITextView newAutoLayoutView];
+        self.descriptionTextView.backgroundColor = [UIColor lightGrayColor];
+        self.descriptionTextView.layer.cornerRadius = 7;
+        self.descriptionTextView.autocorrectionType = NO;
+        self.descriptionTextView.delegate = self;
+        [self.contentView addSubview:self.descriptionTextView];
         
     }
     
@@ -46,15 +50,18 @@ static CGFloat const kVerticalSpacing = 4;
     
     if (!self.didSetupConstraints) {
 
-        [self.playerViewController.view autoPinEdgeToSuperviewEdge:ALEdgeTop];
-        [self.playerViewController.view autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
-        [self.playerViewController.view autoPinEdgeToSuperviewEdge:ALEdgeLeading];
-        [self.playerViewController.view autoSetDimension:ALDimensionHeight toSize:50];
+        [self.playerViewController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kVerticalSpacing];
+        [self.playerViewController.view autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
+        [self.playerViewController.view autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
+        [self.playerViewController.view autoMatchDimension:ALDimensionHeight toDimension:ALDimensionWidth ofView:self.contentView];
         
-        [self.descriptionLabel autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.playerViewController.view withOffset:kVerticalSpacing];
-        [self.descriptionLabel autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
-        [self.descriptionLabel autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
-        [self.descriptionLabel autoPinEdgeToSuperviewEdge:ALEdgeBottom];
+        [self.descriptionTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.playerViewController.view withOffset:kVerticalSpacing];
+        [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
+        [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
+        [self.descriptionTextView autoSetDimension:ALDimensionHeight toSize:50];
+        [NSLayoutConstraint autoSetPriority:999 forConstraints:^{
+            [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalSpacing];
+        }];
         
         self.didSetupConstraints = YES;
     }
@@ -64,6 +71,10 @@ static CGFloat const kVerticalSpacing = 4;
 
 - (void)setContentWithQuestionVideoAttachment:(DBQuestionVideoAttachment *)videoAttachment {
     _videoPlayer = [[AVPlayer alloc] init];
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    self.questionVideoAttachment.questionAttachmentDescription = self.descriptionTextView.text;
 }
 
 @end
