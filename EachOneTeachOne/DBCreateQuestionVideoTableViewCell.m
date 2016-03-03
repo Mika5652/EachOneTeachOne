@@ -62,7 +62,7 @@ static CGFloat const kVerticalSpacing = 4;
     [super updateConstraints];
 }
 
-- (void)setContentWithVideoAttachment:(DBQuestionVideoAttachment *)videoAttachment {
+- (void)setContentWithQuestionVideoAttachment:(DBQuestionVideoAttachment *)videoAttachment {
     _videoPlayer = [[AVPlayer alloc] init];
 }
 

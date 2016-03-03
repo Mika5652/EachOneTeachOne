@@ -12,7 +12,7 @@
 #import "DBFeedDataSource.h"
 #import "DBFeedViewTableViewCell.h"
 #import "DBParseManager.h"
-#import <PureLayout/PureLayout.h>
+//#import <PureLayout/PureLayout.h>
 
 @interface DBFeedViewController ()
 
@@ -53,8 +53,8 @@
 #pragma mark - UserAction
 
 - (void)rightBarButtonDidPress {
-    DBCreateQuestionViewController *createFeedViewController = [[DBCreateQuestionViewController alloc] init];
-    [self.navigationController pushViewController:createFeedViewController animated:YES];
+    DBCreateQuestionViewController *createQuestionViewController = [[DBCreateQuestionViewController alloc] init];
+    [self.navigationController pushViewController:createQuestionViewController animated:YES];
 }
 
 #pragma mark - Properties

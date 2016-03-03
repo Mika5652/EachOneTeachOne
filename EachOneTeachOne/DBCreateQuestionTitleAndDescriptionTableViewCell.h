@@ -10,7 +10,7 @@
 
 extern NSString * const kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier;
 
-@interface BDCreateQuestionTitleAndDescriptionTableViewCell : UITableViewCell
+@interface DBCreateQuestionTitleAndDescriptionTableViewCell : UITableViewCell
 
 @property UITextField *titleTextField;
 @property UITextView *descriptionTextView;

@@ -26,16 +26,15 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    DBFeedViewController *mainViewController = [[DBFeedViewController alloc] init];
+    DBFeedViewController *feedViewController = [[DBFeedViewController alloc] init];
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:mainViewController];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedViewController];
     
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
     
+// Parse
     [Parse enableLocalDatastore];
-    
-// Initialize Parse.
     [Parse setApplicationId:@"4r4yg2bzVPWpjL6yRXa4AuwrDSgTbYl8D3JyDmFN"
                   clientKey:@"dcpKWAw63tUxJF2MXP2bCE1RNyqEu634vjm2NCki"];
     

@@ -8,10 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-// Frameworks
-#import <MediaPlayer/MediaPlayer.h>
-#import <MobileCoreServices/MobileCoreServices.h>
-
 // Macros
 #define TAKE_VIDEO_ICON                 @"camera_icon"
 
@@ -19,7 +15,7 @@
 
 @interface DBCreateQuestionViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate>
 
-@property (readonly) DBCreateQuestionView* createQuestionView;
+@property (nonatomic) DBCreateQuestionView *createQuestionView;
 @property NSString *titleTextString;
 @property NSString *descriptionTextString;
 @property UIImagePickerController *picker;

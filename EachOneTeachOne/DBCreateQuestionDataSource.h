@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DBCreateQuestionPhotoTableViewCell.h"
 
 @interface DBCreateQuestionDataSource : NSObject <UITableViewDataSource>
 

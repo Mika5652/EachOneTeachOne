@@ -10,9 +10,14 @@
 
 extern NSString * const kDBCreateQuestionPhotoTableViewCellIdentifier;
 
+@class DBQuestionPhotoAttachment;
+
 @interface DBCreateQuestionPhotoTableViewCell : UITableViewCell
 
 @property UIImageView *photoImageView;
-@property UILabel *descriptionLabel;
+@property UITextView *descriptionTextView;
+@property (nonatomic) DBQuestionPhotoAttachment *questionPhotoAttachment;
+
+- (void)setQuestionPhotoAttachment:(DBQuestionPhotoAttachment *)questionPhotoAttachment;
 
 @end

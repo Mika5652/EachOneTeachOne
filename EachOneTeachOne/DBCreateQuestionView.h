@@ -12,10 +12,4 @@
 
 @property UITableView *tableView;
 
-@property UITextField *titleTextField;
-@property UITextView *descriptionTextView;
-
-@property UIButton *captureVideoButton;
-
-
 @end

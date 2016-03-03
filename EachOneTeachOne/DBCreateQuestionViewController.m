@@ -20,14 +20,23 @@
 // Data Sources
 #import "DBCreateQuestionDataSource.h"
 
+// Manager
 #import "DBNetworkingManager.h"
+
+// Cell
+#import "DBCreateQuestionTitleAndDescriptionTableViewCell.h"
+#import "DBCreateQuestionPhotoTableViewCell.h"
+#import "DBCreateQuestionVideoTableViewCell.h"
+
+// Frameworks
+#import <MediaPlayer/MediaPlayer.h>
+#import <MobileCoreServices/MobileCoreServices.h>
 
 @interface DBCreateQuestionViewController ()
 
 @property UIImagePickerController *imagePickerController;
 @property (copy, nonatomic, readonly) NSString *parseObjectID;      // ID objektu na Parsu
 @property DBCreateQuestionDataSource *createQuestionDataSource;
-@property (nonatomic, readonly) NSData *dataToSend;     // DELETE = pouze test
 
 @end
 
@@ -50,14 +59,19 @@
     [super viewDidLoad];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDidPress)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
-    self.createQuestionView.titleTextField.delegate = self;
-    self.createQuestionView.descriptionTextView.delegate = self;
-    [self.createQuestionView.captureVideoButton addTarget:self action:@selector(captureVideo) forControlEvents:UIControlEventTouchUpInside];
 
     self.navigationController.toolbarHidden = NO;
     UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(captureVideo)];
     NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
     self.toolbarItems = toolbarItems;
+    
+    self.createQuestionView.tableView.dataSource = self.createQuestionDataSource;
+    self.createQuestionView.tableView.delegate = self;
+    [self.createQuestionView.tableView registerClass:[DBCreateQuestionTitleAndDescriptionTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier];
+    [self.createQuestionView.tableView registerClass:[DBCreateQuestionPhotoTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionPhotoTableViewCellIdentifier];
+    [self.createQuestionView.tableView registerClass:[DBCreateQuestionVideoTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionVideoTableViewCellIdentifier];
+    [self.createQuestionView.tableView reloadData];
+    
 }
 
 #pragma mark - UIImagePickerControllerSourceType
@@ -89,16 +103,13 @@
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
             DBQuestionPhotoAttachment *photoAttachment = [[DBQuestionPhotoAttachment alloc] init];
             photoAttachment.photoImage = info[UIImagePickerControllerOriginalImage];
-            [self.createQuestionView.captureVideoButton setImage:photoAttachment.photoImage forState:UIControlStateNormal];
             [self.createQuestionDataSource.items addObject:photoAttachment];
         } else {
             DBQuestionVideoAttachment *videoAttachment = [[DBQuestionVideoAttachment alloc] init];
             videoAttachment.videoURL = info[UIImagePickerControllerMediaURL];
-            [self.createQuestionView.captureVideoButton setImage:videoAttachment.thumbnailImage forState:UIControlStateNormal];
             [self.createQuestionDataSource.items addObject:videoAttachment];
         }
 
-        self.createQuestionView.captureVideoButton.clipsToBounds = YES;
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
 }
@@ -106,16 +117,16 @@
 #pragma mark - UserAction
 
 - (void)rightBarButtonDidPress {
-    DBQuestion *question = [DBQuestion object];
-    
-    question.title = self.createQuestionView.titleTextField.text;
-    question.questionDescription = self.createQuestionView.descriptionTextView.text;
-    
-    if (self.createQuestionView.titleTextField.text != nil) {
-        [DBNetworkingManager uploadQuestion:question dataArray:self.createQuestionDataSource.items];
-    } else {
-        NSLog(@"Nebylo nic zadano...");
-    }
+//    DBQuestion *question = [DBQuestion object];
+//    
+//    question.title = self.createQuestionView.titleTextField.text;
+//    question.questionDescription = self.createQuestionView.descriptionTextView.text;
+//    
+//    if (self.createQuestionView.titleTextField.text != nil) {
+//        [DBNetworkingManager uploadQuestion:question dataArray:self.createQuestionDataSource.items];
+//    } else {
+//        NSLog(@"Nebylo nic zadano...");
+//    }
 }
 
 #pragma mark - Properties
