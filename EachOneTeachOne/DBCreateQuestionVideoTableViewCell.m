@@ -13,6 +13,7 @@
 #import <PureLayout/PureLayout.h>
 
 NSString * const kDBCreateQuestionVideoTableViewCellIdentifier = @"kDBCreateQuestionVideoTableViewCellIdentifier";
+static NSString * const descriptionTextViewText = @"Description...";
 static CGFloat const kHorizontalSpacing = 4;
 static CGFloat const kVerticalSpacing = 4;
 
@@ -38,10 +39,11 @@ static CGFloat const kVerticalSpacing = 4;
         [self.contentView addSubview:self.playerViewController.view];
         
         _descriptionTextView = [UITextView newAutoLayoutView];
-        self.descriptionTextView.backgroundColor = [UIColor lightGrayColor];
         self.descriptionTextView.layer.cornerRadius = 7;
         self.descriptionTextView.autocorrectionType = NO;
         self.descriptionTextView.delegate = self;
+        self.descriptionTextView.text = descriptionTextViewText;
+        self.descriptionTextView.textColor = [UIColor lightGrayColor];
         [self.contentView addSubview:self.descriptionTextView];
         
     }
@@ -55,8 +57,8 @@ static CGFloat const kVerticalSpacing = 4;
 
         [NSLayoutConstraint autoSetPriority:801 forConstraints:^{
             [self.playerViewController.view autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kVerticalSpacing];
-            [self.playerViewController.view autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
-            [self.playerViewController.view autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
+            [self.playerViewController.view autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
+            [self.playerViewController.view autoPinEdgeToSuperviewEdge:ALEdgeLeading];
         }];
         [NSLayoutConstraint autoSetPriority:799 forConstraints:^{
             [self.descriptionTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.playerViewController.view withOffset:kVerticalSpacing];
@@ -78,15 +80,33 @@ static CGFloat const kVerticalSpacing = 4;
     self.playerViewController.player = self.videoPlayer;
 }
 
-- (void)textViewDidChange:(UITextView *)textView {
-    self.questionVideoAttachment.questionAttachmentDescription = self.descriptionTextView.text;
-}
-
 - (void)setConstrainsWithImage:(UIImage *)image {
     [NSLayoutConstraint deactivateConstraints:self.videoViewConstrainsArray];
     self.videoViewConstrainsArray = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
         [self.playerViewController.view autoSetDimension:ALDimensionHeight toSize:([UIScreen mainScreen].bounds.size.width * (image.size.height / image.size.width))];
     }];
+}
+
+#pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView {
+    self.questionVideoAttachment.questionAttachmentDescription = self.descriptionTextView.text;
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([self.descriptionTextView.text isEqualToString:descriptionTextViewText]) {
+        self.descriptionTextView.text = @"";
+        self.descriptionTextView.textColor = [UIColor blackColor];
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if ([self.descriptionTextView.text isEqualToString:@""]) {
+        self.descriptionTextView.text = descriptionTextViewText;
+        self.descriptionTextView.textColor = [UIColor lightGrayColor];
+    }
+    [textView resignFirstResponder];
 }
 
 @end

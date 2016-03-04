@@ -20,6 +20,7 @@
         self.backgroundColor = [UIColor lightGrayColor];
 
         _tableView = [[UITableView alloc] init];
+        self.tableView.backgroundColor = [UIColor lightGrayColor];
         self.tableView.rowHeight = UITableViewAutomaticDimension;
         self.tableView.estimatedRowHeight = 100;
 //        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;

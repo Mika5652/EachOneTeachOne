@@ -11,6 +11,7 @@
 #import "DBQuestionPhotoAttachment.h"
 
 NSString * const kDBCreateQuestionPhotoTableViewCellIdentifier = @"kDBCreateQuestionPhotoTableViewCellIdentifier";
+static NSString * const descriptionTextViewText = @"Description...";
 static CGFloat const kVerticalSpacing = 4;
 static CGFloat const kHorizontalSpacing = 4;
 
@@ -36,10 +37,11 @@ static CGFloat const kHorizontalSpacing = 4;
         [self.contentView addSubview:self.photoImageView];
         
         _descriptionTextView = [UITextView newAutoLayoutView];
-        self.descriptionTextView.backgroundColor = [UIColor lightGrayColor];
         self.descriptionTextView.layer.cornerRadius = 7;
         self.descriptionTextView.autocorrectionType = NO;
         self.descriptionTextView.delegate = self;
+        self.descriptionTextView.text = descriptionTextViewText;
+        self.descriptionTextView.textColor = [UIColor lightGrayColor];
         [self.contentView addSubview:self.descriptionTextView];
         
     }
@@ -52,8 +54,8 @@ static CGFloat const kHorizontalSpacing = 4;
     if (!self.didSetupConstraints) {
         
         [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kVerticalSpacing];
-        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
-        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
+        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeLeading];
+        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTrailing];
         
         [self.descriptionTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.photoImageView withOffset:kVerticalSpacing];
         [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
@@ -70,17 +72,33 @@ static CGFloat const kHorizontalSpacing = 4;
 
 }
 
+- (void)setConstrainsWithImage:(UIImage *)image {    
+    [NSLayoutConstraint deactivateConstraints:self.photoImageViewConstrainsArray];
+    self.photoImageViewConstrainsArray = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
+        [self.photoImageView autoSetDimension:ALDimensionHeight toSize:([UIScreen mainScreen].bounds.size.width * (image.size.height / image.size.width))];
+    }];
+}
+
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView {
     self.questionPhotoAttachment.questionAttachmentDescription = self.descriptionTextView.text;
 }
 
-- (void)setConstrainsWithImage:(UIImage *)image {    
-    [NSLayoutConstraint deactivateConstraints:self.photoImageViewConstrainsArray];
-    self.photoImageViewConstrainsArray = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
-        [self.photoImageView autoMatchDimension:ALDimensionHeight toDimension:(ALDimensionWidth * (image.size.height / image.size.width)) ofView:self.contentView];
-    }];
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([self.descriptionTextView.text isEqualToString:descriptionTextViewText]) {
+        self.descriptionTextView.text = @"";
+        self.descriptionTextView.textColor = [UIColor blackColor];
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if ([self.descriptionTextView.text isEqualToString:@""]) {
+        self.descriptionTextView.text = descriptionTextViewText;
+        self.descriptionTextView.textColor = [UIColor lightGrayColor];
+    }
+    [textView resignFirstResponder];
 }
 
 @end

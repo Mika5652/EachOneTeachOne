@@ -10,10 +10,11 @@
 #import <PureLayout/PureLayout.h>
 
 NSString * const kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier = @"kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier";
+static NSString * const descriptionTextViewText = @"Description...";
 static CGFloat const kVerticalSpacing = 4;
 static CGFloat const kHorizontalSpacing = 4;
 
-@interface DBCreateQuestionTitleAndDescriptionTableViewCell ()
+@interface DBCreateQuestionTitleAndDescriptionTableViewCell () <UITextViewDelegate>
 
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
@@ -29,16 +30,17 @@ static CGFloat const kHorizontalSpacing = 4;
         self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _titleTextField = [UITextField newAutoLayoutView];
-        self.titleTextField.backgroundColor = [UIColor greenColor];
         self.titleTextField.borderStyle = UITextBorderStyleRoundedRect;
         self.titleTextField.placeholder = NSLocalizedString(@"Title ", nil);
         self.titleTextField.autocorrectionType = NO;
         [self.contentView addSubview:self.titleTextField];
         
         _descriptionTextView = [UITextView newAutoLayoutView];
-        self.descriptionTextView.backgroundColor = [UIColor redColor];
         self.descriptionTextView.layer.cornerRadius = 7;
         self.descriptionTextView.autocorrectionType = NO;
+        self.descriptionTextView.delegate = self;
+        self.descriptionTextView.text = descriptionTextViewText;
+        self.descriptionTextView.textColor = [UIColor lightGrayColor];
         [self.contentView addSubview:self.descriptionTextView];
     }
     
@@ -65,6 +67,22 @@ static CGFloat const kHorizontalSpacing = 4;
     }
     
     [super updateConstraints];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([self.descriptionTextView.text isEqualToString:descriptionTextViewText]) {
+        self.descriptionTextView.text = @"";
+        self.descriptionTextView.textColor = [UIColor blackColor];
+    }
+    [textView becomeFirstResponder];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    if ([self.descriptionTextView.text isEqualToString:@""]) {
+        self.descriptionTextView.text = descriptionTextViewText;
+        self.descriptionTextView.textColor = [UIColor lightGrayColor];
+    }
+    [textView resignFirstResponder];
 }
 
 @end
