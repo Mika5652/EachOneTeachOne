@@ -116,7 +116,6 @@
 #pragma mark - UserAction
 
 - (void)rightBarButtonDidPress {
-    NSLog(((DBQuestionAttachment *)self.createQuestionDataSource.items[1]).questionAttachmentDescription);
 //    DBQuestion *question = [DBQuestion object];
 //    
 //    question.title = self.createQuestionView.titleTextField.text;

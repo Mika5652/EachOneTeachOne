@@ -85,7 +85,7 @@ static CGFloat const kVerticalSpacing = 4;
 - (void)setConstrainsWithImage:(UIImage *)image {
     [NSLayoutConstraint deactivateConstraints:self.videoViewConstrainsArray];
     self.videoViewConstrainsArray = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
-        [self.playerViewController.view autoMatchDimension:ALDimensionHeight toDimension:(ALDimensionWidth * (image.size.height / image.size.width)) ofView:self.contentView];
+        [self.playerViewController.view autoSetDimension:ALDimensionHeight toSize:([UIScreen mainScreen].bounds.size.width * (image.size.height / image.size.width))];
     }];
 }
 
