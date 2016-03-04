@@ -18,4 +18,6 @@ extern NSString * const kDBCreateQuestionPhotoTableViewCellIdentifier;
 @property UITextView *descriptionTextView;
 @property (nonatomic) DBQuestionPhotoAttachment *questionPhotoAttachment;
 
+- (void)setConstrainsWithImage:(UIImage *)image;
+
 @end

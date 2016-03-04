@@ -32,7 +32,7 @@
     return kMimeTypeVideoMOV;
 }
 
-#pragma mark - Private
+#pragma mark - Public
 
 - (UIImage *)thumbnailImageForVideo:(NSURL *)videoURL atTime:(NSTimeInterval)time {
     AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];

@@ -17,6 +17,7 @@ static CGFloat const kHorizontalSpacing = 4;
 @interface DBCreateQuestionPhotoTableViewCell () <UITextViewDelegate>
 
 @property (nonatomic, assign) BOOL didSetupConstraints;
+@property NSArray *photoImageViewConstrainsArray;
 
 @end
 
@@ -28,6 +29,8 @@ static CGFloat const kHorizontalSpacing = 4;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
+        
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         
         _photoImageView = [UIImageView newAutoLayoutView];
         [self.contentView addSubview:self.photoImageView];
@@ -48,19 +51,17 @@ static CGFloat const kHorizontalSpacing = 4;
     
     if (!self.didSetupConstraints) {
         
-        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kHorizontalSpacing];
+        [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTop withInset:kVerticalSpacing];
         [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
         [self.photoImageView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
-        [self.photoImageView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionWidth ofView:self.contentView];
         
-        [self.descriptionTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.photoImageView];
+        [self.descriptionTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.photoImageView withOffset:kVerticalSpacing];
         [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
         [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
         [self.descriptionTextView autoSetDimension:ALDimensionHeight toSize:50];
         [NSLayoutConstraint autoSetPriority:999 forConstraints:^{
             [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalSpacing];
         }];
-        
         
         self.didSetupConstraints = YES;
     }
@@ -73,6 +74,13 @@ static CGFloat const kHorizontalSpacing = 4;
 
 - (void)textViewDidChange:(UITextView *)textView {
     self.questionPhotoAttachment.questionAttachmentDescription = self.descriptionTextView.text;
+}
+
+- (void)setConstrainsWithImage:(UIImage *)image {    
+    [NSLayoutConstraint deactivateConstraints:self.photoImageViewConstrainsArray];
+    self.photoImageViewConstrainsArray = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
+        [self.photoImageView autoMatchDimension:ALDimensionHeight toDimension:(ALDimensionWidth * (image.size.height / image.size.width)) ofView:self.contentView];
+    }];
 }
 
 @end

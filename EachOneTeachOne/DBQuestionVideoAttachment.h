@@ -12,4 +12,6 @@
 
 @property (nonatomic) NSURL *videoURL;
 
+- (UIImage *)thumbnailImageForVideo:(NSURL *)videoURL atTime:(NSTimeInterval)time;
+
 @end

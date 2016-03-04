@@ -31,19 +31,18 @@
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-//    DBCreateQuestionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionTableViewCellIdentifier forIndexPath:indexPath];
-    
+
     if (indexPath.row == 0) {
         DBCreateQuestionTitleAndDescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier forIndexPath:indexPath];
         [cell setNeedsUpdateConstraints];
         [cell updateConstraintsIfNeeded];
         
         return cell;
-        
     } else if ([self.items[indexPath.row-1] isKindOfClass:[DBQuestionPhotoAttachment class]]){
         DBQuestionPhotoAttachment *photoAttachment = self.items[indexPath.row-1];
         DBCreateQuestionPhotoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionPhotoTableViewCellIdentifier forIndexPath:indexPath];
         cell.questionPhotoAttachment = photoAttachment;
+        [cell setConstrainsWithImage:photoAttachment.photoImage];
         cell.photoImageView.image = photoAttachment.photoImage;
         [cell setNeedsUpdateConstraints];
         [cell updateConstraintsIfNeeded];
@@ -53,6 +52,8 @@
         DBQuestionVideoAttachment *videoAtachment = self.items[indexPath.row-1];
         DBCreateQuestionVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionVideoTableViewCellIdentifier forIndexPath:indexPath];
         [cell setContentWithQuestionVideoAttachment:videoAtachment];
+        [cell setConstrainsWithImage:[videoAtachment thumbnailImageForVideo:videoAtachment.videoURL atTime:0]];
+        cell.questionVideoAttachment = videoAtachment;
         [cell setNeedsUpdateConstraints];
         [cell updateConstraintsIfNeeded];
         
