@@ -1,5 +1,7 @@
-pod 'Parse', '~> 1.12.0'
-pod 'FBSDKCoreKit', '~> 4.9.1'
+pod 'Parse'
+pod 'FBSDKLoginKit'
+pod 'ParseUI'
+pod 'ParseFacebookUtilsV4'
 source 'https://github.com/CocoaPods/Specs.git'
 
 pod 'AWSCore'
