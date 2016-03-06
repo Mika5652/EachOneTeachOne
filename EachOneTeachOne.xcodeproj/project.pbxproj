@@ -29,9 +29,7 @@
 		F60D1C6F1C590FD9008A460F /* DBQuestion.m in Sources */ = {isa = PBXBuildFile; fileRef = F60D1C6E1C590FD9008A460F /* DBQuestion.m */; };
 		F62970461C4E7159007174C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970451C4E7159007174C0 /* main.m */; };
 		F62970491C4E7159007174C0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970481C4E7159007174C0 /* AppDelegate.m */; };
-		F629704F1C4E7159007174C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F629704D1C4E7159007174C0 /* Main.storyboard */; };
 		F62970511C4E7159007174C0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F62970501C4E7159007174C0 /* Assets.xcassets */; };
-		F62970541C4E7159007174C0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62970521C4E7159007174C0 /* LaunchScreen.storyboard */; };
 		F629705F1C4E715A007174C0 /* EachOneTeachOneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = F629705E1C4E715A007174C0 /* EachOneTeachOneTests.m */; };
 		F629706A1C4E715A007174C0 /* EachOneTeachOneUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970691C4E715A007174C0 /* EachOneTeachOneUITests.m */; };
 		F629707E1C4E7A76007174C0 /* DBFeedView.m in Sources */ = {isa = PBXBuildFile; fileRef = F629707D1C4E7A76007174C0 /* DBFeedView.m */; };
@@ -40,6 +38,13 @@
 		F629708A1C4E8330007174C0 /* DBCreateQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970891C4E8330007174C0 /* DBCreateQuestionView.m */; };
 		F629708F1C512D13007174C0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F629708E1C512D13007174C0 /* MediaPlayer.framework */; };
 		F62970911C512D2A007174C0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F62970901C512D2A007174C0 /* MobileCoreServices.framework */; };
+		F6B83B5A1C8C3F8D00193641 /* libBolts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B551C8C3F8D00193641 /* libBolts.a */; };
+		F6B83B5B1C8C3F8D00193641 /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B561C8C3F8D00193641 /* libFBSDKCoreKit.a */; };
+		F6B83B5C1C8C3F8D00193641 /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B571C8C3F8D00193641 /* libFBSDKLoginKit.a */; };
+		F6B83B5D1C8C3F8D00193641 /* libParseFacebookUtilsV4.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B581C8C3F8D00193641 /* libParseFacebookUtilsV4.a */; };
+		F6B83B5E1C8C3F8D00193641 /* libParseUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B591C8C3F8D00193641 /* libParseUI.a */; };
+		F6B83B5F1C8C928F00193641 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F629704D1C4E7159007174C0 /* Main.storyboard */; };
+		F6B83B601C8C929700193641 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62970521C4E7159007174C0 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,6 +128,11 @@
 		F629708E1C512D13007174C0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F62970901C512D2A007174C0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		F6B83B521C8AF6C000193641 /* EachOneTeachOne-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EachOneTeachOne-Bridging-Header.h"; sourceTree = "<group>"; };
+		F6B83B551C8C3F8D00193641 /* libBolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBolts.a; path = "Pods/../build/Debug-iphoneos/libBolts.a"; sourceTree = "<group>"; };
+		F6B83B561C8C3F8D00193641 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
+		F6B83B571C8C3F8D00193641 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
+		F6B83B581C8C3F8D00193641 /* libParseFacebookUtilsV4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseFacebookUtilsV4.a; path = "Pods/../build/Debug-iphoneos/libParseFacebookUtilsV4.a"; sourceTree = "<group>"; };
+		F6B83B591C8C3F8D00193641 /* libParseUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseUI.a; path = "Pods/../build/Debug-iphoneos/libParseUI.a"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +140,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6B83B5A1C8C3F8D00193641 /* libBolts.a in Frameworks */,
+				F6B83B5B1C8C3F8D00193641 /* libFBSDKCoreKit.a in Frameworks */,
+				F6B83B5C1C8C3F8D00193641 /* libFBSDKLoginKit.a in Frameworks */,
+				F6B83B5D1C8C3F8D00193641 /* libParseFacebookUtilsV4.a in Frameworks */,
+				F6B83B5E1C8C3F8D00193641 /* libParseUI.a in Frameworks */,
 				09B1D11F1C805AE400BDA7A4 /* libPureLayout.a in Frameworks */,
 				101D6D961C7DF9FB004F90E3 /* AVFoundation.framework in Frameworks */,
 				F60D1C6B1C5900D0008A460F /* libParse.a in Frameworks */,
@@ -223,6 +238,11 @@
 		830E87CD4348C160D2091E25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F6B83B551C8C3F8D00193641 /* libBolts.a */,
+				F6B83B561C8C3F8D00193641 /* libFBSDKCoreKit.a */,
+				F6B83B571C8C3F8D00193641 /* libFBSDKLoginKit.a */,
+				F6B83B581C8C3F8D00193641 /* libParseFacebookUtilsV4.a */,
+				F6B83B591C8C3F8D00193641 /* libParseUI.a */,
 				09B1D11E1C805AE400BDA7A4 /* libPureLayout.a */,
 				101D6D951C7DF9FB004F90E3 /* AVFoundation.framework */,
 				F60D1C6A1C5900D0008A460F /* libParse.a */,
@@ -505,9 +525,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F62970541C4E7159007174C0 /* LaunchScreen.storyboard in Resources */,
+				F6B83B601C8C929700193641 /* LaunchScreen.storyboard in Resources */,
+				F6B83B5F1C8C928F00193641 /* Main.storyboard in Resources */,
 				F62970511C4E7159007174C0 /* Assets.xcassets in Resources */,
-				F629704F1C4E7159007174C0 /* Main.storyboard in Resources */,
 				09385D961C75F16F00F0FB0D /* myText.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -747,11 +767,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EachOneTeachOne/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
@@ -769,11 +784,6 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EachOneTeachOne/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/build/Debug-iphoneos",
-				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";

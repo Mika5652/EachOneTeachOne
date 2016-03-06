@@ -12,4 +12,11 @@
 
 @property UITableView *tableView;
 
+@property UIView *bottomBlurView;
+
+@property UIButton *button1;
+@property UIButton *button2;
+@property UIButton *button3;
+@property UIButton *button4;
+
 @end
