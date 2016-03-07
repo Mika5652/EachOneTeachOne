@@ -54,6 +54,13 @@
     }];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    self.navigationController.toolbarHidden = NO;
+    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:nil];
+    NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
+    self.toolbarItems = toolbarItems;
+}
+
 #pragma mark - UserAction
 
 - (void)rightBarButtonDidPress {

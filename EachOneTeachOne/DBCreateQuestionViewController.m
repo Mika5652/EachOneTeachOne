@@ -60,16 +60,22 @@
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDidPress)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
 
-    self.navigationController.toolbarHidden = NO;
-    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(captureVideo)];
-    NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
-    self.toolbarItems = toolbarItems;
+//    self.navigationController.toolbarHidden = NO;
+//    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(captureVideo)];
+//    NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
+//    self.toolbarItems = toolbarItems;
     
     self.createQuestionView.tableView.dataSource = self.createQuestionDataSource;
     self.createQuestionView.tableView.delegate = self;
     [self.createQuestionView.tableView registerClass:[DBCreateQuestionTitleAndDescriptionTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier];
     [self.createQuestionView.tableView registerClass:[DBCreateQuestionPhotoTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionPhotoTableViewCellIdentifier];
     [self.createQuestionView.tableView registerClass:[DBCreateQuestionVideoTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionVideoTableViewCellIdentifier];
+}
+- (void)viewDidAppear:(BOOL)animated {
+    self.navigationController.toolbarHidden = NO;
+    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(captureVideo)];
+    NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
+    self.toolbarItems = toolbarItems;
 }
 
 #pragma mark - UIImagePickerControllerSourceType
