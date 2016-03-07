@@ -9,15 +9,15 @@
 #import "DBNetworkingManager.h"
 #import "DBParseManager.h"
 #import "DBS3Manager.h"
-#import "DBQuestionPhotoAttachment.h"
-#import "DBQuestionVideoAttachment.h"
+#import "DBPhotoAttachment.h"
+#import "DBVideoAttachment.h"
 
 NSString * const kAWSS3BaseURL = @"https://s3.eu-central-1.amazonaws.com/eachoneteachonebucket";
 
 @implementation DBNetworkingManager
 
-+ (void)uploadQuestion:(DBQuestion *)question dataArray:(NSMutableArray *)dataArray {
-    [DBParseManager uploadQuestion:question completion:^(DBQuestion *question, NSError *error) {
++ (void)uploadQuestionWithTitle:(NSString *)questionTitle questionDesciption:(NSString *)questionDesription dataArray:(NSMutableArray *)dataArray {
+    [DBParseManager uploadQuestionWithTitle:questionTitle questionDesciption:questionDesription completion:^(DBQuestion *question, NSError *error) {
         NSMutableArray *videosAndPhotosNamesArray = [[NSMutableArray alloc] init];
         
         for (int i = 0; i < [dataArray count]; i++) {
@@ -27,8 +27,8 @@ NSString * const kAWSS3BaseURL = @"https://s3.eu-central-1.amazonaws.com/eachone
             NSString *objectThumbnailName;
             
             objectIDStringWithIndex = [objectIDStringWithIndex stringByAppendingString:[NSString stringWithFormat:@"_%d", i]];
-            if ([attachment conformsToProtocol:@protocol(DBQuestionAttachmentProtocol)] && [attachment isKindOfClass:[DBQuestionAttachment class]]) {
-                DBQuestionAttachment<DBQuestionAttachmentProtocol> *questionAttachment = (DBQuestionAttachment<DBQuestionAttachmentProtocol> *)attachment;
+            if ([attachment conformsToProtocol:@protocol(DBAttachmentProtocol)] && [attachment isKindOfClass:[DBAttachment class]]) {
+                DBAttachment<DBAttachmentProtocol> *questionAttachment = (DBAttachment<DBAttachmentProtocol> *)attachment;
                 if (i == 0) {
                     objectThumbnailName = [[question.objectId stringByAppendingString:@"_thumbnail"] stringByAppendingPathExtension:kJPGExtenstion];
                     [DBS3Manager uploadFileWithKey:objectThumbnailName data:[questionAttachment thumbnailDataForUpload] mimeType:kJPGExtenstion completion:^(BOOL success, NSError *error) {

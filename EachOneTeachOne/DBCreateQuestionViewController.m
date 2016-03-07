@@ -14,8 +14,8 @@
 
 // Entities
 #import "DBQuestion.h"
-#import "DBQuestionVideoAttachment.h"
-#import "DBQuestionPhotoAttachment.h"
+#import "DBVideoAttachment.h"
+#import "DBPhotoAttachment.h"
 
 // Data Sources
 #import "DBCreateQuestionDataSource.h"
@@ -99,11 +99,11 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     if ([picker isEqual:self.imagePickerController]) {
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
-            DBQuestionPhotoAttachment *photoAttachment = [[DBQuestionPhotoAttachment alloc] init];
+            DBPhotoAttachment *photoAttachment = [[DBPhotoAttachment alloc] init];
             photoAttachment.photoImage = info[UIImagePickerControllerOriginalImage];
             [self.createQuestionDataSource.items addObject:photoAttachment];
         } else {
-            DBQuestionVideoAttachment *videoAttachment = [[DBQuestionVideoAttachment alloc] init];
+            DBVideoAttachment *videoAttachment = [[DBVideoAttachment alloc] init];
             videoAttachment.videoURL = info[UIImagePickerControllerMediaURL];
             [self.createQuestionDataSource.items addObject:videoAttachment];
         }
@@ -116,22 +116,24 @@
 #pragma mark - UserAction
 
 - (void)rightBarButtonDidPress {
-//    DBQuestion *question = [DBQuestion object];
-//    
-//    question.title = self.createQuestionView.titleTextField.text;
-//    question.questionDescription = self.createQuestionView.descriptionTextView.text;
-//    
-//    if (self.createQuestionView.titleTextField.text != nil) {
-//        [DBNetworkingManager uploadQuestion:question dataArray:self.createQuestionDataSource.items];
-//    } else {
-//        NSLog(@"Nebylo nic zadano...");
-//    }
+
+    if (![self.createQuestionTitleAndDescriptionTableViewCell.titleTextField.text isEqualToString:@""]) {
+        [DBNetworkingManager uploadQuestionWithTitle:[self createQuestionTitleAndDescriptionTableViewCell].titleTextField.text
+                                  questionDesciption:[self createQuestionTitleAndDescriptionTableViewCell].descriptionTextView.text
+                                           dataArray:self.createQuestionDataSource.items];
+    } else {
+        NSLog(@"Nebylo nic zadano...");
+    }
 }
 
 #pragma mark - Properties
 
 - (DBCreateQuestionView *)createQuestionView {
     return (DBCreateQuestionView *)self.view;
+}
+
+- (DBCreateQuestionTitleAndDescriptionTableViewCell *)createQuestionTitleAndDescriptionTableViewCell {
+    return (DBCreateQuestionTitleAndDescriptionTableViewCell *)self.view;
 }
 
 @end

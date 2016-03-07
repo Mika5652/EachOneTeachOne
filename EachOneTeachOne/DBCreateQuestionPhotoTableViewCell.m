@@ -8,7 +8,7 @@
 
 #import "DBCreateQuestionPhotoTableViewCell.h"
 #import <PureLayout/PureLayout.h>
-#import "DBQuestionPhotoAttachment.h"
+#import "DBPhotoAttachment.h"
 
 NSString * const kDBCreateQuestionPhotoTableViewCellIdentifier = @"kDBCreateQuestionPhotoTableViewCellIdentifier";
 static NSString * const descriptionTextViewText = @"Description...";
@@ -82,7 +82,7 @@ static CGFloat const kHorizontalSpacing = 4;
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView {
-    self.questionPhotoAttachment.questionAttachmentDescription = self.descriptionTextView.text;
+    self.questionPhotoAttachment.AttachmentDescription = self.descriptionTextView.text;
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {

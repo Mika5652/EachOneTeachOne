@@ -7,7 +7,7 @@
 //
 
 #import "DBCreateQuestionVideoTableViewCell.h"
-#import "DBQuestionVideoAttachment.h"
+#import "DBVideoAttachment.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
 #import <PureLayout/PureLayout.h>
@@ -74,7 +74,7 @@ static CGFloat const kVerticalSpacing = 4;
     [super updateConstraints];
 }
 
-- (void)setContentWithQuestionVideoAttachment:(DBQuestionVideoAttachment *)videoAttachment {
+- (void)setContentWithQuestionVideoAttachment:(DBVideoAttachment *)videoAttachment {
     _videoPlayer = [AVPlayer playerWithURL:videoAttachment.videoURL];
     self.videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
     self.playerViewController.player = self.videoPlayer;
@@ -90,7 +90,7 @@ static CGFloat const kVerticalSpacing = 4;
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView {
-    self.questionVideoAttachment.questionAttachmentDescription = self.descriptionTextView.text;
+    self.questionVideoAttachment.attachmentDescription = self.descriptionTextView.text;
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {

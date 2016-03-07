@@ -6,10 +6,12 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
-#import "DBQuestionPhotoAttachment.h"
+#import "DBPhotoAttachment.h"
 #import "UIImage+DBResizing.h"
 
-@implementation DBQuestionPhotoAttachment
+@implementation DBPhotoAttachment
+
+@synthesize photoImage = _photoImage;
 
 #pragma mark - Constants
 
@@ -34,7 +36,7 @@
 #pragma mark - Variables
 
 - (void)setPhotoImage:(UIImage *)photoImage {
-    _photoImage = [photoImage photoResizedToSize:[DBQuestionPhotoAttachment kImageSize]];
+    _photoImage = [photoImage photoResizedToSize:[DBPhotoAttachment kImageSize]];
     self.thumbnailImage = photoImage;
 }
 

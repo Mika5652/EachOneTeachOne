@@ -6,9 +6,9 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
-#import "DBQuestionAttachment.h"
+#import "DBAttachment.h"
 
-@interface DBQuestionPhotoAttachment : DBQuestionAttachment <DBQuestionAttachmentProtocol>
+@interface DBPhotoAttachment : DBAttachment <DBAttachmentProtocol>
 
 @property (nonatomic) UIImage *photoImage;
 

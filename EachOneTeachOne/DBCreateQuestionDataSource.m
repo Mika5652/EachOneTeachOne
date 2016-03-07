@@ -11,8 +11,8 @@
 #import "DBCreateQuestionTitleAndDescriptionTableViewCell.h"
 #import "DBCreateQuestionPhotoTableViewCell.h"
 #import "DBCreateQuestionVideoTableViewCell.h"
-#import "DBQuestionVideoAttachment.h"
-#import "DBQuestionPhotoAttachment.h"
+#import "DBVideoAttachment.h"
+#import "DBPhotoAttachment.h"
 
 @implementation DBCreateQuestionDataSource
 
@@ -38,8 +38,8 @@
         [cell updateConstraintsIfNeeded];
         
         return cell;
-    } else if ([self.items[indexPath.row-1] isKindOfClass:[DBQuestionPhotoAttachment class]]){
-        DBQuestionPhotoAttachment *photoAttachment = self.items[indexPath.row-1];
+    } else if ([self.items[indexPath.row-1] isKindOfClass:[DBPhotoAttachment class]]){
+        DBPhotoAttachment *photoAttachment = self.items[indexPath.row-1];
         DBCreateQuestionPhotoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionPhotoTableViewCellIdentifier forIndexPath:indexPath];
         cell.questionPhotoAttachment = photoAttachment;
         [cell setConstrainsWithImage:photoAttachment.photoImage];
@@ -49,7 +49,7 @@
         
         return cell;
     } else {
-        DBQuestionVideoAttachment *videoAtachment = self.items[indexPath.row-1];
+        DBVideoAttachment *videoAtachment = self.items[indexPath.row-1];
         DBCreateQuestionVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionVideoTableViewCellIdentifier forIndexPath:indexPath];
         [cell setContentWithQuestionVideoAttachment:videoAtachment];
         [cell setConstrainsWithImage:[videoAtachment thumbnailImageForVideo:videoAtachment.videoURL atTime:0]];
