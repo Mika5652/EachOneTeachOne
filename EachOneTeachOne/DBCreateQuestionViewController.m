@@ -126,7 +126,10 @@
     if (![self.createQuestionTitleAndDescriptionTableViewCell.titleTextField.text isEqualToString:@""]) {
         [DBNetworkingManager uploadQuestionWithTitle:[self createQuestionTitleAndDescriptionTableViewCell].titleTextField.text
                                   questionDesciption:[self createQuestionTitleAndDescriptionTableViewCell].descriptionTextView.text
-                                           dataArray:self.createQuestionDataSource.items];
+                                           dataArray:self.createQuestionDataSource.items
+                                          completion:^(DBQuestion *question, NSError *error) {
+             
+         }];
     } else {
         NSLog(@"Nebylo nic zadano...");
     }

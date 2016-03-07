@@ -15,6 +15,7 @@
 		0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21E1C804461003FC892 /* DBFeedDataSource.m */; };
 		090BB6461C809AD1007E29EB /* DBNetworkingManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 090BB6451C809AD1007E29EB /* DBNetworkingManager.m */; };
 		09385D961C75F16F00F0FB0D /* myText.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 09385D951C75F16F00F0FB0D /* myText.rtf */; };
+		0995EBB51C8DC2C30070E968 /* UIViewController+DBAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 0995EBB31C8DC2C30070E968 /* UIViewController+DBAlerts.m */; };
 		09A7C3F51C7D9336009DABE5 /* DBS3Manager.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A7C3F41C7D9336009DABE5 /* DBS3Manager.m */; };
 		09A7C3F91C7DE94A009DABE5 /* DBParseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 09A7C3F81C7DE94A009DABE5 /* DBParseManager.m */; };
 		09B1D11F1C805AE400BDA7A4 /* libPureLayout.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B1D11E1C805AE400BDA7A4 /* libPureLayout.a */; };
@@ -81,6 +82,8 @@
 		090BB6441C809AD1007E29EB /* DBNetworkingManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBNetworkingManager.h; sourceTree = "<group>"; };
 		090BB6451C809AD1007E29EB /* DBNetworkingManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBNetworkingManager.m; sourceTree = "<group>"; };
 		09385D951C75F16F00F0FB0D /* myText.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = myText.rtf; sourceTree = "<group>"; };
+		0995EBB31C8DC2C30070E968 /* UIViewController+DBAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DBAlerts.m"; sourceTree = "<group>"; };
+		0995EBB41C8DC2C30070E968 /* UIViewController+DBAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DBAlerts.h"; sourceTree = "<group>"; };
 		09A7C3F31C7B06A6009DABE5 /* DBS3Manager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DBS3Manager.h; sourceTree = "<group>"; };
 		09A7C3F41C7D9336009DABE5 /* DBS3Manager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBS3Manager.m; sourceTree = "<group>"; };
 		09A7C3F71C7DE94A009DABE5 /* DBParseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBParseManager.h; sourceTree = "<group>"; };
@@ -397,6 +400,8 @@
 		F629708C1C4E8DD6007174C0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				0995EBB41C8DC2C30070E968 /* UIViewController+DBAlerts.h */,
+				0995EBB31C8DC2C30070E968 /* UIViewController+DBAlerts.m */,
 				F629708D1C4E8DE1007174C0 /* Core.h */,
 				09CAF3311C85D5D0004508D2 /* UIImage+DBResizing.h */,
 				09CAF3321C85D5D0004508D2 /* UIImage+DBResizing.m */,
@@ -604,6 +609,7 @@
 				0903E2161C8034C2003FC892 /* DBPhotoAttachment.m in Sources */,
 				F629707E1C4E7A76007174C0 /* DBFeedView.m in Sources */,
 				09CAF33F1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.m in Sources */,
+				0995EBB51C8DC2C30070E968 /* UIViewController+DBAlerts.m in Sources */,
 				09A7C3F51C7D9336009DABE5 /* DBS3Manager.m in Sources */,
 				0903E2191C803691003FC892 /* DBVideoAttachment.m in Sources */,
 				0903E21C1C804298003FC892 /* DBFeedViewTableViewCell.m in Sources */,

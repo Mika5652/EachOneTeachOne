@@ -18,15 +18,20 @@ static NSInteger const kLimit = 20;
     DBQuestion *question = [DBQuestion object];
     question.title = title;
     question.questionDescription = questionDesciption;
+    
     [question saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         completion(question, error);
     }];
 }
 
-+ (void)uploadAttachment:(NSString *)attachmentName attachmentDescription:(NSString *)attachmentDescription mimeType:(NSString *)mimeType completion:(DBParseManagerUploadAttachment)completion {
++ (void)uploadAttachmentWithDescription:(NSString *)attachmentDescription mimeType:(NSString *)mimeType completion:(DBParseManagerUploadAttachment)completion {
     DBAttachment *attachment = [DBAttachment object];
     attachment.attachmentDescription = attachmentDescription;
-
+    attachment.mimeType = mimeType;
+    
+    [attachment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        completion(attachment, error);
+    }];
     
 }
 

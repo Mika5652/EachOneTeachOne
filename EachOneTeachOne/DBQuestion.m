@@ -12,8 +12,7 @@
 
 @dynamic title;
 @dynamic questionDescription;
-@dynamic videosAndPhotosNames;
-@dynamic videosAndPhotosDescriptions;
+@dynamic attachments;
 @dynamic thumbnailName;
 
 + (NSString *)parseClassName

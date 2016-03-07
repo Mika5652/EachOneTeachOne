@@ -17,6 +17,7 @@ NSString * const kJPGExtenstion = @"jpg";
 @implementation DBAttachment
 
 @dynamic attachmentDescription;
+@dynamic mimeType;
 
 @synthesize thumbnailImage = _thumbnailImage;
 

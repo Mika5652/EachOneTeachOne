@@ -18,6 +18,7 @@ extern NSString * const kMOVExtenstion;
 
 @property (nonatomic) UIImage *thumbnailImage;
 @property NSString *attachmentDescription;
+@property NSString *mimeType;
 
 - (NSData *)thumbnailDataForUpload;
 
@@ -26,7 +27,6 @@ extern NSString * const kMOVExtenstion;
 @protocol DBAttachmentProtocol <NSObject>
 
 - (NSData *)dataForUpload;
-- (NSString *)mimeType;
 - (NSString *)fileExtension;
 
 @end

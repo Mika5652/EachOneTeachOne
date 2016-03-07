@@ -12,13 +12,13 @@
 @class DBAttachment;
 
 typedef void (^DBParseManagerUploadCompletion)(DBQuestion *question, NSError *error);
-typedef void (^DBParseManagerGetQuestionsCompletion)(NSArray *questions, NSError *error);
 typedef void (^DBParseManagerUploadAttachment)(DBAttachment *attachment, NSError *error);
+typedef void (^DBParseManagerGetQuestionsCompletion)(NSArray *questions, NSError *error);
 
 @interface DBParseManager : NSObject
 
 + (void)uploadQuestionWithTitle:(NSString *)title questionDesciption:(NSString *)questionDesciption completion:(DBParseManagerUploadCompletion)completion;
-+ (void)uploadAttachment:(NSString *)attachmentName attachmentDescription:(NSString *)attachmentDescription mimeType:(NSString *)mimeType completion:(DBParseManagerUploadAttachment)completion;
++ (void)uploadAttachmentWithDescription:(NSString *)attachmentDescription mimeType:(NSString *)mimeType completion:(DBParseManagerUploadAttachment)completion;
 + (void)getNewQuestionsWithSkip:(NSInteger)skip completion:(DBParseManagerGetQuestionsCompletion)completion;
 
 @end
