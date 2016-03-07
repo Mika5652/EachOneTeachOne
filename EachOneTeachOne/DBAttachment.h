@@ -6,6 +6,7 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
+#import <Parse/Parse.h>
 #import <UIKit/UIKit.h>
 
 extern NSString * const kMimeTypeImageJPG;
@@ -13,19 +14,19 @@ extern NSString * const kJPGExtenstion;
 extern NSString * const kMimeTypeVideoMOV;
 extern NSString * const kMOVExtenstion;
 
-@interface DBQuestionAttachment : NSObject
+@interface DBAttachment : PFObject <PFSubclassing>
 
 @property (nonatomic) UIImage *thumbnailImage;
-@property NSString *questionAttachmentDescription;
+@property NSString *attachmentDescription;
+@property NSString *mimeType;
 
 - (NSData *)thumbnailDataForUpload;
 
 @end
 
-@protocol DBQuestionAttachmentProtocol <NSObject>
+@protocol DBAttachmentProtocol <NSObject>
 
 - (NSData *)dataForUpload;
-- (NSString *)mimeType;
 - (NSString *)fileExtension;
 
 @end

@@ -6,9 +6,9 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
-#import "DBQuestionAttachment.h"
+#import "DBAttachment.h"
 
-@interface DBQuestionVideoAttachment : DBQuestionAttachment <DBQuestionAttachmentProtocol>
+@interface DBVideoAttachment : DBAttachment <DBAttachmentProtocol>
 
 @property (nonatomic) NSURL *videoURL;
 

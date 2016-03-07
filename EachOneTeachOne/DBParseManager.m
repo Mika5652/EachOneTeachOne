@@ -8,15 +8,31 @@
 
 #import "DBParseManager.h"
 #import "DBQuestion.h"
+#import "DBAttachment.h"
 
 static NSInteger const kLimit = 20;
 
 @implementation DBParseManager
 
-+ (void)uploadQuestion:(DBQuestion *)question completion:(DBParseManagerUploadCompletion)completion {
++ (void)uploadQuestionWithTitle:(NSString *)title questionDesciption:(NSString *)questionDesciption completion:(DBParseManagerUploadCompletion)completion {
+    DBQuestion *question = [DBQuestion object];
+    question.title = title;
+    question.questionDescription = questionDesciption;
+    
     [question saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         completion(question, error);
     }];
+}
+
++ (void)uploadAttachmentWithDescription:(NSString *)attachmentDescription mimeType:(NSString *)mimeType completion:(DBParseManagerUploadAttachment)completion {
+    DBAttachment *attachment = [DBAttachment object];
+    attachment.attachmentDescription = attachmentDescription;
+    attachment.mimeType = mimeType;
+    
+    [attachment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        completion(attachment, error);
+    }];
+    
 }
 
 + (void)getNewQuestionsWithSkip:(NSInteger)skip completion:(DBParseManagerGetQuestionsCompletion)completion {

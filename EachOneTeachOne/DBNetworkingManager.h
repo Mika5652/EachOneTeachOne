@@ -11,8 +11,13 @@
 
 extern NSString * const kAWSS3BaseURL;
 
+@class DBQuestion;
+
+typedef void (^DBNetworkingManagerUploadQuestionCompletion)(DBQuestion *question, NSError *error);
+typedef void (^DBNetworkingManagerUploadAttachmentsCompletion)(BOOL success, NSError *error);
+
 @interface DBNetworkingManager : NSObject
 
-+ (void)uploadQuestion:(DBQuestion *)question dataArray:(NSMutableArray *)dataArray;
++ (void)uploadQuestionWithTitle:(NSString *)questionTitle questionDesciption:(NSString *)questionDesription dataArray:(NSMutableArray *)dataArray completion:(DBNetworkingManagerUploadQuestionCompletion)completion;
 
 @end

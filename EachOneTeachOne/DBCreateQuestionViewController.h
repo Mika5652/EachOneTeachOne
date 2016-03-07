@@ -12,10 +12,12 @@
 #define TAKE_VIDEO_ICON                 @"camera_icon"
 
 @class DBCreateQuestionView;
+@class DBCreateQuestionTitleAndDescriptionTableViewCell;
 
 @interface DBCreateQuestionViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate>
 
 @property (nonatomic) DBCreateQuestionView *createQuestionView;
+@property (nonatomic) DBCreateQuestionTitleAndDescriptionTableViewCell *createQuestionTitleAndDescriptionTableViewCell;
 @property NSString *titleTextString;
 @property NSString *descriptionTextString;
 @property UIImagePickerController *picker;

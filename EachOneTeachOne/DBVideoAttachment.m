@@ -6,12 +6,14 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
-#import "DBQuestionVideoAttachment.h"
+#import "DBVideoAttachment.h"
 
 // Frameworks
 #import <AVFoundation/AVFoundation.h>
 
-@implementation DBQuestionVideoAttachment
+@implementation DBVideoAttachment
+
+@synthesize videoURL = _videoURL;
 
 #pragma mark - DBQuestionAttachmentProtocol
 
