@@ -45,6 +45,7 @@
 		F6B83B5E1C8C3F8D00193641 /* libParseUI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B591C8C3F8D00193641 /* libParseUI.a */; };
 		F6B83B5F1C8C928F00193641 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F629704D1C4E7159007174C0 /* Main.storyboard */; };
 		F6B83B601C8C929700193641 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62970521C4E7159007174C0 /* LaunchScreen.storyboard */; };
+		F6B83B681C8DDA2000193641 /* DBLoginAndSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B83B671C8DDA2000193641 /* DBLoginAndSignUpViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -133,6 +134,8 @@
 		F6B83B571C8C3F8D00193641 /* libFBSDKLoginKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKLoginKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKLoginKit.a"; sourceTree = "<group>"; };
 		F6B83B581C8C3F8D00193641 /* libParseFacebookUtilsV4.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseFacebookUtilsV4.a; path = "Pods/../build/Debug-iphoneos/libParseFacebookUtilsV4.a"; sourceTree = "<group>"; };
 		F6B83B591C8C3F8D00193641 /* libParseUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseUI.a; path = "Pods/../build/Debug-iphoneos/libParseUI.a"; sourceTree = "<group>"; };
+		F6B83B661C8DDA2000193641 /* DBLoginAndSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLoginAndSignUpViewController.h; sourceTree = "<group>"; };
+		F6B83B671C8DDA2000193641 /* DBLoginAndSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLoginAndSignUpViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -336,6 +339,7 @@
 		F62970771C4E7A16007174C0 /* View Controller */ = {
 			isa = PBXGroup;
 			children = (
+				F6B83B641C8D97CC00193641 /* LoginView */,
 				F62970831C4E82E1007174C0 /* CreateFeed */,
 				F62970821C4E82B2007174C0 /* MainView */,
 			);
@@ -411,6 +415,23 @@
 				F629708E1C512D13007174C0 /* MediaPlayer.framework */,
 			);
 			name = Framework;
+			sourceTree = "<group>";
+		};
+		F6B83B641C8D97CC00193641 /* LoginView */ = {
+			isa = PBXGroup;
+			children = (
+				F6B83B651C8DD8EB00193641 /* View */,
+				F6B83B661C8DDA2000193641 /* DBLoginAndSignUpViewController.h */,
+				F6B83B671C8DDA2000193641 /* DBLoginAndSignUpViewController.m */,
+			);
+			name = LoginView;
+			sourceTree = "<group>";
+		};
+		F6B83B651C8DD8EB00193641 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -609,6 +630,7 @@
 				0903E21C1C804298003FC892 /* DBFeedViewTableViewCell.m in Sources */,
 				0903E2101C803190003FC892 /* DBCreateQuestionTableViewCell.m in Sources */,
 				F629708A1C4E8330007174C0 /* DBCreateQuestionView.m in Sources */,
+				F6B83B681C8DDA2000193641 /* DBLoginAndSignUpViewController.m in Sources */,
 				F62970861C4E8308007174C0 /* DBCreateQuestionViewController.m in Sources */,
 				F62970491C4E7159007174C0 /* AppDelegate.m in Sources */,
 				090BB6461C809AD1007E29EB /* DBNetworkingManager.m in Sources */,

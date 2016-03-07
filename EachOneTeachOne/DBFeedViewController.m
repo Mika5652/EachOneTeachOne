@@ -8,6 +8,8 @@
 // Framework
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
+#import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 // Views and ViewControllers
 #import "DBFeedViewController.h"
@@ -55,6 +57,7 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
     self.navigationController.toolbarHidden = NO;
     UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:nil];
     NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];

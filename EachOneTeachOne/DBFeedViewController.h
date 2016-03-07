@@ -10,7 +10,7 @@
 
 @class DBFeedView;
 
-@interface DBFeedViewController : UIViewController <UITableViewDelegate>
+@interface DBFeedViewController : UIViewController <UITableViewDelegate,PFLogInViewControllerDelegate>
 
 @property (nonatomic) DBFeedView *feedView;
 
