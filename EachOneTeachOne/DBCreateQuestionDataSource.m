@@ -7,7 +7,6 @@
 //
 
 #import "DBCreateQuestionDataSource.h"
-#import "DBCreateQuestionTableViewCell.h"
 #import "DBCreateQuestionTitleAndDescriptionTableViewCell.h"
 #import "DBCreateQuestionPhotoTableViewCell.h"
 #import "DBCreateQuestionVideoTableViewCell.h"

@@ -9,7 +9,6 @@
 #import "DBFeedDataSource.h"
 #import "DBFeedViewTableViewCell.h"
 #import "DBQuestion.h"
-#import "DBNetworkingManager.h"
 
 @implementation DBFeedDataSource
 

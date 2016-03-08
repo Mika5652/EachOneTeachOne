@@ -7,6 +7,7 @@
 //
 
 #import "DBVideoAttachment.h"
+#import "DBConstants.h"
 
 // Frameworks
 #import <AVFoundation/AVFoundation.h>

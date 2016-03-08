@@ -5,6 +5,7 @@
 //  Created by Michael Pohl on 19.01.16.
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
+
 // Framework
 #import <FBSDKCoreKit/FBSDKCoreKit.h>
 #import <FBSDKLoginKit/FBSDKLoginKit.h>
@@ -17,8 +18,8 @@
 #import "DBCreateQuestionViewController.h"
 #import "DBFeedDataSource.h"
 #import "DBFeedViewTableViewCell.h"
-#import "DBParseManager.h"
-//#import <PureLayout/PureLayout.h>
+
+#import "DBQuestion.h"
 
 @interface DBFeedViewController ()
 
@@ -50,7 +51,7 @@
     self.feedView.tableView.dataSource = self.feedDataSource;
     self.feedView.tableView.delegate = self;
     [self.feedView.tableView registerClass:[DBFeedViewTableViewCell class] forCellReuseIdentifier:kDBFeedViewTableViewCellIdentifier];
-    [DBParseManager getNewQuestionsWithSkip:0 completion:^(NSArray *questions, NSError *error) {
+    [DBQuestion getNewQuestionsWithSkip:0 completion:^(NSArray *questions, NSError *error) {
         [self.feedDataSource.items addObjectsFromArray:questions];
         [self.feedView.tableView reloadData];
     }];

@@ -20,9 +20,6 @@
 // Data Sources
 #import "DBCreateQuestionDataSource.h"
 
-// Manager
-#import "DBNetworkingManager.h"
-
 // Cell
 #import "DBCreateQuestionTitleAndDescriptionTableViewCell.h"
 #import "DBCreateQuestionPhotoTableViewCell.h"
@@ -124,7 +121,7 @@
 - (void)rightBarButtonDidPress {
 
     if (![self.createQuestionTitleAndDescriptionTableViewCell.titleTextField.text isEqualToString:@""]) {
-        [DBNetworkingManager uploadQuestionWithTitle:[self createQuestionTitleAndDescriptionTableViewCell].titleTextField.text
+        [DBQuestion uploadQuestionWithTitle:[self createQuestionTitleAndDescriptionTableViewCell].titleTextField.text
                                   questionDesciption:[self createQuestionTitleAndDescriptionTableViewCell].descriptionTextView.text
                                            dataArray:self.createQuestionDataSource.items
                                           completion:^(DBQuestion *question, NSError *error) {

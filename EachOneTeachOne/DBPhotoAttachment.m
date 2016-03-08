@@ -8,6 +8,7 @@
 
 #import "DBPhotoAttachment.h"
 #import "UIImage+DBResizing.h"
+#import "DBConstants.h"
 
 @implementation DBPhotoAttachment
 

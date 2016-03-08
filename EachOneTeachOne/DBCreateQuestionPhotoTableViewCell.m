@@ -82,7 +82,7 @@ static CGFloat const kHorizontalSpacing = 4;
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView {
-    self.questionPhotoAttachment.AttachmentDescription = self.descriptionTextView.text;
+    self.questionPhotoAttachment.attachmentDescription = self.descriptionTextView.text;
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
