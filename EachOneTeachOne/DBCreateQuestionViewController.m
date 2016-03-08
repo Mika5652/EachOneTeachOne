@@ -8,14 +8,14 @@
 
 // View Controllers
 #import "DBCreateQuestionViewController.h"
+#import "UIViewController+DBAlerts.h"
 
 // Views
 #import "DBCreateQuestionView.h"
 
 // Entities
 #import "DBQuestion.h"
-#import "DBVideoAttachment.h"
-#import "DBPhotoAttachment.h"
+#import "DBAttachment.h"
 
 // Data Sources
 #import "DBCreateQuestionDataSource.h"
@@ -102,13 +102,15 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     if ([picker isEqual:self.imagePickerController]) {
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
-            DBPhotoAttachment *photoAttachment = [[DBPhotoAttachment alloc] init];
-            photoAttachment.photoImage = info[UIImagePickerControllerOriginalImage];
-            [self.createQuestionDataSource.items addObject:photoAttachment];
+            DBAttachment *attachment = [[DBAttachment alloc] init];
+            attachment.mimeType = kMimeTypeImageJPG;
+            attachment.photoImage = info[UIImagePickerControllerOriginalImage];
+            [self.createQuestionDataSource.items addObject:attachment];
         } else {
-            DBVideoAttachment *videoAttachment = [[DBVideoAttachment alloc] init];
-            videoAttachment.videoURL = info[UIImagePickerControllerMediaURL];
-            [self.createQuestionDataSource.items addObject:videoAttachment];
+            DBAttachment *attachment = [[DBAttachment alloc] init];
+            attachment.mimeType = kMimeTypeVideoMOV;
+            attachment.videoURL = info[UIImagePickerControllerMediaURL];
+            [self.createQuestionDataSource.items addObject:attachment];
         }
         
         [self.createQuestionView.tableView reloadData];
@@ -122,13 +124,17 @@
 
     if (![self.createQuestionTitleAndDescriptionTableViewCell.titleTextField.text isEqualToString:@""]) {
         [DBQuestion uploadQuestionWithTitle:[self createQuestionTitleAndDescriptionTableViewCell].titleTextField.text
-                                  questionDesciption:[self createQuestionTitleAndDescriptionTableViewCell].descriptionTextView.text
-                                           dataArray:self.createQuestionDataSource.items
-                                          completion:^(DBQuestion *question, NSError *error) {
-             
+                         questionDesciption:[self createQuestionTitleAndDescriptionTableViewCell].descriptionTextView.text
+                                  dataArray:self.createQuestionDataSource.items
+                                 completion:^(DBQuestion *question, NSError *error) {
+                                     if (!error) {
+                                         [self.navigationController popViewControllerAnimated:YES];
+                                     } else {
+                                         [self showAlertWithTitle:NSLocalizedString(@"Something is broken", @"") message:NSLocalizedString(@"There is some error, please try post your question later", @"") dismissButtonText:@"OK BRO"];
+                                     }
          }];
     } else {
-        NSLog(@"Nebylo nic zadano...");
+        NSLog(@"Empty input");
     }
 }
 
@@ -139,7 +145,8 @@
 }
 
 - (DBCreateQuestionTitleAndDescriptionTableViewCell *)createQuestionTitleAndDescriptionTableViewCell {
-    return (DBCreateQuestionTitleAndDescriptionTableViewCell *)self.view;
+//    return (DBCreateQuestionTitleAndDescriptionTableViewCell *)[self.createQuestionView.tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndex:0]];
+    return (DBCreateQuestionTitleAndDescriptionTableViewCell *)[self.createQuestionView.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 }
 
 @end

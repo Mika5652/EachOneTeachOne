@@ -10,8 +10,7 @@
 #import "DBCreateQuestionTitleAndDescriptionTableViewCell.h"
 #import "DBCreateQuestionPhotoTableViewCell.h"
 #import "DBCreateQuestionVideoTableViewCell.h"
-#import "DBVideoAttachment.h"
-#import "DBPhotoAttachment.h"
+#import "DBAttachment.h"
 
 @implementation DBCreateQuestionDataSource
 
@@ -37,26 +36,28 @@
         [cell updateConstraintsIfNeeded];
         
         return cell;
-    } else if ([self.items[indexPath.row-1] isKindOfClass:[DBPhotoAttachment class]]){
-        DBPhotoAttachment *photoAttachment = self.items[indexPath.row-1];
-        DBCreateQuestionPhotoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionPhotoTableViewCellIdentifier forIndexPath:indexPath];
-        cell.questionPhotoAttachment = photoAttachment;
-        [cell setConstrainsWithImage:photoAttachment.photoImage];
-        cell.photoImageView.image = photoAttachment.photoImage;
-        [cell setNeedsUpdateConstraints];
-        [cell updateConstraintsIfNeeded];
-        
-        return cell;
     } else {
-        DBVideoAttachment *videoAtachment = self.items[indexPath.row-1];
-        DBCreateQuestionVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionVideoTableViewCellIdentifier forIndexPath:indexPath];
-        [cell setContentWithQuestionVideoAttachment:videoAtachment];
-        [cell setConstrainsWithImage:[videoAtachment thumbnailImageForVideo:videoAtachment.videoURL atTime:0]];
-        cell.questionVideoAttachment = videoAtachment;
-        [cell setNeedsUpdateConstraints];
-        [cell updateConstraintsIfNeeded];
-        
-        return cell;
+        DBAttachment *attachment = (DBAttachment *)self.items[indexPath.row-1];
+        if ([attachment.mimeType isEqualToString:kMimeTypeImageJPG]) {
+            DBCreateQuestionPhotoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionPhotoTableViewCellIdentifier forIndexPath:indexPath];
+            cell.attachment = attachment;
+            [cell setConstrainsWithImage:attachment.photoImage];
+            cell.photoImageView.image = attachment.photoImage;
+            [cell setNeedsUpdateConstraints];
+            [cell updateConstraintsIfNeeded];
+            
+            return cell;
+        } else {
+            DBCreateQuestionVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionVideoTableViewCellIdentifier forIndexPath:indexPath];
+            [cell setContentWithQuestionVideoAttachment:attachment];
+    //        [cell setConstrainsWithImage:[videoAtachment thumbnailImageForVideo:videoAtachment.videoURL atTime:0]];
+            [cell setConstrainsWithImage:attachment.thumbnailImage];
+            cell.attachment = attachment;
+            [cell setNeedsUpdateConstraints];
+            [cell updateConstraintsIfNeeded];
+            
+            return cell;
+        }
     }
     
     return nil;

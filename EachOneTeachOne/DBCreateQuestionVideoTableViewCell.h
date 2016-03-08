@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class DBVideoAttachment;
+@class DBAttachment;
 
 extern NSString * const kDBCreateQuestionVideoTableViewCellIdentifier;
 
 @interface DBCreateQuestionVideoTableViewCell : UITableViewCell
 
 @property UITextView *descriptionTextView;
-@property (nonatomic) DBVideoAttachment *questionVideoAttachment;
+@property (nonatomic) DBAttachment *attachment;
 
-- (void)setContentWithQuestionVideoAttachment:(DBVideoAttachment *)videoAttachment;
+- (void)setContentWithQuestionVideoAttachment:(DBAttachment *)attachment;
 - (void)setConstrainsWithImage:(UIImage *)image;
 
 @end

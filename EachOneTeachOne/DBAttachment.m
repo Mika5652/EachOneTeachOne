@@ -4,6 +4,7 @@
 #import <AWSCognito/AWSCognito.h>
 #import <AWSS3/AWSS3.h>
 #import <AWSS3/AWSS3TransferUtility.h>
+#import <AVFoundation/AVFoundation.h>
 #import "DBQuestion.h"
 
 NSString * const kMimeTypeVideoMOV = @"video/quicktime";
@@ -17,6 +18,9 @@ NSString * const kBucketName = @"eachoneteachonebucket";
 @dynamic attachmentDescription;
 @dynamic mimeType;
 
+@synthesize videoURL = _videoURL;
+@synthesize photoImage = _photoImage;
+@synthesize fileName = _fileName;
 @synthesize thumbnailImage = _thumbnailImage;
 
 #pragma mark - Constants
@@ -25,15 +29,80 @@ NSString * const kBucketName = @"eachoneteachonebucket";
     return CGSizeMake(256, 256);
 }
 
++ (CGSize)kImageSize {
+    return CGSizeMake(1024,1024);
+}
+
 #pragma mark - Properties
 
 - (void)setThumbnailImage:(UIImage *)thumbnailImage {
     _thumbnailImage = [thumbnailImage photoResizedToSize:[DBAttachment kThumbnailImageSize]];
 }
 
+- (void)setVideoURL:(NSURL *)videoURL {
+    _videoURL = videoURL;
+    self.thumbnailImage = [self thumbnailImageForVideo:videoURL atTime:0];
+}
+
+- (void)setPhotoImage:(UIImage *)photoImage {
+    _photoImage = [photoImage photoResizedToSize:[DBAttachment kImageSize]];
+    self.thumbnailImage = photoImage;
+}
+
+#pragma mark - Public
+
 - (NSData *)thumbnailDataForUpload {
     return UIImageJPEGRepresentation(self.thumbnailImage, 1);
 }
+
+- (NSString *)fileExtension {
+    if ([self.mimeType isEqualToString:kMimeTypeImageJPG]) {
+        return kJPGExtenstion;
+    } else if ([self.mimeType isEqualToString:kMimeTypeVideoMOV]) {
+        return kMOVExtenstion;
+    } else {
+        return nil;
+    }
+}
+
+-(NSData *)dataForUpload {
+    if ([self.mimeType isEqualToString:kMimeTypeImageJPG]) {
+        return UIImageJPEGRepresentation(self.photoImage, 1);
+    } else if ([self.mimeType isEqualToString:kMimeTypeVideoMOV]) {
+        return [NSData dataWithContentsOfURL:self.videoURL];
+    } else {
+        return nil;
+    }
+}
+
+#pragma mark - Private
+
+- (UIImage *)thumbnailImageForVideo:(NSURL *)videoURL atTime:(NSTimeInterval)time {
+    AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
+    NSParameterAssert(asset);
+    AVAssetImageGenerator *assetIG = [[AVAssetImageGenerator alloc] initWithAsset:asset];
+    assetIG.appliesPreferredTrackTransform = YES;
+    assetIG.apertureMode = AVAssetImageGeneratorApertureModeEncodedPixels;
+    
+    CGImageRef thumbnailImageRef = NULL;
+    CFTimeInterval thumbnailImageTime = time;
+    NSError *igError = nil;
+    thumbnailImageRef =
+    [assetIG copyCGImageAtTime:CMTimeMake(thumbnailImageTime, 60)
+                    actualTime:NULL
+                         error:&igError];
+    
+    if (!thumbnailImageRef)
+        NSLog(@"thumbnailImageGenerationError %@", igError );
+    
+    UIImage *thumbnailImage = thumbnailImageRef
+    ? [[UIImage alloc] initWithCGImage:thumbnailImageRef]
+    : nil;
+    
+    return thumbnailImage;
+}
+
+#pragma mark - Parse
 
 + (NSString *)parseClassName
 {
@@ -45,41 +114,31 @@ NSString * const kBucketName = @"eachoneteachonebucket";
     [self registerSubclass];
 }
 
-+ (void)uploadAttachmentWithDescription:(NSString *)attachmentDescription mimeType:(NSString *)mimeType completion:(DBAttachmentUploadCompletion)completion {
-    DBAttachment *attachment = [DBAttachment object];
-    attachment.attachmentDescription = attachmentDescription;
-    attachment.mimeType = mimeType;
-    
-    [attachment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-        completion(attachment, error);
-    }];
-    
-}
+#pragma mark - Networking
 
-+ (void)uploadAttachments:(NSArray *)dataArray toQuestion:(DBQuestion *)question completion:(DBAttachmentsUploadCompletion)completion {
-    //    id data = dataArray.firstObject;
-    //    if ([data conformsToProtocol:@protocol(DBAttachmentProtocol)] && [data isKindOfClass:[DBAttachment class]]) {
-    //        DBAttachment<DBAttachmentProtocol> *attachment = (DBAttachment<DBAttachmentProtocol> *)data;
-    //
-    //        [DBParseManager uploadAttachmentWithDescription:attachment.attachmentDescription mimeType:attachment.mimeType completion:^(DBAttachment *attachment, NSError *error) {
-    //            if (error == nil) {
-    //                NSString *fileName = [attachment.objectId stringByAppendingPathExtension:[attachment fileExtension]];
-    //                [DBS3Manager uploadFileWithKey: data:<#(NSData *)#> mimeType:<#(NSString *)#> completion:<#^(BOOL success, NSError *error)completion#>]
-    //                [question.attachments addObject:attachment];
-    //                if (dataArray.count > 1) {
-    //                    [DBNetworkingManager uploadAttachments:[dataArray subarrayWithRange:NSMakeRange(1, dataArray.count-1)] completion:completion];
-    //                } else {
-    //                    completion(YES, error);
-    //                }
-    //            } else {
-    //                completion(NO, error);
-    //            }
-    //        }];
-    //    } else {
-    //        completion(NO, [NSError errorWithDomain:@"Unexpected data in uploadAttachments method" code:0 userInfo:nil]);
-    //    }
++ (void)uploadAttachments:(NSArray *)attachments toQuestion:(DBQuestion *)question completion:(DBAttachmentsUploadCompletion)completion {
+    id firstObjectFromAttachments = attachments.firstObject;
+    if ([firstObjectFromAttachments isKindOfClass:[DBAttachment class]]) {
+        DBAttachment *attachment = (DBAttachment *)firstObjectFromAttachments;
+        [attachment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+            if (error == nil) {
+                attachment.fileName = [attachment.objectId stringByAppendingPathExtension:[attachment fileExtension]];
+                [DBAttachment uploadFileWithKey:attachment.fileName data:[attachment dataForUpload] mimeType:attachment.mimeType completion:^(BOOL success, NSError *error) {
+                    [question.attachments addObject:attachment];
+                    if (attachments.count > 1) {
+                        [DBAttachment uploadAttachments:[attachments subarrayWithRange:NSMakeRange(1, attachments.count-1)] toQuestion:question completion:completion];
+                    } else {
+                        completion(YES, error);
+                    }
+                }];
+            } else {
+                completion(NO, error);
+            }
+        }];
+    } else {
+        completion(NO, [NSError errorWithDomain:@"Unexpected data in uploadAttachments method" code:0 userInfo:nil]);
+    }
 }
-
 
 + (void)uploadFileWithKey:(NSString *)keyName data:(NSData *)data mimeType:(NSString *)mimeType completion:(DBAttachmentsUploadCompletion)completion {
     AWSS3TransferUtilityUploadExpression *expression = [AWSS3TransferUtilityUploadExpression new];
@@ -105,18 +164,19 @@ NSString * const kBucketName = @"eachoneteachonebucket";
                 completionHander:completionHandler] continueWithBlock:^id(AWSTask *task) {
         if (task.error) {
             NSLog(@"Error: %@", task.error);
+            completion(NO, task.error);
         }
         if (task.exception) {
             NSLog(@"Exception: %@", task.exception);
+            completion(NO, [NSError errorWithDomain:NSLocalizedString(@"Exception occured during uploadFileWithKey", @"") code:0 userInfo:nil]);
         }
         if (task.result) {
-            AWSS3TransferUtilityUploadTask *uploadTask = task.result;
             completion(YES, task.error);
         }
         
+        completion(NO, [NSError errorWithDomain:NSLocalizedString(@"Unknown error occured during uploadFileWithKey", @"") code:0 userInfo:nil]);
         return nil;
     }];
-    
 }
 
 @end

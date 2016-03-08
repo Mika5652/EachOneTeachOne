@@ -10,13 +10,13 @@
 
 extern NSString * const kDBCreateQuestionPhotoTableViewCellIdentifier;
 
-@class DBPhotoAttachment;
+@class DBAttachment;
 
 @interface DBCreateQuestionPhotoTableViewCell : UITableViewCell
 
 @property UIImageView *photoImageView;
 @property UITextView *descriptionTextView;
-@property (nonatomic) DBPhotoAttachment *questionPhotoAttachment;
+@property (nonatomic) DBAttachment *attachment;
 
 - (void)setConstrainsWithImage:(UIImage *)image;
 

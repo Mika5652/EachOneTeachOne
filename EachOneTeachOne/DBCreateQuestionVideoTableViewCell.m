@@ -7,10 +7,10 @@
 //
 
 #import "DBCreateQuestionVideoTableViewCell.h"
-#import "DBVideoAttachment.h"
 #import <AVFoundation/AVFoundation.h>
 #import <AVKit/AVKit.h>
 #import <PureLayout/PureLayout.h>
+#import "DBAttachment.h"
 
 NSString * const kDBCreateQuestionVideoTableViewCellIdentifier = @"kDBCreateQuestionVideoTableViewCellIdentifier";
 static NSString * const descriptionTextViewText = @"Description...";
@@ -74,8 +74,8 @@ static CGFloat const kVerticalSpacing = 4;
     [super updateConstraints];
 }
 
-- (void)setContentWithQuestionVideoAttachment:(DBVideoAttachment *)videoAttachment {
-    _videoPlayer = [AVPlayer playerWithURL:videoAttachment.videoURL];
+- (void)setContentWithQuestionVideoAttachment:(DBAttachment *)attachment {
+    _videoPlayer = [AVPlayer playerWithURL:attachment.videoURL];
     self.videoPlayer.actionAtItemEnd = AVPlayerActionAtItemEndNone;
     self.playerViewController.player = self.videoPlayer;
 }
@@ -90,7 +90,7 @@ static CGFloat const kVerticalSpacing = 4;
 #pragma mark - UITextViewDelegate
 
 - (void)textViewDidChange:(UITextView *)textView {
-    self.questionVideoAttachment.attachmentDescription = self.descriptionTextView.text;
+    self.attachment.attachmentDescription = self.descriptionTextView.text;
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {

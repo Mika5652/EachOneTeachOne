@@ -8,8 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0903E2131C8031AD003FC892 /* DBCreateQuestionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E2121C8031AD003FC892 /* DBCreateQuestionDataSource.m */; };
-		0903E2161C8034C2003FC892 /* DBPhotoAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E2151C8034C2003FC892 /* DBPhotoAttachment.m */; };
-		0903E2191C803691003FC892 /* DBVideoAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E2181C803691003FC892 /* DBVideoAttachment.m */; };
 		0903E21C1C804298003FC892 /* DBFeedViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21B1C804298003FC892 /* DBFeedViewTableViewCell.m */; };
 		0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21E1C804461003FC892 /* DBFeedDataSource.m */; };
 		09385D961C75F16F00F0FB0D /* myText.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 09385D951C75F16F00F0FB0D /* myText.rtf */; };
@@ -66,10 +64,6 @@
 		03EE3D9235AF85CB51148BA1 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		0903E2111C8031AD003FC892 /* DBCreateQuestionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBCreateQuestionDataSource.h; sourceTree = "<group>"; };
 		0903E2121C8031AD003FC892 /* DBCreateQuestionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateQuestionDataSource.m; sourceTree = "<group>"; };
-		0903E2141C8034C2003FC892 /* DBPhotoAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBPhotoAttachment.h; sourceTree = "<group>"; };
-		0903E2151C8034C2003FC892 /* DBPhotoAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBPhotoAttachment.m; sourceTree = "<group>"; };
-		0903E2171C803691003FC892 /* DBVideoAttachment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBVideoAttachment.h; sourceTree = "<group>"; };
-		0903E2181C803691003FC892 /* DBVideoAttachment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBVideoAttachment.m; sourceTree = "<group>"; };
 		0903E21A1C804298003FC892 /* DBFeedViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFeedViewTableViewCell.h; sourceTree = "<group>"; };
 		0903E21B1C804298003FC892 /* DBFeedViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFeedViewTableViewCell.m; sourceTree = "<group>"; };
 		0903E21D1C804461003FC892 /* DBFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFeedDataSource.h; sourceTree = "<group>"; };
@@ -77,7 +71,6 @@
 		09385D951C75F16F00F0FB0D /* myText.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = myText.rtf; sourceTree = "<group>"; };
 		0995EBB31C8DC2C30070E968 /* UIViewController+DBAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DBAlerts.m"; sourceTree = "<group>"; };
 		0995EBB41C8DC2C30070E968 /* UIViewController+DBAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DBAlerts.h"; sourceTree = "<group>"; };
-		0995EBB61C8EC4BD0070E968 /* DBConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBConstants.h; sourceTree = "<group>"; };
 		09B1D11E1C805AE400BDA7A4 /* libPureLayout.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPureLayout.a; path = "Pods/../build/Debug-iphoneos/libPureLayout.a"; sourceTree = "<group>"; };
 		09CAF3311C85D5D0004508D2 /* UIImage+DBResizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DBResizing.h"; sourceTree = "<group>"; };
 		09CAF3321C85D5D0004508D2 /* UIImage+DBResizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DBResizing.m"; sourceTree = "<group>"; };
@@ -206,13 +199,6 @@
 			name = DataSource;
 			sourceTree = "<group>";
 		};
-		09A7C3F11C7B0632009DABE5 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Manager;
-			sourceTree = "<group>";
-		};
 		51CCCA5B6D01CE374C1F9DE6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -243,10 +229,6 @@
 			children = (
 				F60D1C6D1C590FD9008A460F /* DBQuestion.h */,
 				F60D1C6E1C590FD9008A460F /* DBQuestion.m */,
-				0903E2141C8034C2003FC892 /* DBPhotoAttachment.h */,
-				0903E2151C8034C2003FC892 /* DBPhotoAttachment.m */,
-				0903E2171C803691003FC892 /* DBVideoAttachment.h */,
-				0903E2181C803691003FC892 /* DBVideoAttachment.m */,
 				09CAF3341C85E2B0004508D2 /* DBAttachment.h */,
 				09CAF3351C85E2B0004508D2 /* DBAttachment.m */,
 			);
@@ -375,10 +357,8 @@
 		F629708B1C4E8DD0007174C0 /* General */ = {
 			isa = PBXGroup;
 			children = (
-				09A7C3F11C7B0632009DABE5 /* Manager */,
 				F60D1C6C1C590FBB008A460F /* Entities */,
 				F629708C1C4E8DD6007174C0 /* Core */,
-				0995EBB61C8EC4BD0070E968 /* DBConstants.h */,
 			);
 			name = General;
 			sourceTree = "<group>";
@@ -609,11 +589,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0903E2161C8034C2003FC892 /* DBPhotoAttachment.m in Sources */,
 				F629707E1C4E7A76007174C0 /* DBFeedView.m in Sources */,
 				09CAF33F1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.m in Sources */,
 				0995EBB51C8DC2C30070E968 /* UIViewController+DBAlerts.m in Sources */,
-				0903E2191C803691003FC892 /* DBVideoAttachment.m in Sources */,
 				0903E21C1C804298003FC892 /* DBFeedViewTableViewCell.m in Sources */,
 				F629708A1C4E8330007174C0 /* DBCreateQuestionView.m in Sources */,
 				F6B83B681C8DDA2000193641 /* DBLoginAndSignUpViewController.m in Sources */,

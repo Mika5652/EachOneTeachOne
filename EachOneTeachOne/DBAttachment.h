@@ -23,20 +23,20 @@ extern NSString * const kBucketName;
 
 @interface DBAttachment : PFObject <PFSubclassing>
 
-@property (nonatomic) UIImage *thumbnailImage;
+// UPLOADED TO PARSE
+@property NSString *fileName;
 @property NSString *attachmentDescription;
 @property NSString *mimeType;
 
-- (NSData *)thumbnailDataForUpload;
-+ (void)uploadAttachmentWithDescription:(NSString *)attachmentDescription mimeType:(NSString *)mimeType completion:(DBAttachmentUploadCompletion)completion;
-+ (void)uploadAttachments:(NSArray *)dataArray toQuestion:(DBQuestion *)question completion:(DBAttachmentsUploadCompletion)completion;
-+ (void)uploadFileWithKey:(NSString *)keyName data:(NSData *)data mimeType:(NSString *)mimeType completion:(DBAttachmentsUploadCompletion)completion;
-
-@end
-
-@protocol DBAttachmentProtocol <NSObject>
+// NOT UPLOADED TO PARSE
+@property (nonatomic) UIImage *thumbnailImage;
+@property (nonatomic) NSURL *videoURL;
+@property (nonatomic) UIImage *photoImage;
 
 - (NSData *)dataForUpload;
+- (NSData *)thumbnailDataForUpload;
 - (NSString *)fileExtension;
++ (void)uploadAttachments:(NSArray *)dataArray toQuestion:(DBQuestion *)question completion:(DBAttachmentsUploadCompletion)completion;
++ (void)uploadFileWithKey:(NSString *)keyName data:(NSData *)data mimeType:(NSString *)mimeType completion:(DBAttachmentsUploadCompletion)completion;
 
 @end
