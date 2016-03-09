@@ -113,15 +113,27 @@ CGFloat const kThumbnailWidth = 256;
     if ([firstObjectFromAttachments isKindOfClass:[DBAttachment class]]) {
         DBAttachment *attachment = (DBAttachment *)firstObjectFromAttachments;
         [attachment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
-            if (error == nil) {
+            if (!error) {
                 attachment.fileName = [attachment.objectId stringByAppendingPathExtension:[attachment fileExtension]];
                 [DBAttachment uploadFileWithKey:attachment.fileName data:[attachment dataForUpload] mimeType:attachment.mimeType completion:^(BOOL success, NSError *error) {
-                    [question.attachments addObject:attachment];
-                    if (attachments.count > 1) {
-                        [DBAttachment uploadAttachments:[attachments subarrayWithRange:NSMakeRange(1, attachments.count-1)] toQuestion:question completion:completion];
+                    if (question.attachments) {
+                        NSMutableArray *newAttachments = [NSMutableArray arrayWithArray:question.attachments];
+                        [newAttachments addObject:attachment];
+                        question.attachments = newAttachments;
                     } else {
-                        completion(YES, error);
+                        question.attachments = [[NSMutableArray alloc] initWithObjects:attachment, nil];
                     }
+                    [question saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        if (!error) {
+                            if (attachments.count > 1) {
+                                [DBAttachment uploadAttachments:[attachments subarrayWithRange:NSMakeRange(1, attachments.count-1)] toQuestion:question completion:completion];
+                            } else {
+                                completion(YES, error);
+                            }
+                        } else {
+                            completion(NO, error);
+                        }
+                    }];
                 }];
             } else {
                 completion(NO, error);
@@ -140,34 +152,13 @@ CGFloat const kThumbnailWidth = 256;
         });
     };
     
-    AWSS3TransferUtilityUploadCompletionHandlerBlock completionHandler = ^(AWSS3TransferUtilityUploadTask *task, NSError *error) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            // Do something e.g. Alert a user for transfer completion.
-            // On failed uploads, `error` contains the error object.
-        });
-    };
-    
     AWSS3TransferUtility *transferUtility = [AWSS3TransferUtility defaultS3TransferUtility];
-    [[transferUtility uploadData:data
-                          bucket:kBucketName
-                             key:keyName
-                     contentType:mimeType
-                      expression:expression
-                completionHander:completionHandler] continueWithBlock:^id(AWSTask *task) {
-        if (task.error) {
-            NSLog(@"Error: %@", task.error);
-            completion(NO, task.error);
+    [transferUtility uploadData:data bucket:kBucketName key:keyName contentType:mimeType expression:expression completionHander:^(AWSS3TransferUtilityUploadTask * _Nonnull task, NSError * _Nullable error) {
+        if (!error) {
+            completion(YES, error);
+        } else {
+            completion(NO, error);
         }
-        if (task.exception) {
-            NSLog(@"Exception: %@", task.exception);
-            completion(NO, [NSError errorWithDomain:NSLocalizedString(@"Exception occured during uploadFileWithKey", @"") code:0 userInfo:nil]);
-        }
-        if (task.result) {
-            completion(YES, task.error);
-        }
-        
-        completion(NO, [NSError errorWithDomain:NSLocalizedString(@"Unknown error occured during uploadFileWithKey", @"") code:0 userInfo:nil]);
-        return nil;
     }];
 }
 

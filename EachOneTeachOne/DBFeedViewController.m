@@ -24,6 +24,7 @@
 @interface DBFeedViewController ()
 
 @property DBFeedDataSource *feedDataSource;
+@property UIRefreshControl *refreshControl;
 
 @end
 
@@ -45,6 +46,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.refreshControl = [[UIRefreshControl alloc] init];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Create" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDidPress)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
     self.title = NSLocalizedString(@"Feed", @"");
@@ -55,6 +57,8 @@
         [self.feedDataSource.items addObjectsFromArray:questions];
         [self.feedView.tableView reloadData];
     }];
+    [self.feedView.tableView addSubview:self.refreshControl];
+    [self.refreshControl addTarget:self action:@selector(refreshTable) forControlEvents:UIControlEventValueChanged];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -78,5 +82,13 @@
     return (DBFeedView *)self.view;
 }
 
+#pragma mark - Private
+- (void)refreshTable {
+    [DBQuestion getNewQuestionsWithSkip:0 completion:^(NSArray *questions, NSError *error) {
+        self.feedDataSource.items = [questions mutableCopy];
+        [self.feedView.tableView reloadData];
+    }];
+    [self.refreshControl endRefreshing];
+}
 
 @end
