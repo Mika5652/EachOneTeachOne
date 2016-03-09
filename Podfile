@@ -2,6 +2,7 @@ pod 'Parse'
 pod 'FBSDKLoginKit'
 pod 'ParseUI'
 pod 'ParseFacebookUtilsV4'
+pod 'AFNetworking'
 source 'https://github.com/CocoaPods/Specs.git'
 
 pod 'AWSCore'

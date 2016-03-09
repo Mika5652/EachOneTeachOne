@@ -9,6 +9,7 @@
 #import "DBFeedDataSource.h"
 #import "DBFeedViewTableViewCell.h"
 #import "DBQuestion.h"
+#import <UIImageView+AFNetworking.h>
 
 @implementation DBFeedDataSource
 
@@ -32,15 +33,9 @@
     cell.titleLabel.text = question.title;
     cell.descriptionLabel.text = question.questionDescription;
     NSURL *photoURL = [NSURL URLWithString:[kAWSS3BaseURL stringByAppendingPathComponent:question.thumbnailName]];
-    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-        NSData *imageData = [NSData dataWithContentsOfURL:photoURL];
-        cell.photoImageView.image = [UIImage imageWithData:imageData];
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [cell setNeedsUpdateConstraints];
-            [cell updateConstraintsIfNeeded];
-        });
-    });
-    
+    [cell.photoImageView setImageWithURL:photoURL placeholderImage:nil];
+    [cell setNeedsUpdateConstraints];
+    [cell updateConstraintsIfNeeded];
     return cell;
 }
 
