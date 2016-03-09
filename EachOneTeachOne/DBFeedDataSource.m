@@ -32,11 +32,14 @@
     cell.titleLabel.text = question.title;
     cell.descriptionLabel.text = question.questionDescription;
     NSURL *photoURL = [NSURL URLWithString:[kAWSS3BaseURL stringByAppendingPathComponent:question.thumbnailName]];
-    NSData *imageData = [NSData dataWithContentsOfURL:photoURL];
-    cell.photoImageView.image = [UIImage imageWithData:imageData];
-
-    [cell setNeedsUpdateConstraints];
-    [cell updateConstraintsIfNeeded];
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        NSData *imageData = [NSData dataWithContentsOfURL:photoURL];
+        cell.photoImageView.image = [UIImage imageWithData:imageData];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [cell setNeedsUpdateConstraints];
+            [cell updateConstraintsIfNeeded];
+        });
+    });
     
     return cell;
 }

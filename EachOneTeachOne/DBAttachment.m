@@ -12,6 +12,8 @@ NSString * const kMOVExtenstion = @"MOV";
 NSString * const kMimeTypeImageJPG = @"image/jpg";
 NSString * const kJPGExtenstion = @"jpg";
 NSString * const kBucketName = @"eachoneteachonebucket";
+CGFloat const kPhotoWidth = 1024;
+CGFloat const kThumbnailWidth = 256;
 
 @implementation DBAttachment
 
@@ -23,20 +25,10 @@ NSString * const kBucketName = @"eachoneteachonebucket";
 @synthesize fileName = _fileName;
 @synthesize thumbnailImage = _thumbnailImage;
 
-#pragma mark - Constants
-
-+ (CGSize)kThumbnailImageSize {
-    return CGSizeMake(256, 256);
-}
-
-+ (CGSize)kImageSize {
-    return CGSizeMake(1024,1024);
-}
-
 #pragma mark - Properties
 
 - (void)setThumbnailImage:(UIImage *)thumbnailImage {
-    _thumbnailImage = [thumbnailImage photoResizedToSize:[DBAttachment kThumbnailImageSize]];
+    _thumbnailImage = [thumbnailImage photoResizedToSize:CGSizeMake(kThumbnailWidth,  thumbnailImage.size.height*(kThumbnailWidth/thumbnailImage.size.width))];
 }
 
 - (void)setVideoURL:(NSURL *)videoURL {
@@ -45,7 +37,7 @@ NSString * const kBucketName = @"eachoneteachonebucket";
 }
 
 - (void)setPhotoImage:(UIImage *)photoImage {
-    _photoImage = [photoImage photoResizedToSize:[DBAttachment kImageSize]];
+    _photoImage = [photoImage photoResizedToSize:CGSizeMake(kPhotoWidth, photoImage.size.height*(kPhotoWidth/photoImage.size.width))];
     self.thumbnailImage = photoImage;
 }
 
