@@ -50,7 +50,6 @@
         } else {
             DBCreateQuestionVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionVideoTableViewCellIdentifier forIndexPath:indexPath];
             [cell setContentWithQuestionVideoAttachment:attachment];
-    //        [cell setConstrainsWithImage:[videoAtachment thumbnailImageForVideo:videoAtachment.videoURL atTime:0]];
             [cell setConstrainsWithImage:attachment.thumbnailImage];
             cell.attachment = attachment;
             [cell setNeedsUpdateConstraints];
