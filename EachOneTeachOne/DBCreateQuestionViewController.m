@@ -128,7 +128,9 @@
                                   dataArray:self.createQuestionDataSource.items
                                  completion:^(DBQuestion *question, NSError *error) {
                                      if (!error) {
-                                         [self.navigationController popViewControllerAnimated:YES];
+                                         dispatch_async(dispatch_get_main_queue(), ^{
+                                             [self.navigationController popViewControllerAnimated:YES];
+                                         });
                                      } else {
                                          [self showAlertWithTitle:NSLocalizedString(@"Something is broken", @"") message:NSLocalizedString(@"There is some error, please try post your question later", @"") dismissButtonText:@"OK BRO"];
                                      }

@@ -40,9 +40,9 @@
         DBAttachment *attachment = (DBAttachment *)self.items[indexPath.row-1];
         if ([attachment.mimeType isEqualToString:kMimeTypeImageJPG]) {
             DBCreateQuestionPhotoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionPhotoTableViewCellIdentifier forIndexPath:indexPath];
-            cell.attachment = attachment;
             [cell setConstrainsWithImage:attachment.photoImage];
             cell.photoImageView.image = attachment.photoImage;
+            cell.attachment = attachment;
             [cell setNeedsUpdateConstraints];
             [cell updateConstraintsIfNeeded];
             
