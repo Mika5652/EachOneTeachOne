@@ -32,6 +32,13 @@
 
     if (indexPath.row == 0) {
         DBCreateQuestionTitleAndDescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier forIndexPath:indexPath];
+        cell.titleTextField.text = self.questionTitle;
+        
+        if (self.questionDescription) {
+            cell.descriptionTextView.text = self.questionDescription;
+        }
+        
+        cell.dataSource = self;
         [cell setNeedsUpdateConstraints];
         [cell updateConstraintsIfNeeded];
         

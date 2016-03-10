@@ -8,19 +8,22 @@
 
 #import "DBCreateQuestionTitleAndDescriptionTableViewCell.h"
 #import <PureLayout/PureLayout.h>
+#import "DBCreateQuestionDataSource.h"
 
 NSString * const kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier = @"kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier";
-static NSString * const descriptionTextViewText = @"Description...";
+static NSString * const kDescriptionTextViewText = @"Description...";
 static CGFloat const kVerticalSpacing = 4;
 static CGFloat const kHorizontalSpacing = 4;
 
-@interface DBCreateQuestionTitleAndDescriptionTableViewCell () <UITextViewDelegate>
+@interface DBCreateQuestionTitleAndDescriptionTableViewCell () <UITextViewDelegate, UITextFieldDelegate>
 
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
 @end
 
 @implementation DBCreateQuestionTitleAndDescriptionTableViewCell
+
+#pragma mark - Lifecycles
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier {
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
@@ -33,13 +36,14 @@ static CGFloat const kHorizontalSpacing = 4;
         self.titleTextField.borderStyle = UITextBorderStyleRoundedRect;
         self.titleTextField.placeholder = NSLocalizedString(@"Title ", nil);
         self.titleTextField.autocorrectionType = NO;
+        self.titleTextField.delegate = self;
         [self.contentView addSubview:self.titleTextField];
         
         _descriptionTextView = [UITextView newAutoLayoutView];
         self.descriptionTextView.layer.cornerRadius = 7;
         self.descriptionTextView.autocorrectionType = NO;
         self.descriptionTextView.delegate = self;
-        self.descriptionTextView.text = descriptionTextViewText;
+        self.descriptionTextView.text = kDescriptionTextViewText;
         self.descriptionTextView.textColor = [UIColor lightGrayColor];
         [self.contentView addSubview:self.descriptionTextView];
     }
@@ -69,20 +73,37 @@ static CGFloat const kHorizontalSpacing = 4;
     [super updateConstraints];
 }
 
+#pragma mark - UITextViewDelegate
+
 - (void)textViewDidBeginEditing:(UITextView *)textView {
-    if ([self.descriptionTextView.text isEqualToString:descriptionTextViewText]) {
-        self.descriptionTextView.text = @"";
-        self.descriptionTextView.textColor = [UIColor blackColor];
+    if ([textView isEqual:self.descriptionTextView]) {
+        if ([self.descriptionTextView.text isEqualToString:kDescriptionTextViewText]) {
+            self.descriptionTextView.text = @"";
+            self.descriptionTextView.textColor = [UIColor blackColor];
+        }
+        [textView becomeFirstResponder];
     }
-    [textView becomeFirstResponder];
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
-    if ([self.descriptionTextView.text isEqualToString:@""]) {
-        self.descriptionTextView.text = descriptionTextViewText;
-        self.descriptionTextView.textColor = [UIColor lightGrayColor];
+    if ([textView isEqual:self.descriptionTextView]) {
+        if ([self.descriptionTextView.text isEqualToString:@""]) {
+            self.descriptionTextView.text = kDescriptionTextViewText;
+            self.descriptionTextView.textColor = [UIColor lightGrayColor];
+            self.dataSource.questionDescription = @"";
+        } else {
+            self.dataSource.questionDescription = self.descriptionTextView.text;
+        }
     }
     [textView resignFirstResponder];
+}
+
+#pragma mark - UITextFieldDelegate
+
+- (void)textFieldDidEndEditing:(UITextField *)textField {
+    if ([textField isEqual:self.titleTextField]) {
+        self.dataSource.questionTitle = textField.text;
+    }
 }
 
 @end
