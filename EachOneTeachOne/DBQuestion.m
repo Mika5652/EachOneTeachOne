@@ -51,7 +51,7 @@ static NSInteger const kLimit = 20;
     question.questionDescription = questionDescription;
     
     [question saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
-        if (error == nil) {
+        if (!error && succeeded) {
             if (dataArray.count != 0) {
                 id attachment = dataArray.firstObject;
                 if ([attachment isKindOfClass:[DBAttachment class]]) {
@@ -61,7 +61,7 @@ static NSInteger const kLimit = 20;
                         if (!error) {
                             question.thumbnailName = questionThumbnailName;
                             [question saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-                                if (error == nil) {
+                                if (!error) {
                                     [DBAttachment uploadAttachments:dataArray toQuestion:question completion:^(BOOL success, NSError *error) {
                                         completion(question, error);
                                     }];
