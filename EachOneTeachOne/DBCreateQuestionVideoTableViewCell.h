@@ -16,8 +16,8 @@ extern NSString * const kDBCreateQuestionVideoTableViewCellIdentifier;
 
 @property UITextView *descriptionTextView;
 @property (nonatomic) DBAttachment *attachment;
+@property UIImageView *videoThumbnail;
 
-- (void)setContentWithQuestionVideoAttachment:(DBAttachment *)attachment;
 - (void)setConstrainsWithImage:(UIImage *)image;
 
 @end

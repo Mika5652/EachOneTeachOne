@@ -12,6 +12,8 @@
 
 // Views
 #import "DBCreateQuestionView.h"
+#import "UIView+ActivityIndicatorView.h"
+#import "DBActivityIndicatorView.h"
 
 // Entities
 #import "DBQuestion.h"
@@ -110,6 +112,7 @@
             DBAttachment *attachment = [[DBAttachment alloc] init];
             attachment.mimeType = kMimeTypeVideoMOV;
             attachment.videoURL = info[UIImagePickerControllerMediaURL];
+            attachment.photoImage = [attachment thumbnailImageForVideo:attachment.videoURL atTime:0];
             [self.createQuestionDataSource.items addObject:attachment];
         }
         
@@ -122,6 +125,8 @@
 
 - (void)postButtonDidPress {
 
+    [self.view showActivityIndicatorViewWithTitle:@"Posting..."];
+    
     if (![self.createQuestionTitleAndDescriptionTableViewCell.titleTextField.text isEqualToString:@""]) {
         [DBQuestion uploadQuestionWithTitle:[self createQuestionTitleAndDescriptionTableViewCell].titleTextField.text
                          questionDesciption:[self createQuestionTitleAndDescriptionTableViewCell].descriptionTextView.text
@@ -137,6 +142,7 @@
          }];
     } else {
         NSLog(@"Empty input");
+        [self.view hideActivityIndicatorView];
     }
 }
 

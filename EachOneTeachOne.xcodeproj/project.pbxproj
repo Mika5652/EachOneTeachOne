@@ -12,6 +12,8 @@
 		0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21E1C804461003FC892 /* DBFeedDataSource.m */; };
 		09385D961C75F16F00F0FB0D /* myText.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 09385D951C75F16F00F0FB0D /* myText.rtf */; };
 		0995EBB51C8DC2C30070E968 /* UIViewController+DBAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 0995EBB31C8DC2C30070E968 /* UIViewController+DBAlerts.m */; };
+		0995EBC11C9057750070E968 /* DBActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0995EBBE1C9057750070E968 /* DBActivityIndicatorView.m */; };
+		0995EBC21C9057750070E968 /* UIView+ActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0995EBC01C9057750070E968 /* UIView+ActivityIndicatorView.m */; };
 		09B1D11F1C805AE400BDA7A4 /* libPureLayout.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 09B1D11E1C805AE400BDA7A4 /* libPureLayout.a */; };
 		09CAF3331C85D5D0004508D2 /* UIImage+DBResizing.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CAF3321C85D5D0004508D2 /* UIImage+DBResizing.m */; };
 		09CAF3361C85E2B0004508D2 /* DBAttachment.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CAF3351C85E2B0004508D2 /* DBAttachment.m */; };
@@ -71,6 +73,10 @@
 		09385D951C75F16F00F0FB0D /* myText.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = myText.rtf; sourceTree = "<group>"; };
 		0995EBB31C8DC2C30070E968 /* UIViewController+DBAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DBAlerts.m"; sourceTree = "<group>"; };
 		0995EBB41C8DC2C30070E968 /* UIViewController+DBAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DBAlerts.h"; sourceTree = "<group>"; };
+		0995EBBD1C9057750070E968 /* DBActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBActivityIndicatorView.h; sourceTree = "<group>"; };
+		0995EBBE1C9057750070E968 /* DBActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBActivityIndicatorView.m; sourceTree = "<group>"; };
+		0995EBBF1C9057750070E968 /* UIView+ActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+ActivityIndicatorView.h"; sourceTree = "<group>"; };
+		0995EBC01C9057750070E968 /* UIView+ActivityIndicatorView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+ActivityIndicatorView.m"; sourceTree = "<group>"; };
 		09B1D11E1C805AE400BDA7A4 /* libPureLayout.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPureLayout.a; path = "Pods/../build/Debug-iphoneos/libPureLayout.a"; sourceTree = "<group>"; };
 		09CAF3311C85D5D0004508D2 /* UIImage+DBResizing.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+DBResizing.h"; sourceTree = "<group>"; };
 		09CAF3321C85D5D0004508D2 /* UIImage+DBResizing.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DBResizing.m"; sourceTree = "<group>"; };
@@ -366,6 +372,10 @@
 		F629708C1C4E8DD6007174C0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				0995EBBD1C9057750070E968 /* DBActivityIndicatorView.h */,
+				0995EBBE1C9057750070E968 /* DBActivityIndicatorView.m */,
+				0995EBBF1C9057750070E968 /* UIView+ActivityIndicatorView.h */,
+				0995EBC01C9057750070E968 /* UIView+ActivityIndicatorView.m */,
 				0995EBB41C8DC2C30070E968 /* UIViewController+DBAlerts.h */,
 				0995EBB31C8DC2C30070E968 /* UIViewController+DBAlerts.m */,
 				F629708D1C4E8DE1007174C0 /* Core.h */,
@@ -474,7 +484,7 @@
 				TargetAttributes = {
 					F62970401C4E7159007174C0 = {
 						CreatedOnToolsVersion = 7.2;
-						DevelopmentTeam = 4C9JEQNS82;
+						DevelopmentTeam = 2W9YFR7B89;
 					};
 					F62970591C4E715A007174C0 = {
 						CreatedOnToolsVersion = 7.2;
@@ -596,11 +606,13 @@
 				F629708A1C4E8330007174C0 /* DBCreateQuestionView.m in Sources */,
 				F6B83B681C8DDA2000193641 /* DBLoginAndSignUpViewController.m in Sources */,
 				F62970861C4E8308007174C0 /* DBCreateQuestionViewController.m in Sources */,
+				0995EBC11C9057750070E968 /* DBActivityIndicatorView.m in Sources */,
 				F62970491C4E7159007174C0 /* AppDelegate.m in Sources */,
 				0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */,
 				F60D1C6F1C590FD9008A460F /* DBQuestion.m in Sources */,
 				09CAF3361C85E2B0004508D2 /* DBAttachment.m in Sources */,
 				09CAF3391C87347A004508D2 /* DBCreateQuestionTitleAndDescriptionTableViewCell.m in Sources */,
+				0995EBC21C9057750070E968 /* UIView+ActivityIndicatorView.m in Sources */,
 				09CAF3331C85D5D0004508D2 /* UIImage+DBResizing.m in Sources */,
 				F62970811C4E7A9D007174C0 /* DBFeedViewController.m in Sources */,
 				F62970461C4E7159007174C0 /* main.m in Sources */,
@@ -751,7 +763,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EachOneTeachOne/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "EachOneTeachOne-Bridging-Header.h";
@@ -768,7 +780,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = EachOneTeachOne/Info.plist;
-				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne;
+				PRODUCT_BUNDLE_IDENTIFIER = com.iDevBand.EachOneTeachOne2;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "EachOneTeachOne-Bridging-Header.h";

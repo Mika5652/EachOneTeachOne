@@ -36,6 +36,7 @@ extern NSString * const kBucketName;
 - (NSData *)dataForUpload;
 - (NSData *)thumbnailDataForUpload;
 - (NSString *)fileExtension;
+- (UIImage *)thumbnailImageForVideo:(NSURL *)videoURL atTime:(NSTimeInterval)time;
 + (void)uploadAttachments:(NSArray *)dataArray toQuestion:(DBQuestion *)question completion:(DBAttachmentsUploadCompletion)completion;
 + (void)uploadFileWithKey:(NSString *)keyName data:(NSData *)data mimeType:(NSString *)mimeType completion:(DBAttachmentsUploadCompletion)completion;
 
