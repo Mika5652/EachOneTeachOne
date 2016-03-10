@@ -56,7 +56,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDidPress)];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(postButtonDidPress)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
 
 //    self.navigationController.toolbarHidden = NO;
@@ -123,7 +123,7 @@
 
 #pragma mark - UserAction
 
-- (void)rightBarButtonDidPress {
+- (void)postButtonDidPress {
 
     [self.view showActivityIndicatorViewWithTitle:@"Posting..."];
     
