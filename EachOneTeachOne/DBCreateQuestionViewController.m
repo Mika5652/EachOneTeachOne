@@ -35,7 +35,6 @@
 
 @property UIImagePickerController *imagePickerController;
 @property (copy, nonatomic, readonly) NSString *parseObjectID;      // ID objektu na Parsu
-@property DBCreateQuestionDataSource *createQuestionDataSource;
 
 @end
 
@@ -56,7 +55,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(rightBarButtonDidPress)];
+    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(postButtonDidPress)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
 
 //    self.navigationController.toolbarHidden = NO;
@@ -112,6 +111,7 @@
             DBAttachment *attachment = [[DBAttachment alloc] init];
             attachment.mimeType = kMimeTypeVideoMOV;
             attachment.videoURL = info[UIImagePickerControllerMediaURL];
+            attachment.photoImage = [attachment thumbnailImageForVideo:attachment.videoURL atTime:0];
             [self.createQuestionDataSource.items addObject:attachment];
         }
         
@@ -122,13 +122,13 @@
 
 #pragma mark - UserAction
 
-- (void)rightBarButtonDidPress {
+- (void)postButtonDidPress {
 
     [self.view showActivityIndicatorViewWithTitle:@"Posting..."];
     
-    if (![self.createQuestionTitleAndDescriptionTableViewCell.titleTextField.text isEqualToString:@""]) {
-        [DBQuestion uploadQuestionWithTitle:[self createQuestionTitleAndDescriptionTableViewCell].titleTextField.text
-                         questionDesciption:[self createQuestionTitleAndDescriptionTableViewCell].descriptionTextView.text
+    if (![self.createQuestionDataSource.questionTitle isEqualToString:@""]) {
+        [DBQuestion uploadQuestionWithTitle:self.createQuestionDataSource.questionTitle
+                         questionDesciption:self.createQuestionDataSource.questionDescription
                                   dataArray:self.createQuestionDataSource.items
                                  completion:^(DBQuestion *question, NSError *error) {
                                      if (!error) {
@@ -149,11 +149,6 @@
 
 - (DBCreateQuestionView *)createQuestionView {
     return (DBCreateQuestionView *)self.view;
-}
-
-- (DBCreateQuestionTitleAndDescriptionTableViewCell *)createQuestionTitleAndDescriptionTableViewCell {
-//    return (DBCreateQuestionTitleAndDescriptionTableViewCell *)[self.createQuestionView.tableView cellForRowAtIndexPath:[NSIndexPath indexPathWithIndex:0]];
-    return (DBCreateQuestionTitleAndDescriptionTableViewCell *)[self.createQuestionView.tableView cellForRowAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:0]];
 }
 
 @end

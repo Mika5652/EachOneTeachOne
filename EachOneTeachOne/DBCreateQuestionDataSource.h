@@ -12,5 +12,7 @@
 @interface DBCreateQuestionDataSource : NSObject <UITableViewDataSource>
 
 @property NSMutableArray *items;
+@property NSString *questionTitle;
+@property NSString *questionDescription;
 
 @end
