@@ -112,6 +112,7 @@
             DBAttachment *attachment = [[DBAttachment alloc] init];
             attachment.mimeType = kMimeTypeVideoMOV;
             attachment.videoURL = info[UIImagePickerControllerMediaURL];
+            attachment.photoImage = [attachment thumbnailImageForVideo:attachment.videoURL atTime:0];
             [self.createQuestionDataSource.items addObject:attachment];
         }
         

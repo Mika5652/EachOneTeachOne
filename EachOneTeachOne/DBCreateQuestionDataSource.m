@@ -49,8 +49,9 @@
             return cell;
         } else {
             DBCreateQuestionVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionVideoTableViewCellIdentifier forIndexPath:indexPath];
-            [cell setContentWithQuestionVideoAttachment:attachment];
-            [cell setConstrainsWithImage:attachment.thumbnailImage];
+//            [cell setContentWithQuestionVideoAttachment:attachment];
+            [cell setConstrainsWithImage:attachment.photoImage];
+            cell.videoThumbnail.image = attachment.photoImage;
             cell.attachment = attachment;
             [cell setNeedsUpdateConstraints];
             [cell updateConstraintsIfNeeded];

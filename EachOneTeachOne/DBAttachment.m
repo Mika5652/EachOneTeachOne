@@ -67,8 +67,6 @@ CGFloat const kThumbnailWidth = 256;
     }
 }
 
-#pragma mark - Private
-
 - (UIImage *)thumbnailImageForVideo:(NSURL *)videoURL atTime:(NSTimeInterval)time {
     AVURLAsset *asset = [[AVURLAsset alloc] initWithURL:videoURL options:nil];
     NSParameterAssert(asset);
