@@ -43,6 +43,8 @@
 		F6B83B5F1C8C928F00193641 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F629704D1C4E7159007174C0 /* Main.storyboard */; };
 		F6B83B601C8C929700193641 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F62970521C4E7159007174C0 /* LaunchScreen.storyboard */; };
 		F6B83B681C8DDA2000193641 /* DBLoginAndSignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B83B671C8DDA2000193641 /* DBLoginAndSignUpViewController.m */; };
+		F6B83B761C9177D900193641 /* DBLoginAndSignUpView.m in Sources */ = {isa = PBXBuildFile; fileRef = F6B83B751C9177D900193641 /* DBLoginAndSignUpView.m */; };
+		F6B83B781C9191C400193641 /* SpriteKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B771C9191C400193641 /* SpriteKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -127,6 +129,9 @@
 		F6B83B591C8C3F8D00193641 /* libParseUI.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libParseUI.a; path = "Pods/../build/Debug-iphoneos/libParseUI.a"; sourceTree = "<group>"; };
 		F6B83B661C8DDA2000193641 /* DBLoginAndSignUpViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLoginAndSignUpViewController.h; sourceTree = "<group>"; };
 		F6B83B671C8DDA2000193641 /* DBLoginAndSignUpViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLoginAndSignUpViewController.m; sourceTree = "<group>"; };
+		F6B83B741C9177D900193641 /* DBLoginAndSignUpView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBLoginAndSignUpView.h; sourceTree = "<group>"; };
+		F6B83B751C9177D900193641 /* DBLoginAndSignUpView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBLoginAndSignUpView.m; sourceTree = "<group>"; };
+		F6B83B771C9191C400193641 /* SpriteKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SpriteKit.framework; path = System/Library/Frameworks/SpriteKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,6 +139,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F6B83B781C9191C400193641 /* SpriteKit.framework in Frameworks */,
 				F6B83B5A1C8C3F8D00193641 /* libBolts.a in Frameworks */,
 				F6B83B5B1C8C3F8D00193641 /* libFBSDKCoreKit.a in Frameworks */,
 				F6B83B5C1C8C3F8D00193641 /* libFBSDKLoginKit.a in Frameworks */,
@@ -217,6 +223,7 @@
 		830E87CD4348C160D2091E25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F6B83B771C9191C400193641 /* SpriteKit.framework */,
 				F6B83B551C8C3F8D00193641 /* libBolts.a */,
 				F6B83B561C8C3F8D00193641 /* libFBSDKCoreKit.a */,
 				F6B83B571C8C3F8D00193641 /* libFBSDKLoginKit.a */,
@@ -407,6 +414,8 @@
 		F6B83B651C8DD8EB00193641 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				F6B83B741C9177D900193641 /* DBLoginAndSignUpView.h */,
+				F6B83B751C9177D900193641 /* DBLoginAndSignUpView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -609,6 +618,7 @@
 				0995EBC11C9057750070E968 /* DBActivityIndicatorView.m in Sources */,
 				F62970491C4E7159007174C0 /* AppDelegate.m in Sources */,
 				0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */,
+				F6B83B761C9177D900193641 /* DBLoginAndSignUpView.m in Sources */,
 				F60D1C6F1C590FD9008A460F /* DBQuestion.m in Sources */,
 				09CAF3361C85E2B0004508D2 /* DBAttachment.m in Sources */,
 				09CAF3391C87347A004508D2 /* DBCreateQuestionTitleAndDescriptionTableViewCell.m in Sources */,

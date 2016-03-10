@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+@class DBLoginAndSignUpView;
+
 @interface DBLoginAndSignUpViewController : UIViewController
+
+@property (nonatomic, assign) BOOL isAnimatingToEndState;
+@property (nonatomic, strong) NSLayoutConstraint *logoImageViewEdgeConstraint;
+@property (nonatomic) DBLoginAndSignUpView *loginAndSignUpView;
+
+- (void)animateLayoutWithRegularAnimation;
 
 @end

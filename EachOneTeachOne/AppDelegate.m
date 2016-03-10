@@ -13,6 +13,7 @@
 
 #import "AppDelegate.h"
 #import "DBFeedViewController.h"
+#import "DBLoginAndSignUpViewController.h"
 
 // Amazon S3
 #import <AWSCore/AWSCore.h>
@@ -29,9 +30,10 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
-    DBFeedViewController *feedViewController = [[DBFeedViewController alloc] init];
+    DBLoginAndSignUpViewController *loginViewController = [[DBLoginAndSignUpViewController alloc] init];
+//    DBFeedViewController *feedViewController = [[DBFeedViewController alloc] init];
     
-    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedViewController];
+    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
     
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];
