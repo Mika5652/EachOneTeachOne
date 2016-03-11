@@ -38,7 +38,7 @@ static NSInteger const kLimit = 20;
     query.skip = skip;
     query.limit = kLimit;
     [query orderByDescending:@"createdAt"];
-    
+    [query includeKey:@"attachments"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *questions, NSError *error) {
         completion(questions, error);
     }];

@@ -9,13 +9,14 @@
 #import <UIKit/UIKit.h>
 
 extern NSString * const kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier;
-
-@class DBCreateQuestionDataSource;
+extern NSString * const kCreateQuestionDescriptionTextDidChangeNotification;
+extern NSString * const kCreateQuestionTitleTextDidChangeNotification;
+extern NSString * const kCreateQuestionDescriptionTextKey;
+extern NSString * const kCreateQuestionTitleTextKey;
 
 @interface DBCreateQuestionTitleAndDescriptionTableViewCell : UITableViewCell
 
 @property UITextField *titleTextField;
 @property UITextView *descriptionTextView;
-@property (weak) DBCreateQuestionDataSource *dataSource;
 
 @end

@@ -11,6 +11,10 @@
 #import "DBCreateQuestionDataSource.h"
 
 NSString * const kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier = @"kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier";
+NSString * const kCreateQuestionDescriptionTextDidChangeNotification = @"CreateQuestionDescriptionTextDidChangeNotification";
+NSString * const kCreateQuestionTitleTextDidChangeNotification = @"CreateQuestionTitleTextDidChangeNotification";
+NSString * const kCreateQuestionDescriptionTextKey = @"CreateQuestionDescriptionTextKey";
+NSString * const kCreateQuestionTitleTextKey = @"CreateQuestionTitleTextKey";
 static NSString * const kDescriptionTextViewText = @"Description...";
 static CGFloat const kVerticalSpacing = 4;
 static CGFloat const kHorizontalSpacing = 4;
@@ -90,9 +94,9 @@ static CGFloat const kHorizontalSpacing = 4;
         if ([self.descriptionTextView.text isEqualToString:@""]) {
             self.descriptionTextView.text = kDescriptionTextViewText;
             self.descriptionTextView.textColor = [UIColor lightGrayColor];
-            self.dataSource.questionDescription = @"";
+            [[NSNotificationCenter defaultCenter] postNotificationName:kCreateQuestionDescriptionTextDidChangeNotification object:nil userInfo:@{kCreateQuestionDescriptionTextKey : @""}];
         } else {
-            self.dataSource.questionDescription = self.descriptionTextView.text;
+            [[NSNotificationCenter defaultCenter] postNotificationName:kCreateQuestionDescriptionTextDidChangeNotification object:nil userInfo:@{kCreateQuestionDescriptionTextKey : self.descriptionTextView.text}];
         }
     }
     [textView resignFirstResponder];
@@ -102,8 +106,9 @@ static CGFloat const kHorizontalSpacing = 4;
 
 - (void)textFieldDidEndEditing:(UITextField *)textField {
     if ([textField isEqual:self.titleTextField]) {
-        self.dataSource.questionTitle = textField.text;
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCreateQuestionTitleTextDidChangeNotification object:nil userInfo:@{kCreateQuestionTitleTextKey : self.titleTextField.text}];
     }
+    [textField resignFirstResponder];
 }
 
 @end

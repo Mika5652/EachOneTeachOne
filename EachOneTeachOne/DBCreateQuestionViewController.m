@@ -35,6 +35,8 @@
 
 @property UIImagePickerController *imagePickerController;
 @property (copy, nonatomic, readonly) NSString *parseObjectID;      // ID objektu na Parsu
+@property NSString *questionTitleString;
+@property NSString *questionDescriptionString;
 
 @end
 
@@ -44,6 +46,8 @@
     self = [super init];
     if (self) {
         _createQuestionDataSource = [[DBCreateQuestionDataSource alloc] init];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCreateQuestionDescriptionTextDidChangeNotification:) name:kCreateQuestionDescriptionTextDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCreateQuestionTitleTextDidChangeNotification:) name:kCreateQuestionTitleTextDidChangeNotification object:nil];
     }
     return self;
 }
@@ -75,6 +79,23 @@
     NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
     self.toolbarItems = toolbarItems;
 }
+
+#pragma mark - Notification
+- (void) receiveCreateQuestionDescriptionTextDidChangeNotification:(NSNotification *) notification {
+    
+    if ([[notification name] isEqualToString:kCreateQuestionDescriptionTextDidChangeNotification]) {
+        self.questionDescriptionString = [notification.userInfo objectForKey:kCreateQuestionDescriptionTextKey];
+    }
+}
+
+#pragma mark - Notification
+- (void) receiveCreateQuestionTitleTextDidChangeNotification:(NSNotification *) notification {
+    
+    if ([[notification name] isEqualToString:kCreateQuestionTitleTextDidChangeNotification]) {
+        self.questionTitleString = [notification.userInfo objectForKey:kCreateQuestionTitleTextKey];
+    }
+}
+
 
 #pragma mark - UIImagePickerControllerSourceType
 
@@ -126,9 +147,9 @@
 
     [self.view showActivityIndicatorViewWithTitle:@"Posting..."];
     
-    if (![self.createQuestionDataSource.questionTitle isEqualToString:@""]) {
-        [DBQuestion uploadQuestionWithTitle:self.createQuestionDataSource.questionTitle
-                         questionDesciption:self.createQuestionDataSource.questionDescription
+    if (self.questionTitleString) {
+        [DBQuestion uploadQuestionWithTitle:self.questionTitleString
+                         questionDesciption:self.questionDescriptionString
                                   dataArray:self.createQuestionDataSource.items
                                  completion:^(DBQuestion *question, NSError *error) {
                                      if (!error) {
