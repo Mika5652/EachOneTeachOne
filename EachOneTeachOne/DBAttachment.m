@@ -151,7 +151,7 @@ CGFloat const kThumbnailWidth = 256;
     };
     
     AWSS3TransferUtility *transferUtility = [AWSS3TransferUtility defaultS3TransferUtility];
-    [transferUtility uploadData:data bucket:kBucketName key:keyName contentType:mimeType expression:expression completionHander:^(AWSS3TransferUtilityUploadTask * _Nonnull task, NSError * _Nullable error) {
+    [transferUtility uploadData:data bucket:kBucketName key:keyName contentType:kJPGExtenstion expression:expression completionHander:^(AWSS3TransferUtilityUploadTask * _Nonnull task, NSError * _Nullable error) {
         if (!error) {
             completion(YES, error);
         } else {

@@ -17,7 +17,6 @@
 
 @property UILabel *questionDetailTitleLabel;
 @property UILabel *questionDetailDescriptionLabel;
-@property UIImageView *questionDetailPhotoImageView;
 
 - (instancetype)initWithQuestion:(DBQuestion *)question;
 

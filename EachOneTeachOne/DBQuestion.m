@@ -11,7 +11,7 @@
 
 NSString * const kAWSS3BaseURL = @"https://s3.eu-central-1.amazonaws.com/eachoneteachonebucket";
 
-static NSInteger const kLimit = 20;
+static NSInteger const kLimit = 2;
 
 @implementation DBQuestion
 
@@ -57,7 +57,7 @@ static NSInteger const kLimit = 20;
                 if ([attachment isKindOfClass:[DBAttachment class]]) {
                     DBAttachment *questionAttachment = (DBAttachment *)attachment;
                     NSString *questionThumbnailName = [[question.objectId stringByAppendingString:@"_thumbnail"] stringByAppendingPathExtension:kJPGExtenstion];
-                    [DBAttachment uploadFileWithKey:questionThumbnailName data:[questionAttachment thumbnailDataForUpload] mimeType:kMimeTypeImageJPG completion:^(BOOL success, NSError *error) {
+                    [DBAttachment uploadFileWithKey:questionThumbnailName data:[questionAttachment thumbnailDataForUpload] mimeType:kJPGExtenstion completion:^(BOOL success, NSError *error) {
                         if (!error) {
                             question.thumbnailName = questionThumbnailName;
                             [question saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
