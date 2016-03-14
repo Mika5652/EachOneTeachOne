@@ -29,6 +29,7 @@
 - (void)loadView {
     self.view = [[DBQuestionDetailView alloc] initWithQuestion:self.question];
     self.title = NSLocalizedString(@"Question detail", @"");
+//    self.edgesForExtendedLayout = UIRectEdgeNone;
 }
 
 @end
