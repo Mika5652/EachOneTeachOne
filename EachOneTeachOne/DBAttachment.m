@@ -6,6 +6,7 @@
 #import <AWSS3/AWSS3TransferUtility.h>
 #import <AVFoundation/AVFoundation.h>
 #import "DBQuestion.h"
+#import "DBAnswer.h"
 
 NSString * const kMimeTypeVideoMOV = @"video/quicktime";
 NSString * const kMOVExtenstion = @"MOV";
@@ -19,10 +20,10 @@ CGFloat const kThumbnailWidth = 256;
 
 @dynamic attachmentDescription;
 @dynamic mimeType;
+@dynamic fileName;
 
 @synthesize videoURL = _videoURL;
 @synthesize photoImage = _photoImage;
-@synthesize fileName = _fileName;
 @synthesize thumbnailImage = _thumbnailImage;
 
 #pragma mark - Properties
@@ -141,6 +142,43 @@ CGFloat const kThumbnailWidth = 256;
         completion(NO, [NSError errorWithDomain:@"Unexpected data in uploadAttachments method" code:0 userInfo:nil]);
     }
 }
+
++ (void)uploadAttachments:(NSArray *)attachments toAnswer:(DBAnswer *)answer completion:(DBAttachmentsUploadCompletion)completion {
+    id firstObjectFromAttachments = attachments.firstObject;
+    if ([firstObjectFromAttachments isKindOfClass:[DBAttachment class]]) {
+        DBAttachment *attachment = (DBAttachment *)firstObjectFromAttachments;
+        [attachment saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+            if (!error) {
+                attachment.fileName = [attachment.objectId stringByAppendingPathExtension:[attachment fileExtension]];
+                [DBAttachment uploadFileWithKey:attachment.fileName data:[attachment dataForUpload] mimeType:attachment.mimeType completion:^(BOOL success, NSError *error) {
+                    if (answer.attachments) {
+                        NSMutableArray *newAttachments = [NSMutableArray arrayWithArray:answer.attachments];
+                        [newAttachments addObject:attachment];
+                        answer.attachments = newAttachments;
+                    } else {
+                        answer.attachments = [[NSMutableArray alloc] initWithObjects:attachment, nil];
+                    }
+                    [answer saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        if (!error) {
+                            if (attachments.count > 1) {
+                                [DBAttachment uploadAttachments:[attachments subarrayWithRange:NSMakeRange(1, attachments.count-1)] toAnswer:answer completion:completion];
+                            } else {
+                                completion(YES, error);
+                            }
+                        } else {
+                            completion(NO, error);
+                        }
+                    }];
+                }];
+            } else {
+                completion(NO, error);
+            }
+        }];
+    } else {
+        completion(NO, [NSError errorWithDomain:@"Unexpected data in uploadAttachments method" code:0 userInfo:nil]);
+    }
+}
+
 
 + (void)uploadFileWithKey:(NSString *)keyName data:(NSData *)data mimeType:(NSString *)mimeType completion:(DBAttachmentsUploadCompletion)completion {
     AWSS3TransferUtilityUploadExpression *expression = [AWSS3TransferUtilityUploadExpression new];

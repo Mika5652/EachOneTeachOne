@@ -9,13 +9,13 @@
 #import "DBCreateQuestionTitleAndDescriptionTableViewCell.h"
 #import <PureLayout/PureLayout.h>
 #import "DBCreateQuestionDataSource.h"
+#import "DBAttachmentView.h"
 
 NSString * const kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier = @"kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier";
 NSString * const kCreateQuestionDescriptionTextDidChangeNotification = @"CreateQuestionDescriptionTextDidChangeNotification";
 NSString * const kCreateQuestionTitleTextDidChangeNotification = @"CreateQuestionTitleTextDidChangeNotification";
 NSString * const kCreateQuestionDescriptionTextKey = @"CreateQuestionDescriptionTextKey";
 NSString * const kCreateQuestionTitleTextKey = @"CreateQuestionTitleTextKey";
-static NSString * const kDescriptionTextViewText = @"Description...";
 static CGFloat const kVerticalSpacing = 4;
 static CGFloat const kHorizontalSpacing = 4;
 

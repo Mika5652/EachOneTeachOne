@@ -9,15 +9,16 @@
 #import <UIKit/UIKit.h>
 
 @class DBQuestion;
+@class DBAnswerQuestionView;
+@class DBAttachment;
 
 @interface DBQuestionDetailView : UIView
 
 @property UIScrollView *scrollView;
 @property UIStackView *stackView;
-
-@property UILabel *questionDetailTitleLabel;
-@property UILabel *questionDetailDescriptionLabel;
+@property DBAnswerQuestionView *answerQuestionView;
 
 - (instancetype)initWithQuestion:(DBQuestion *)question;
+- (void)addAnswerQuestionViewWithData:(DBAttachment *)attachment;
 
 @end

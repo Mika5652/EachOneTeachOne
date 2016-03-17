@@ -18,6 +18,7 @@ static NSInteger const kLimit = 2;
 @dynamic title;
 @dynamic questionDescription;
 @dynamic attachments;
+@dynamic answers;
 @dynamic thumbnailName;
 
 + (NSString *)parseClassName
@@ -39,6 +40,8 @@ static NSInteger const kLimit = 2;
     query.limit = kLimit;
     [query orderByDescending:@"createdAt"];
     [query includeKey:@"attachments"];
+    [query includeKey:@"answers"];
+    [query includeKey:@"answers.attachments"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *questions, NSError *error) {
         completion(questions, error);
     }];
