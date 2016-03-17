@@ -29,6 +29,9 @@
 @property UIGravityBehavior *gravityBehavior;
 @property UIAttachmentBehavior *attachmentBehavior;
 
+@property NSLayoutConstraint *fbButtonConstraint;
+@property NSLayoutConstraint *loginButtonConstraint;
+
 @end
 
 @implementation DBLoginAndSignUpView
@@ -73,10 +76,13 @@
         [self addSubview:self.underButtonLabel];
         
         _loginButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        self.loginButton.alpha = 0;
+        self.loginButton.backgroundColor = [UIColor redColor];
         [self.loginButton setTitle:NSLocalizedString(@"Sign In", nil) forState:UIControlStateNormal];
         [self addSubview:self.loginButton];
         
         _facebookButton = [[FBSDKLoginButton alloc] init];
+        self.facebookButton.alpha = 0;
         [self addSubview:self.facebookButton];
 
 //        self.initialStateConstraintsToDeactivate = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
@@ -91,12 +97,14 @@
             [self.againPasswordTextField autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self withOffset:20];
             
             [self.signUpButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self withOffset:20];
-            
-            [self.facebookButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self withOffset:20];
+        
+            [self.facebookButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
+            self.fbButtonConstraint = [self.facebookButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self];
             
             [self.underButtonLabel autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self withOffset:20];
-            
-            [self.loginButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self withOffset:20];
+        
+            [self.loginButton autoAlignAxisToSuperviewAxis:ALAxisVertical];
+            self.loginButtonConstraint = [self.loginButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self];
 //        }];
         
 //        self.animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
@@ -163,8 +171,48 @@
 //    
 //    [super updateConstraints];
 //}
-//
-//- (void)initialAnimation {
+
+- (void)initialAnimation {
+
+    [NSLayoutConstraint deactivateConstraints:@[self.fbButtonConstraint]];
+    self.fbButtonConstraint = [self.facebookButton autoPinEdge:ALEdgeBottom toEdge:ALEdgeTop ofView:self withOffset:150];
+    [UIView animateWithDuration:0.5 delay:0 options:UIViewAnimationOptionLayoutSubviews animations:^{
+        self.facebookButton.alpha = 1;
+//        [self setNeedsLayout];
+        [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+    [NSLayoutConstraint deactivateConstraints:@[self.loginButtonConstraint]];
+    self.loginButtonConstraint = [self.loginButton autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.facebookButton withOffset:40];
+    [UIView animateWithDuration:0.5 delay:0.3 options:UIViewAnimationOptionLayoutSubviews animations:^{
+        self.loginButton.alpha = 1;
+//        [self setNeedsLayout];
+        [self layoutIfNeeded];
+    } completion:^(BOOL finished) {
+        
+    }];
+    
+//    CGRect loginButtonFrame = self.loginButton.frame;
+//    loginButtonFrame.origin.x = 100;
+//    loginButtonFrame.origin.y = 130;
+//    [UIView animateWithDuration:0.5 delay:0.2 options:UIViewAnimationOptionLayoutSubviews animations:^{
+//        self.loginButton.frame = loginButtonFrame;
+//    } completion:^(BOOL finished) {
+//        
+//    }];
+//    
+//    [UIView animateWithDuration:1.0
+//                          delay:0.5
+//         usingSpringWithDamping:0.3
+//          initialSpringVelocity:0.2
+//                        options:UIViewAnimationOptionLayoutSubviews
+//                     animations:^{
+//                         self.loginButton.frame = loginButtonFrame;
+//                     } completion:nil];
+
+    
 //    self.shouldAnimateInitialAnimation = YES;
 //    [self setNeedsUpdateConstraints];
 //    [self updateConstraintsIfNeeded];
@@ -190,6 +238,6 @@
 //                                          }
 //                                          completion:nil];
 //                     }];
-//}
+}
 
 @end

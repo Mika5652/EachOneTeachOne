@@ -30,7 +30,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-//    [self.loginAndSignUpView initialAnimation];
+    [self.loginAndSignUpView initialAnimation];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

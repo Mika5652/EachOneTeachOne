@@ -25,6 +25,6 @@
 @property (nonatomic, strong) NSLayoutConstraint *logoImageViewEdgeConstraint;
 @property (strong, nonatomic) NSArray *loginScreenItems;
 
-//- (void)initialAnimation;
+- (void)initialAnimation;
 
 @end
