@@ -8,14 +8,23 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DBLoginAndSignUpView : UIView
+@interface DBLoginAndSignUpView : UIView <UICollisionBehaviorDelegate>
 
 @property UIImageView *logoImageView;
 
+@property UITextField *emailTextField;
+@property UITextField *passwordTextField;
+@property UITextField *againPasswordTextField;
+
+@property UILabel *underButtonLabel;
+
+@property UIButton *signUpButton;
 @property UIButton *facebookButton;
+@property UIButton *loginButton;
 
 @property (nonatomic, strong) NSLayoutConstraint *logoImageViewEdgeConstraint;
+@property (strong, nonatomic) NSArray *loginScreenItems;
 
-- (void)initialAnimation;
+//- (void)initialAnimation;
 
 @end

@@ -14,8 +14,6 @@
 
 @property (nonatomic, assign) BOOL isAnimatingToEndState;
 @property (nonatomic, strong) NSLayoutConstraint *logoImageViewEdgeConstraint;
-@property (nonatomic) DBLoginAndSignUpView *loginAndSignUpView;
-
-- (void)animateLayoutWithRegularAnimation;
+@property (readonly, strong) DBLoginAndSignUpView *loginAndSignUpView;
 
 @end

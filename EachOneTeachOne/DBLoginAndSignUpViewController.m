@@ -6,6 +6,7 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 #import <PureLayout/PureLayout.h>
+#import <QuartzCore/QuartzCore.h>
 
 #import "DBLoginAndSignUpView.h"
 #import "DBLoginAndSignUpViewController.h"
@@ -29,7 +30,11 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    [self.loginAndSignUpView initialAnimation];
+//    [self.loginAndSignUpView initialAnimation];
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning {
