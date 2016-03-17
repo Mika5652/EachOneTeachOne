@@ -10,8 +10,10 @@
 
 @interface DBVideoPlayerButton : UIView
 
-@property NSString *videoURL;
+@property NSString *videoURLSFromS3;
+@property NSURL *videoURL;
 
-- (instancetype)initWithVideoURLString:(NSString *)videoURL;
+- (instancetype)initWithVideoURLFromS3:(NSString *)videoURLSFromS3;
+- (instancetype)initWithLocalVideoURL:(NSURL *)videoURL;
 
 @end

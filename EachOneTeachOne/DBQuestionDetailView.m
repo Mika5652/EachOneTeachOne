@@ -7,13 +7,22 @@
 //
 
 #import <PureLayout/PureLayout.h>
+#import <UIKit/UIKit.h>
 #import "DBQuestionDetailView.h"
 #import "DBQuestion.h"
 #import "DBAttachment.h"
 #import <UIImageView+AFNetworking.h>
 #import "DBVideoPlayerButton.h"
+#import "DBAnswerQuestionDataSource.h"
+#import "UIImage+DBResizing.h"
+#import "DBAnswerQuestionView.h"
+#import "UIView+ActivityIndicatorView.h"
+#import "DBActivityIndicatorView.h"
+#import "DBAnswer.h"
+#import "DBQuestionDetailViewController.h"
+#import "DBAttachmentView.h"
 
-@interface DBQuestionDetailView ()
+@interface DBQuestionDetailView () <UITextViewDelegate>
 
 @end
 
@@ -36,32 +45,29 @@
         [self.scrollView addSubview:self.stackView];
         [self.stackView autoPinEdgesToSuperviewEdges];
         
-        _questionDetailTitleLabel = [UILabel newAutoLayoutView];
-        self.questionDetailTitleLabel.numberOfLines = 0;
-        self.questionDetailTitleLabel.text = question.title;
-        [self.questionDetailTitleLabel sizeToFit];
-        [self.stackView addArrangedSubview:self.questionDetailTitleLabel];
+        UILabel *questionDetailTitleLabel = [UILabel newAutoLayoutView];
+        questionDetailTitleLabel.numberOfLines = 0;
+        questionDetailTitleLabel.text = question.title;
+        [questionDetailTitleLabel sizeToFit];
+        [self.stackView addArrangedSubview:questionDetailTitleLabel];
         
-        _questionDetailDescriptionLabel = [UILabel newAutoLayoutView];
-        self.questionDetailDescriptionLabel.numberOfLines = 0;
-        self.questionDetailDescriptionLabel.text = question.questionDescription;
-        [self.questionDetailDescriptionLabel sizeToFit];
-        [self.stackView addArrangedSubview:self.questionDetailDescriptionLabel];
-
+        UILabel *questionDetailDescriptionLabel = [UILabel newAutoLayoutView];
+        questionDetailDescriptionLabel.numberOfLines = 0;
+        questionDetailDescriptionLabel.text = question.questionDescription;
+        [questionDetailDescriptionLabel sizeToFit];
+        [self.stackView addArrangedSubview:questionDetailDescriptionLabel];
         
         for (DBAttachment *attachment in question.attachments) {
             
             if ([attachment.mimeType isEqualToString:kMimeTypeImageJPG]) {
                 __block UIImageView *questionDetailPhotoImageView = [UIImageView newAutoLayoutView];
-//                self.questionDetailPhotoImageView.contentMode = UIViewContentModeScaleAspectFit;
-                NSURL *photoURL = [NSURL URLWithString:[[kAWSS3BaseURL stringByAppendingPathComponent:attachment.objectId] stringByAppendingPathExtension:kJPGExtenstion]];
-//                __weak DBQuestionDetailView *weakSelf = self;
+                NSURL *photoURL = [NSURL URLWithString:[kAWSS3BaseURL stringByAppendingPathComponent:attachment.fileName]];
                 __weak UIImageView *weakQuestionDetailPhotoImageView = questionDetailPhotoImageView;
                 [self.stackView addArrangedSubview:questionDetailPhotoImageView];
                 [questionDetailPhotoImageView setImageWithURLRequest:[NSURLRequest requestWithURL:photoURL]
                                   placeholderImage:nil
                                            success:^(NSURLRequest *request , NSHTTPURLResponse *response , UIImage *image ){
-                                               NSLog(@"Loaded successfully: %d", [response statusCode]);
+                                               NSLog(@"Loaded successfully: %ld", (long)[response statusCode]);
                                                [weakQuestionDetailPhotoImageView setImage:image];
 //                                               [weakQuestionDetailPhotoImageView autoSetDimension:ALDimensionHeight toSize:([UIScreen mainScreen].bounds.size.width * (image.size.width / image.size.height))];
                                            }
@@ -70,10 +76,8 @@
                                            }
                  ];
             } else if ([attachment.mimeType isEqualToString:kMimeTypeVideoMOV]) {
-                DBVideoPlayerButton *videoPlayerButton = [[DBVideoPlayerButton alloc] initWithVideoURLString:attachment.objectId];
+                DBVideoPlayerButton *videoPlayerButton = [[DBVideoPlayerButton alloc] initWithVideoURLFromS3:attachment.fileName];
                 [self.stackView addArrangedSubview:videoPlayerButton];
-            } else {
-                
             }
             
             UILabel *attachmentDescriptionLabel = [UILabel newAutoLayoutView];
@@ -83,10 +87,34 @@
             [self.stackView addArrangedSubview:attachmentDescriptionLabel];
         }
         
+        for (DBAnswer *answer in question.answers) {
+            
+            UILabel *answerDescriptionLabel = [UILabel newAutoLayoutView];
+            answerDescriptionLabel.numberOfLines = 0;
+            answerDescriptionLabel.text = answer.textOfAnswer;
+            [answerDescriptionLabel sizeToFit];
+            [self.stackView addArrangedSubview:answerDescriptionLabel];
+            
+            for (DBAttachment *attachment in answer.attachments) {
+                [self.stackView addArrangedSubview:[[DBAttachmentView alloc] initWithAttachment:attachment]];
+            }
+        }
+        
+        _answerQuestionView = [DBAnswerQuestionView newAutoLayoutView];
+        [self.stackView addArrangedSubview:self.answerQuestionView];
+        
         [self.stackView.centerXAnchor constraintEqualToAnchor:self.centerXAnchor].active = true;
         
     }
     return self;
 }
+
+- (void)addAnswerQuestionViewWithData:(DBAttachment *)attachment {
+    [self.stackView removeArrangedSubview:self.answerQuestionView];
+    [self.answerQuestionView removeFromSuperview];
+    [self.answerQuestionView answerQuestionAttachmentsView:attachment];
+    [self.stackView addArrangedSubview:self.answerQuestionView];
+}
+
 
 @end

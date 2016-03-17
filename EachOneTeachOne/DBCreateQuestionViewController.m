@@ -34,7 +34,7 @@
 @interface DBCreateQuestionViewController ()
 
 @property UIImagePickerController *imagePickerController;
-@property (copy, nonatomic, readonly) NSString *parseObjectID;      // ID objektu na Parsu
+//@property (copy, nonatomic, readonly) NSString *parseObjectID;      // ID objektu na Parsu
 @property NSString *questionTitleString;
 @property NSString *questionDescriptionString;
 
@@ -73,6 +73,7 @@
     [self.createQuestionView.tableView registerClass:[DBCreateQuestionPhotoTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionPhotoTableViewCellIdentifier];
     [self.createQuestionView.tableView registerClass:[DBCreateQuestionVideoTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionVideoTableViewCellIdentifier];
 }
+
 - (void)viewDidAppear:(BOOL)animated {
     self.navigationController.toolbarHidden = NO;
     UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(captureVideo)];

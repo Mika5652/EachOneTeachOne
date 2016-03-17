@@ -11,6 +11,7 @@
 
 @class DBAttachment;
 @class DBQuestion;
+@class DBAnswer;
 
 typedef void (^DBAttachmentsUploadCompletion)(BOOL success, NSError *error);
 typedef void (^DBAttachmentUploadCompletion)(DBAttachment *attachment, NSError *error);
@@ -20,6 +21,7 @@ extern NSString * const kJPGExtenstion;
 extern NSString * const kMimeTypeVideoMOV;
 extern NSString * const kMOVExtenstion;
 extern NSString * const kBucketName;
+extern CGFloat const kPhotoWidth;
 
 @interface DBAttachment : PFObject <PFSubclassing>
 
@@ -39,5 +41,6 @@ extern NSString * const kBucketName;
 - (UIImage *)thumbnailImageForVideo:(NSURL *)videoURL atTime:(NSTimeInterval)time;
 + (void)uploadAttachments:(NSArray *)dataArray toQuestion:(DBQuestion *)question completion:(DBAttachmentsUploadCompletion)completion;
 + (void)uploadFileWithKey:(NSString *)keyName data:(NSData *)data mimeType:(NSString *)mimeType completion:(DBAttachmentsUploadCompletion)completion;
++ (void)uploadAttachments:(NSArray *)attachments toAnswer:(DBAnswer *)answer completion:(DBAttachmentsUploadCompletion)completion;
 
 @end

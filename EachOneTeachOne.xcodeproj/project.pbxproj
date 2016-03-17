@@ -12,6 +12,9 @@
 		0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21E1C804461003FC892 /* DBFeedDataSource.m */; };
 		09385D961C75F16F00F0FB0D /* myText.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 09385D951C75F16F00F0FB0D /* myText.rtf */; };
 		095DA4C71C91B73C007F4146 /* DBQuestionDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 095DA4C61C91B73C007F4146 /* DBQuestionDetailView.m */; };
+		0966AA9E1C9ABB4B00D5239A /* DBAttachmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0966AA9D1C9ABB4B00D5239A /* DBAttachmentView.m */; };
+		097B5A0C1C9956F90086DBF8 /* DBAnswerQuestionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 097B5A0B1C9956F90086DBF8 /* DBAnswerQuestionDataSource.m */; };
+		097B5A121C9969110086DBF8 /* DBAnswerQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 097B5A111C9969110086DBF8 /* DBAnswerQuestionView.m */; };
 		0995EBB51C8DC2C30070E968 /* UIViewController+DBAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 0995EBB31C8DC2C30070E968 /* UIViewController+DBAlerts.m */; };
 		0995EBC11C9057750070E968 /* DBActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0995EBBE1C9057750070E968 /* DBActivityIndicatorView.m */; };
 		0995EBC21C9057750070E968 /* UIView+ActivityIndicatorView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0995EBC01C9057750070E968 /* UIView+ActivityIndicatorView.m */; };
@@ -22,6 +25,7 @@
 		09CAF33C1C8734B3004508D2 /* DBCreateQuestionVideoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CAF33B1C8734B3004508D2 /* DBCreateQuestionVideoTableViewCell.m */; };
 		09CAF33F1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 09CAF33E1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.m */; };
 		09E61D6E1C97020A000F21D9 /* DBVideoPlayerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E61D6D1C97020A000F21D9 /* DBVideoPlayerButton.m */; };
+		09E61D711C980DEA000F21D9 /* DBAnswer.m in Sources */ = {isa = PBXBuildFile; fileRef = 09E61D701C980DEA000F21D9 /* DBAnswer.m */; };
 		09FE3D321C92C2140000E57E /* DBQuestionDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09FE3D311C92C2140000E57E /* DBQuestionDetailViewController.m */; };
 		101D6D961C7DF9FB004F90E3 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 101D6D951C7DF9FB004F90E3 /* AVFoundation.framework */; };
 		64ADAFFCFE98F21A4D5D51B8 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 50D443A8CB6401AC603A4C18 /* libPods.a */; };
@@ -78,6 +82,12 @@
 		09385D951C75F16F00F0FB0D /* myText.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = myText.rtf; sourceTree = "<group>"; };
 		095DA4C51C91B73C007F4146 /* DBQuestionDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBQuestionDetailView.h; sourceTree = "<group>"; };
 		095DA4C61C91B73C007F4146 /* DBQuestionDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBQuestionDetailView.m; sourceTree = "<group>"; };
+		0966AA9C1C9ABB4B00D5239A /* DBAttachmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAttachmentView.h; sourceTree = "<group>"; };
+		0966AA9D1C9ABB4B00D5239A /* DBAttachmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAttachmentView.m; sourceTree = "<group>"; };
+		097B5A0A1C9956F90086DBF8 /* DBAnswerQuestionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAnswerQuestionDataSource.h; sourceTree = "<group>"; };
+		097B5A0B1C9956F90086DBF8 /* DBAnswerQuestionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAnswerQuestionDataSource.m; sourceTree = "<group>"; };
+		097B5A101C9969110086DBF8 /* DBAnswerQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAnswerQuestionView.h; sourceTree = "<group>"; };
+		097B5A111C9969110086DBF8 /* DBAnswerQuestionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAnswerQuestionView.m; sourceTree = "<group>"; };
 		0995EBB31C8DC2C30070E968 /* UIViewController+DBAlerts.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DBAlerts.m"; sourceTree = "<group>"; };
 		0995EBB41C8DC2C30070E968 /* UIViewController+DBAlerts.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DBAlerts.h"; sourceTree = "<group>"; };
 		0995EBBD1C9057750070E968 /* DBActivityIndicatorView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBActivityIndicatorView.h; sourceTree = "<group>"; };
@@ -97,6 +107,8 @@
 		09CAF33E1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBCreateQuestionPhotoTableViewCell.m; sourceTree = "<group>"; };
 		09E61D6C1C97020A000F21D9 /* DBVideoPlayerButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBVideoPlayerButton.h; sourceTree = "<group>"; };
 		09E61D6D1C97020A000F21D9 /* DBVideoPlayerButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBVideoPlayerButton.m; sourceTree = "<group>"; };
+		09E61D6F1C980DEA000F21D9 /* DBAnswer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAnswer.h; sourceTree = "<group>"; };
+		09E61D701C980DEA000F21D9 /* DBAnswer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAnswer.m; sourceTree = "<group>"; };
 		09FE3D301C92C2140000E57E /* DBQuestionDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBQuestionDetailViewController.h; sourceTree = "<group>"; };
 		09FE3D311C92C2140000E57E /* DBQuestionDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBQuestionDetailViewController.m; sourceTree = "<group>"; };
 		101D6D951C7DF9FB004F90E3 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
@@ -230,9 +242,39 @@
 			name = QuestionDetailView;
 			sourceTree = "<group>";
 		};
+		097B5A0D1C9968B00086DBF8 /* AnswerView */ = {
+			isa = PBXGroup;
+			children = (
+				097B5A0F1C9968BF0086DBF8 /* DataSource */,
+				097B5A0E1C9968B90086DBF8 /* View */,
+			);
+			name = AnswerView;
+			sourceTree = "<group>";
+		};
+		097B5A0E1C9968B90086DBF8 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				097B5A101C9969110086DBF8 /* DBAnswerQuestionView.h */,
+				097B5A111C9969110086DBF8 /* DBAnswerQuestionView.m */,
+				0966AA9C1C9ABB4B00D5239A /* DBAttachmentView.h */,
+				0966AA9D1C9ABB4B00D5239A /* DBAttachmentView.m */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		097B5A0F1C9968BF0086DBF8 /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				097B5A0A1C9956F90086DBF8 /* DBAnswerQuestionDataSource.h */,
+				097B5A0B1C9956F90086DBF8 /* DBAnswerQuestionDataSource.m */,
+			);
+			name = DataSource;
+			sourceTree = "<group>";
+		};
 		09FE3D2F1C92C1330000E57E /* View */ = {
 			isa = PBXGroup;
 			children = (
+				097B5A0D1C9968B00086DBF8 /* AnswerView */,
 				095DA4C51C91B73C007F4146 /* DBQuestionDetailView.h */,
 				095DA4C61C91B73C007F4146 /* DBQuestionDetailView.m */,
 			);
@@ -274,6 +316,8 @@
 				09CAF3351C85E2B0004508D2 /* DBAttachment.m */,
 				09E61D6C1C97020A000F21D9 /* DBVideoPlayerButton.h */,
 				09E61D6D1C97020A000F21D9 /* DBVideoPlayerButton.m */,
+				09E61D6F1C980DEA000F21D9 /* DBAnswer.h */,
+				09E61D701C980DEA000F21D9 /* DBAnswer.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -642,10 +686,14 @@
 				F629707E1C4E7A76007174C0 /* DBFeedView.m in Sources */,
 				09CAF33F1C8734FB004508D2 /* DBCreateQuestionPhotoTableViewCell.m in Sources */,
 				0995EBB51C8DC2C30070E968 /* UIViewController+DBAlerts.m in Sources */,
+				09E61D711C980DEA000F21D9 /* DBAnswer.m in Sources */,
+				097B5A121C9969110086DBF8 /* DBAnswerQuestionView.m in Sources */,
 				0903E21C1C804298003FC892 /* DBFeedViewTableViewCell.m in Sources */,
+				097B5A0C1C9956F90086DBF8 /* DBAnswerQuestionDataSource.m in Sources */,
 				F629708A1C4E8330007174C0 /* DBCreateQuestionView.m in Sources */,
 				F6B83B681C8DDA2000193641 /* DBLoginAndSignUpViewController.m in Sources */,
 				F62970861C4E8308007174C0 /* DBCreateQuestionViewController.m in Sources */,
+				0966AA9E1C9ABB4B00D5239A /* DBAttachmentView.m in Sources */,
 				09E61D6E1C97020A000F21D9 /* DBVideoPlayerButton.m in Sources */,
 				0995EBC11C9057750070E968 /* DBActivityIndicatorView.m in Sources */,
 				F62970491C4E7159007174C0 /* AppDelegate.m in Sources */,

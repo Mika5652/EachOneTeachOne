@@ -9,8 +9,13 @@
 #import <UIKit/UIKit.h>
 
 @class DBQuestion;
+@class DBAnswerQuestionDataSource;
+@class DBQuestionDetailView;
 
-@interface DBQuestionDetailViewController : UIViewController
+@interface DBQuestionDetailViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate>
+
+@property (nonatomic) DBQuestionDetailView *questionDetailView;
+@property DBAnswerQuestionDataSource *answerQuestionDataSource;
 
 - (instancetype)initWithQuestion:(DBQuestion *)question;
 

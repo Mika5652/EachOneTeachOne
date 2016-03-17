@@ -20,6 +20,7 @@ extern NSString * const kAWSS3BaseURL;
 @property NSString *title;
 @property NSString *questionDescription;
 @property NSMutableArray *attachments;
+@property NSMutableArray *answers;
 @property NSString *thumbnailName;
 
 + (void)getNewQuestionsWithSkip:(NSInteger)skip completion:(DBGetQuestionsCompletion)completion;
