@@ -25,13 +25,10 @@
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         
-        _stackView = [UIStackView newAutoLayoutView];
-        self.stackView.axis = UILayoutConstraintAxisVertical;
-        self.stackView.distribution = UIStackViewDistributionEqualSpacing;
-        self.stackView.alignment = UIStackViewAlignmentFill;
-        self.stackView.spacing = 5;
-        [self addSubview:self.stackView];
-        [self.stackView autoPinEdgesToSuperviewEdges];
+        self.axis = UILayoutConstraintAxisVertical;
+        self.distribution = UIStackViewDistributionEqualSpacing;
+        self.alignment = UIStackViewAlignmentFill;
+        self.spacing = 5;
         
         _answerQuestionTextView = [UITextView newAutoLayoutView];
         self.answerQuestionTextView.autocorrectionType = NO;
@@ -39,18 +36,27 @@
         self.answerQuestionTextView.text = kDescriptionTextViewText;
         self.answerQuestionTextView.textColor = [UIColor lightGrayColor];
         self.answerQuestionTextView.backgroundColor = [UIColor redColor];
-        [self.answerQuestionTextView autoSetDimension:ALDimensionHeight toSize:50];
-        [self.stackView addArrangedSubview:self.answerQuestionTextView];
+        [self.answerQuestionTextView setScrollEnabled:NO];
+        [self addArrangedSubview:self.answerQuestionTextView];
         
     }
     return self;
 }
 
 - (void)answerQuestionAttachmentsView:(DBAttachment *)attachment {
-    [self.stackView addArrangedSubview:[[DBAttachmentView alloc] initWithAttachment:attachment]];
+    _attachmentView = [[DBAttachmentView alloc] initWithAttachment:attachment isEditable:YES];
+    [self addArrangedSubview:self.attachmentView];
 }
 
 #pragma mark - UITextViewDelegate
+
+- (void)textViewDidChange:(UITextView *)textView {
+    CGFloat fixedWidth = textView.frame.size.width;
+    CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+    CGRect newFrame = textView.frame;
+    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+    textView.frame = newFrame;
+}
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {
     if ([self.answerQuestionTextView.text isEqualToString:kDescriptionTextViewText]) {

@@ -33,6 +33,7 @@
     if (self) {
         _question = question;
         _answerQuestionDataSource = [[DBAnswerQuestionDataSource alloc] init];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveAttachmentViewWasDeletedNotification:) name:kAttachmentViewWasDeletedNotification object:nil];
     }
     return self;
 }
@@ -131,6 +132,21 @@
     } else {
         [self showOKAlertWithTitle:NSLocalizedString(@"Please enter description", @"") message:nil];
         [self.questionDetailView hideActivityIndicatorView];
+    }
+}
+
+#pragma mark - Notification
+
+- (void)receiveAttachmentViewWasDeletedNotification:(NSNotification *)notification {
+    
+    if ([[notification name] isEqualToString:kAttachmentViewWasDeletedNotification]) {
+        DBAttachment *attachmentToDelete = [notification.userInfo objectForKey:kAttachmentViewWasDeletedObjectKey];
+        for(DBAttachment *attachment in self.answerQuestionDataSource.items) {
+            if([attachment isEqual:attachmentToDelete]) {
+                [self.answerQuestionDataSource.items removeObject:attachment];
+                break;
+            }
+        }
     }
 }
 

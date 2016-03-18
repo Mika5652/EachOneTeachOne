@@ -9,8 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @class DBQuestion;
-@class DBAnswerQuestionDataSource;
+@class DBAttachment;
 @class DBQuestionDetailView;
+@class DBAnswerQuestionDataSource;
 
 @interface DBQuestionDetailViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate>
 
@@ -18,5 +19,6 @@
 @property DBAnswerQuestionDataSource *answerQuestionDataSource;
 
 - (instancetype)initWithQuestion:(DBQuestion *)question;
+- (void)deleteAttachmentFromDataSource:(DBAttachment *)attachmentToDelete;
 
 @end

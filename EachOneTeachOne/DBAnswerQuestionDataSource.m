@@ -7,6 +7,7 @@
 //
 
 #import "DBAnswerQuestionDataSource.h"
+#import "DBAttachment.h"
 
 @implementation DBAnswerQuestionDataSource
 

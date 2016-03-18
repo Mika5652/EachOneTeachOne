@@ -11,11 +11,10 @@
 @class DBAttachmentView;
 @class DBAttachment;
 
-@interface DBAnswerQuestionView : UIView
+@interface DBAnswerQuestionView : UIStackView
 
 @property UITextView *answerQuestionTextView;
-@property UIStackView *stackView;
-@property DBAttachmentView *answerQuestionAttachmentView;
+@property DBAttachmentView *attachmentView;
 
 - (void)answerQuestionAttachmentsView:(DBAttachment *)attachment;
 

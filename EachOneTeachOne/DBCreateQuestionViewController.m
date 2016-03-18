@@ -89,7 +89,6 @@
     }
 }
 
-#pragma mark - Notification
 - (void) receiveCreateQuestionTitleTextDidChangeNotification:(NSNotification *) notification {
     
     if ([[notification name] isEqualToString:kCreateQuestionTitleTextDidChangeNotification]) {

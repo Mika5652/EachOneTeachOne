@@ -58,37 +58,10 @@
         [self.stackView addArrangedSubview:questionDetailDescriptionLabel];
         
         for (DBAttachment *attachment in question.attachments) {
-            
-            if ([attachment.mimeType isEqualToString:kMimeTypeImageJPG]) {
-                __block UIImageView *questionDetailPhotoImageView = [UIImageView newAutoLayoutView];
-                NSURL *photoURL = [NSURL URLWithString:[kAWSS3BaseURL stringByAppendingPathComponent:attachment.fileName]];
-                __weak UIImageView *weakQuestionDetailPhotoImageView = questionDetailPhotoImageView;
-                [self.stackView addArrangedSubview:questionDetailPhotoImageView];
-                [questionDetailPhotoImageView setImageWithURLRequest:[NSURLRequest requestWithURL:photoURL]
-                                  placeholderImage:nil
-                                           success:^(NSURLRequest *request , NSHTTPURLResponse *response , UIImage *image ){
-                                               NSLog(@"Loaded successfully: %ld", (long)[response statusCode]);
-                                               [weakQuestionDetailPhotoImageView setImage:image];
-//                                               [weakQuestionDetailPhotoImageView autoSetDimension:ALDimensionHeight toSize:([UIScreen mainScreen].bounds.size.width * (image.size.width / image.size.height))];
-                                           }
-                                           failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
-                                               NSLog(@"failed loading: %@", error);
-                                           }
-                 ];
-            } else if ([attachment.mimeType isEqualToString:kMimeTypeVideoMOV]) {
-                DBVideoPlayerButton *videoPlayerButton = [[DBVideoPlayerButton alloc] initWithVideoURLFromS3:attachment.fileName];
-                [self.stackView addArrangedSubview:videoPlayerButton];
-            }
-            
-            UILabel *attachmentDescriptionLabel = [UILabel newAutoLayoutView];
-            attachmentDescriptionLabel.numberOfLines = 0;
-            attachmentDescriptionLabel.text = attachment.attachmentDescription;
-            [attachmentDescriptionLabel sizeToFit];
-            [self.stackView addArrangedSubview:attachmentDescriptionLabel];
+            [self.stackView addArrangedSubview:[[DBAttachmentView alloc] initWithAttachment:attachment isEditable:NO]];
         }
         
         for (DBAnswer *answer in question.answers) {
-            
             UILabel *answerDescriptionLabel = [UILabel newAutoLayoutView];
             answerDescriptionLabel.numberOfLines = 0;
             answerDescriptionLabel.text = answer.textOfAnswer;
@@ -96,7 +69,7 @@
             [self.stackView addArrangedSubview:answerDescriptionLabel];
             
             for (DBAttachment *attachment in answer.attachments) {
-                [self.stackView addArrangedSubview:[[DBAttachmentView alloc] initWithAttachment:attachment]];
+                [self.stackView addArrangedSubview:[[DBAttachmentView alloc] initWithAttachment:attachment isEditable:NO]];
             }
         }
         
