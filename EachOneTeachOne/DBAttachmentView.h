@@ -11,6 +11,7 @@
 @class DBAttachment;
 
 extern NSString * const kDescriptionTextViewText;
+extern NSString * const kAttachmentViewDescriptionTextViewDidChangeNotification;
 extern NSString * const kAttachmentViewWasDeletedNotification;
 extern NSString * const kAttachmentViewWasDeletedObjectKey;
 

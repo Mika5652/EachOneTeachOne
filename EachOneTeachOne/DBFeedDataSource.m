@@ -32,8 +32,13 @@
     DBQuestion *question = self.items[indexPath.row];
     cell.titleLabel.text = question.title;
     cell.descriptionLabel.text = question.questionDescription;
-    NSURL *photoURL = [NSURL URLWithString:[kAWSS3BaseURL stringByAppendingPathComponent:question.thumbnailName]];
-    [cell.photoImageView setImageWithURL:photoURL placeholderImage:nil];
+    cell.photoImageView.file = question.thumbnail;
+    [cell.photoImageView loadInBackground];
+//    [question.thumbnail getDataInBackgroundWithBlock:^(NSData * data, NSError *error) {
+//        if (!error) {
+//            [cell.photoImageView setImage:[UIImage imageWithData:data]];
+//        }
+//    }];
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     return cell;
