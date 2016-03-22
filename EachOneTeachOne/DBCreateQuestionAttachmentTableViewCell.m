@@ -30,9 +30,8 @@ NSString * const kDBCreateQuestionAttachmentTableViewCellIdentifier = @"kDBCreat
     if (self.attachmentView) {
         [self.attachmentView removeFromSuperview];   
     }
-//    self.attachmentView = [[DBAttachmentView alloc] initWithAttachment:self.attachment isEditable:YES];
+    self.attachmentView = [[DBAttachmentView alloc] initWithAttachment:self.attachment isEditable:YES];
 //    self.attachmentView = [self.attachmentView initWithAttachment:self.attachment isEditable:YES];
-    self.attachmentView
     [self.contentView addSubview:self.attachmentView];
     [self.attachmentView autoPinEdgesToSuperviewEdges];
 }
