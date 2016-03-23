@@ -40,7 +40,7 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor blueColor];
+        self.backgroundColor = [UIColor whiteColor];
         
         _logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"camera_icon"]];
         [self addSubview:self.logoImageView];

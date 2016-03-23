@@ -63,11 +63,9 @@ NSString * const kDescriptionTextViewText = @"Description...";
                      ];
                 }
             } else {
-                UIImage *image = self.attachment.photoImage;
-                image = [image photoResizedToSize:CGSizeMake(kPhotoWidth, image.size.height*(kPhotoWidth/image.size.width))];
-                [answerQuestionPhotoImageView setImage:image];
+                [answerQuestionPhotoImageView setImage:self.attachment.photoImage];
                 [self addArrangedSubview:answerQuestionPhotoImageView];
-                [answerQuestionPhotoImageView autoSetDimension:ALDimensionHeight toSize:([UIScreen mainScreen].bounds.size.width * (image.size.height / image.size.width))];
+                [answerQuestionPhotoImageView autoSetDimension:ALDimensionHeight toSize:([UIScreen mainScreen].bounds.size.width * (self.attachment.photoImage.size.height / self.attachment.photoImage.size.width))];
             }
             [self addAnswerDescription:isEditable];
             [self addDeleteButton:isEditable];
@@ -97,6 +95,7 @@ NSString * const kDescriptionTextViewText = @"Description...";
         self.descriptionTextView.autocorrectionType = NO;
         self.descriptionTextView.delegate = self;
         self.descriptionTextView.backgroundColor = [UIColor greenColor];
+        [self.descriptionTextView setScrollEnabled:NO];
         
         if (!(self.attachment.attachmentDescription)) {
             self.descriptionTextView.text = kDescriptionTextViewText;
@@ -105,9 +104,16 @@ NSString * const kDescriptionTextViewText = @"Description...";
             self.descriptionTextView.text = self.attachment.attachmentDescription;
             self.descriptionTextView.textColor = [UIColor blackColor];
         }
-
-        [self.descriptionTextView setScrollEnabled:NO];
+        
+//        CGFloat fixedWidth = self.descriptionTextView.frame.size.width;
+//        CGSize newSize = [self.descriptionTextView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+//        CGRect newFrame = self.descriptionTextView.frame;
+//        newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+//        self.descriptionTextView.frame = newFrame;
+        
         [self addArrangedSubview:self.descriptionTextView];
+//        [self.descriptionTextView autoSetDimension:ALDimensionHeight toSize:20];
+        
     } else {
         UILabel *answerAttachmentLabel = [UILabel newAutoLayoutView];
         answerAttachmentLabel.numberOfLines = 0;

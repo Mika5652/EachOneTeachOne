@@ -17,7 +17,7 @@ extern NSString * const kAttachmentViewWasDeletedObjectKey;
 
 @interface DBAttachmentView : UIStackView
 
-@property UITextView *descriptionTextView;
+@property (nonatomic) UITextView *descriptionTextView;
 @property (nonatomic) DBAttachment *attachment;
 
 - (instancetype)initWithAttachment:(DBAttachment *)attachment isEditable:(BOOL)isEditable;

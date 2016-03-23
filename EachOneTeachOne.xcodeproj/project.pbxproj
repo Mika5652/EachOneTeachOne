@@ -10,6 +10,8 @@
 		0903E2131C8031AD003FC892 /* DBCreateQuestionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E2121C8031AD003FC892 /* DBCreateQuestionDataSource.m */; };
 		0903E21C1C804298003FC892 /* DBFeedViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21B1C804298003FC892 /* DBFeedViewTableViewCell.m */; };
 		0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21E1C804461003FC892 /* DBFeedDataSource.m */; };
+		092DFE001CA2A9DD005A32B1 /* DBAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 092DFDFF1CA2A9DD005A32B1 /* DBAnswerView.m */; };
+		092DFE061CA2D2CC005A32B1 /* DBAnswerComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 092DFE051CA2D2CC005A32B1 /* DBAnswerComment.m */; };
 		09385D961C75F16F00F0FB0D /* myText.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 09385D951C75F16F00F0FB0D /* myText.rtf */; };
 		095DA4C71C91B73C007F4146 /* DBQuestionDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 095DA4C61C91B73C007F4146 /* DBQuestionDetailView.m */; };
 		0966AA9E1C9ABB4B00D5239A /* DBAttachmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0966AA9D1C9ABB4B00D5239A /* DBAttachmentView.m */; };
@@ -78,6 +80,10 @@
 		0903E21B1C804298003FC892 /* DBFeedViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFeedViewTableViewCell.m; sourceTree = "<group>"; };
 		0903E21D1C804461003FC892 /* DBFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFeedDataSource.h; sourceTree = "<group>"; };
 		0903E21E1C804461003FC892 /* DBFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFeedDataSource.m; sourceTree = "<group>"; };
+		092DFDFE1CA2A9DD005A32B1 /* DBAnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAnswerView.h; sourceTree = "<group>"; };
+		092DFDFF1CA2A9DD005A32B1 /* DBAnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAnswerView.m; sourceTree = "<group>"; };
+		092DFE041CA2D2CC005A32B1 /* DBAnswerComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAnswerComment.h; sourceTree = "<group>"; };
+		092DFE051CA2D2CC005A32B1 /* DBAnswerComment.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAnswerComment.m; sourceTree = "<group>"; };
 		09385D951C75F16F00F0FB0D /* myText.rtf */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.rtf; path = myText.rtf; sourceTree = "<group>"; };
 		095DA4C51C91B73C007F4146 /* DBQuestionDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBQuestionDetailView.h; sourceTree = "<group>"; };
 		095DA4C61C91B73C007F4146 /* DBQuestionDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBQuestionDetailView.m; sourceTree = "<group>"; };
@@ -253,6 +259,8 @@
 				097B5A111C9969110086DBF8 /* DBAnswerQuestionView.m */,
 				0966AA9C1C9ABB4B00D5239A /* DBAttachmentView.h */,
 				0966AA9D1C9ABB4B00D5239A /* DBAttachmentView.m */,
+				092DFDFE1CA2A9DD005A32B1 /* DBAnswerView.h */,
+				092DFDFF1CA2A9DD005A32B1 /* DBAnswerView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -313,6 +321,8 @@
 				09E61D6D1C97020A000F21D9 /* DBVideoPlayerButton.m */,
 				09E61D6F1C980DEA000F21D9 /* DBAnswer.h */,
 				09E61D701C980DEA000F21D9 /* DBAnswer.m */,
+				092DFE041CA2D2CC005A32B1 /* DBAnswerComment.h */,
+				092DFE051CA2D2CC005A32B1 /* DBAnswerComment.m */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -695,6 +705,7 @@
 				0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */,
 				F6B83B761C9177D900193641 /* DBLoginAndSignUpView.m in Sources */,
 				F60D1C6F1C590FD9008A460F /* DBQuestion.m in Sources */,
+				092DFE001CA2A9DD005A32B1 /* DBAnswerView.m in Sources */,
 				09CAF3361C85E2B0004508D2 /* DBAttachment.m in Sources */,
 				09CAF3391C87347A004508D2 /* DBCreateQuestionTitleAndDescriptionTableViewCell.m in Sources */,
 				0995EBC21C9057750070E968 /* UIView+ActivityIndicatorView.m in Sources */,
@@ -702,6 +713,7 @@
 				F62970811C4E7A9D007174C0 /* DBFeedViewController.m in Sources */,
 				F62970461C4E7159007174C0 /* main.m in Sources */,
 				0903E2131C8031AD003FC892 /* DBCreateQuestionDataSource.m in Sources */,
+				092DFE061CA2D2CC005A32B1 /* DBAnswerComment.m in Sources */,
 				09FE3D321C92C2140000E57E /* DBQuestionDetailViewController.m in Sources */,
 				095DA4C71C91B73C007F4146 /* DBQuestionDetailView.m in Sources */,
 			);
