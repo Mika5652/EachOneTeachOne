@@ -19,6 +19,6 @@
 @property DBAnswerQuestionDataSource *answerQuestionDataSource;
 
 - (instancetype)initWithQuestion:(DBQuestion *)question;
-- (void)deleteAttachmentFromDataSource:(DBAttachment *)attachmentToDelete;
+//- (void)deleteAttachmentFromDataSource:(DBAttachment *)attachmentToDelete;
 
 @end

@@ -31,7 +31,7 @@ static CGFloat const kHorizontalSpacing = 4;
     self = [super initWithStyle:style reuseIdentifier:reuseIdentifier];
     
     if (self) {
-        _photoImageView = [UIImageView newAutoLayoutView];
+        _photoImageView = [PFImageView newAutoLayoutView];
         [self.contentView addSubview:self.photoImageView];
         
         _titleLabel = [UILabel newAutoLayoutView];

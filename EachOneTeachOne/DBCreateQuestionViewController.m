@@ -24,8 +24,8 @@
 
 // Cell
 #import "DBCreateQuestionTitleAndDescriptionTableViewCell.h"
-#import "DBCreateQuestionPhotoTableViewCell.h"
-#import "DBCreateQuestionVideoTableViewCell.h"
+#import "DBCreateQuestionAttachmentTableViewCell.h"
+#import "DBAttachmentView.h"
 
 // Frameworks
 #import <MediaPlayer/MediaPlayer.h>
@@ -34,7 +34,6 @@
 @interface DBCreateQuestionViewController ()
 
 @property UIImagePickerController *imagePickerController;
-//@property (copy, nonatomic, readonly) NSString *parseObjectID;      // ID objektu na Parsu
 @property NSString *questionTitleString;
 @property NSString *questionDescriptionString;
 
@@ -48,6 +47,8 @@
         _createQuestionDataSource = [[DBCreateQuestionDataSource alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCreateQuestionDescriptionTextDidChangeNotification:) name:kCreateQuestionDescriptionTextDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCreateQuestionTitleTextDidChangeNotification:) name:kCreateQuestionTitleTextDidChangeNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveAttachmentViewWasDeletedNotification:) name:kAttachmentViewWasDeletedNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveAttachmentViewDescriptionTextViewDidChangeNotification:) name:kAttachmentViewDescriptionTextViewDidChangeNotification object:nil];
     }
     return self;
 }
@@ -61,17 +62,11 @@
     [super viewDidLoad];
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(postButtonDidPress)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
-
-//    self.navigationController.toolbarHidden = NO;
-//    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(captureVideo)];
-//    NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
-//    self.toolbarItems = toolbarItems;
     
     self.createQuestionView.tableView.dataSource = self.createQuestionDataSource;
     self.createQuestionView.tableView.delegate = self;
     [self.createQuestionView.tableView registerClass:[DBCreateQuestionTitleAndDescriptionTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier];
-    [self.createQuestionView.tableView registerClass:[DBCreateQuestionPhotoTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionPhotoTableViewCellIdentifier];
-    [self.createQuestionView.tableView registerClass:[DBCreateQuestionVideoTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionVideoTableViewCellIdentifier];
+    [self.createQuestionView.tableView registerClass:[DBCreateQuestionAttachmentTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionAttachmentTableViewCellIdentifier];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -82,20 +77,38 @@
 }
 
 #pragma mark - Notification
-- (void) receiveCreateQuestionDescriptionTextDidChangeNotification:(NSNotification *) notification {
+- (void)receiveCreateQuestionDescriptionTextDidChangeNotification:(NSNotification *) notification {
     
     if ([[notification name] isEqualToString:kCreateQuestionDescriptionTextDidChangeNotification]) {
         self.questionDescriptionString = [notification.userInfo objectForKey:kCreateQuestionDescriptionTextKey];
     }
 }
 
-- (void) receiveCreateQuestionTitleTextDidChangeNotification:(NSNotification *) notification {
+- (void)receiveCreateQuestionTitleTextDidChangeNotification:(NSNotification *) notification {
     
     if ([[notification name] isEqualToString:kCreateQuestionTitleTextDidChangeNotification]) {
         self.questionTitleString = [notification.userInfo objectForKey:kCreateQuestionTitleTextKey];
     }
 }
 
+- (void)receiveAttachmentViewWasDeletedNotification:(NSNotification *)notification {
+    
+    if ([[notification name] isEqualToString:kAttachmentViewWasDeletedNotification]) {
+        DBAttachment *attachmentToDelete = [notification.userInfo objectForKey:kAttachmentViewWasDeletedObjectKey];
+        for(DBAttachment *attachment in self.createQuestionDataSource.items) {
+            if([attachment isEqual:attachmentToDelete]) {
+                [self.createQuestionDataSource.items removeObject:attachment];
+                break;
+            }
+        }
+        [self.createQuestionView.tableView reloadData];
+    }
+}
+
+- (void)receiveAttachmentViewDescriptionTextViewDidChangeNotification:(NSNotification *)notification {
+    [self.createQuestionView.tableView beginUpdates];
+    [self.createQuestionView.tableView endUpdates];
+}
 
 #pragma mark - UIImagePickerControllerSourceType
 

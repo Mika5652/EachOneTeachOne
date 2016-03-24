@@ -7,14 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <ParseUI/ParseUI.h>
 
 extern NSString * const kDBFeedViewTableViewCellIdentifier;
 
 @interface DBFeedViewTableViewCell : UITableViewCell
 
-@property UIImageView *photoImageView;
 @property UILabel *titleLabel;
 @property UILabel *descriptionLabel;
+@property PFImageView *photoImageView;
 
 - (void)setFonts;
     

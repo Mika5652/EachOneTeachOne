@@ -19,7 +19,7 @@ static NSInteger const kLimit = 2;
 @dynamic questionDescription;
 @dynamic attachments;
 @dynamic answers;
-@dynamic thumbnailName;
+@dynamic thumbnail;
 
 + (NSString *)parseClassName
 {
@@ -59,9 +59,18 @@ static NSInteger const kLimit = 2;
                 id attachment = dataArray.firstObject;
                 if ([attachment isKindOfClass:[DBAttachment class]]) {
                     DBAttachment *questionAttachment = (DBAttachment *)attachment;
-                    NSString *questionThumbnailName = [[question.objectId stringByAppendingString:@"_thumbnail"] stringByAppendingPathExtension:kJPGExtenstion];
+                    question.thumbnail = [PFFile fileWithData:[questionAttachment thumbnailDataForUpload]];
+                    [question saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                        if (!error) {
+                            [DBAttachment uploadAttachments:dataArray toQuestion:question completion:^(BOOL success, NSError *error) {
+                                completion(question, error);
+                            }];
+                        }
+                    }];
+                    /*
                     [DBAttachment uploadFileWithKey:questionThumbnailName data:[questionAttachment thumbnailDataForUpload] mimeType:kJPGExtenstion completion:^(BOOL success, NSError *error) {
                         if (!error) {
+                            question.thumbnail = [PFFile fileWithName:questionThumbnailName data:[questionAttachment thumbnailDataForUpload]];
                             question.thumbnailName = questionThumbnailName;
                             [question saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                                 if (!error) {
@@ -74,6 +83,7 @@ static NSInteger const kLimit = 2;
                             completion(question, error);
                         }
                     }];
+                    */
                 } else {
                     completion(question, [NSError errorWithDomain:@"Unexpected object type in question attachments" code:0 userInfo:nil]);
                 }

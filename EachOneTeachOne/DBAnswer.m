@@ -13,6 +13,8 @@
 
 @dynamic textOfAnswer;
 @dynamic attachments;
+@dynamic vote;
+@dynamic comments;
 
 + (NSString *)parseClassName
 {
@@ -48,6 +50,25 @@
         }
     }];
     
+}
+
++ (void)changeAnswerVoteRating:(DBAnswer *)answer wasPlusPressed:(BOOL)plusWasPressed completion:(DBAnswerVoteCompletion)completion{
+    int i = answer.vote;
+    
+    if (plusWasPressed == YES) {
+        i++;
+    } else {
+        i--;
+    }
+    
+    answer.vote = i;
+    [answer saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
+        if (!error && succeeded) {
+            completion(answer.vote, error);
+        } else {
+            completion(answer.vote, [NSError errorWithDomain:@"Error during uploading answer vote rating to Parse" code:0 userInfo:nil]);
+        }
+    }];
 }
 
 @end

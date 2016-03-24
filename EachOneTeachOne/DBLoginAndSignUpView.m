@@ -41,7 +41,7 @@
 {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor blueColor];
+        self.backgroundColor = [UIColor whiteColor];
         
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenWidth = screenRect.size.width;

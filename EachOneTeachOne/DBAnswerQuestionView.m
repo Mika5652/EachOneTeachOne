@@ -16,6 +16,8 @@
 
 @interface DBAnswerQuestionView () <UITextViewDelegate>
 
+@property UIButton *replyAnswerButton;
+
 @end
 
 @implementation DBAnswerQuestionView 
@@ -35,7 +37,7 @@
         self.answerQuestionTextView.delegate = self;
         self.answerQuestionTextView.text = kDescriptionTextViewText;
         self.answerQuestionTextView.textColor = [UIColor lightGrayColor];
-        self.answerQuestionTextView.backgroundColor = [UIColor redColor];
+        self.answerQuestionTextView.backgroundColor = [UIColor blueColor];
         [self.answerQuestionTextView setScrollEnabled:NO];
         [self addArrangedSubview:self.answerQuestionTextView];
         

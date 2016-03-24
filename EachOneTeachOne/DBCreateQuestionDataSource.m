@@ -8,9 +8,8 @@
 
 #import "DBCreateQuestionDataSource.h"
 #import "DBCreateQuestionTitleAndDescriptionTableViewCell.h"
-#import "DBCreateQuestionPhotoTableViewCell.h"
-#import "DBCreateQuestionVideoTableViewCell.h"
 #import "DBAttachment.h"
+#import "DBCreateQuestionAttachmentTableViewCell.h"
 
 @implementation DBCreateQuestionDataSource
 
@@ -32,38 +31,19 @@
 
     if (indexPath.row == 0) {
         DBCreateQuestionTitleAndDescriptionTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier forIndexPath:indexPath];
-
-//        cell.titleTextField.text = self.questionTitle;
-//        if (self.questionDescription) {
-//            cell.descriptionTextView.text = self.questionDescription;
-//        }
-        
         [cell setNeedsUpdateConstraints];
         [cell updateConstraintsIfNeeded];
         
         return cell;
     } else {
         DBAttachment *attachment = (DBAttachment *)self.items[indexPath.row-1];
-        if ([attachment.mimeType isEqualToString:kMimeTypeImageJPG]) {
-            DBCreateQuestionPhotoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionPhotoTableViewCellIdentifier forIndexPath:indexPath];
-            [cell setConstrainsWithImage:attachment.photoImage];
-            cell.photoImageView.image = attachment.photoImage;
-            cell.attachment = attachment;
-            [cell setNeedsUpdateConstraints];
-            [cell updateConstraintsIfNeeded];
-            
-            return cell;
-        } else {
-            DBCreateQuestionVideoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionVideoTableViewCellIdentifier forIndexPath:indexPath];
-//            [cell setContentWithQuestionVideoAttachment:attachment];
-            [cell setConstrainsWithImage:attachment.photoImage];
-            cell.videoThumbnail.image = attachment.photoImage;
-            cell.attachment = attachment;
-            [cell setNeedsUpdateConstraints];
-            [cell updateConstraintsIfNeeded];
-            
-            return cell;
-        }
+        DBCreateQuestionAttachmentTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:kDBCreateQuestionAttachmentTableViewCellIdentifier forIndexPath:indexPath];
+        cell.attachment = attachment;
+        [cell updateAttachmentTableViewCellConstraints];
+        [cell setNeedsUpdateConstraints];
+        [cell updateFocusIfNeeded];
+        
+        return cell;
     }
     
     return nil;

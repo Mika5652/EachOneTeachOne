@@ -11,12 +11,13 @@
 @class DBAttachment;
 
 extern NSString * const kDescriptionTextViewText;
+extern NSString * const kAttachmentViewDescriptionTextViewDidChangeNotification;
 extern NSString * const kAttachmentViewWasDeletedNotification;
 extern NSString * const kAttachmentViewWasDeletedObjectKey;
 
 @interface DBAttachmentView : UIStackView
 
-@property UITextView *descriptionTextView;
+@property (nonatomic) UITextView *descriptionTextView;
 @property (nonatomic) DBAttachment *attachment;
 
 - (instancetype)initWithAttachment:(DBAttachment *)attachment isEditable:(BOOL)isEditable;

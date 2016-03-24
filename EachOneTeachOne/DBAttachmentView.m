@@ -14,6 +14,7 @@
 #import "DBVideoPlayerButton.h"
 #import <UIImageView+AFNetworking.h>
 
+NSString * const kAttachmentViewDescriptionTextViewDidChangeNotification = @"AttachmentViewDescriptionTextViewDidChangeNotification";
 NSString * const kAttachmentViewWasDeletedNotification = @"AttachmentViewWasDeletedNotification";
 NSString * const kAttachmentViewWasDeletedObjectKey = @"AttachmentViewWasDeletedObjectKey";
 NSString * const kDescriptionTextViewText = @"Description...";
@@ -53,9 +54,8 @@ NSString * const kDescriptionTextViewText = @"Description...";
                                                                  success:^(NSURLRequest *request , NSHTTPURLResponse *response , UIImage *image ){
                                                                      NSLog(@"Loaded successfully: %ld", (long)[response statusCode]);
                                                                      [weakQuestionDetailPhotoImageView setImage:image];
-                                                                     NSLog(@"%f > %f",([UIScreen mainScreen].bounds.size.width), ([UIScreen mainScreen].bounds.size.height));
                                                                      [weakQuestionDetailPhotoImageView autoSetDimension:ALDimensionHeight toSize:([UIScreen mainScreen].bounds.size.width * (image.size.height / image.size.width))];
-                                                                     NSLog(@"%f > %f", weakQuestionDetailPhotoImageView.frame.size.width, weakQuestionDetailPhotoImageView.frame.size.height);
+
                                                                  }
                                                                  failure:^(NSURLRequest *request, NSHTTPURLResponse *response, NSError *error){
                                                                      NSLog(@"failed loading: %@", error);
@@ -63,11 +63,9 @@ NSString * const kDescriptionTextViewText = @"Description...";
                      ];
                 }
             } else {
-                UIImage *image = self.attachment.photoImage;
-                image = [image photoResizedToSize:CGSizeMake(kPhotoWidth, image.size.height*(kPhotoWidth/image.size.width))];
-                [answerQuestionPhotoImageView setImage:image];
+                [answerQuestionPhotoImageView setImage:self.attachment.photoImage];
                 [self addArrangedSubview:answerQuestionPhotoImageView];
-                [answerQuestionPhotoImageView autoSetDimension:ALDimensionHeight toSize:([UIScreen mainScreen].bounds.size.width * (image.size.height / image.size.width))];
+                [answerQuestionPhotoImageView autoSetDimension:ALDimensionHeight toSize:([UIScreen mainScreen].bounds.size.width * (self.attachment.photoImage.size.height / self.attachment.photoImage.size.width))];
             }
             [self addAnswerDescription:isEditable];
             [self addDeleteButton:isEditable];
@@ -96,11 +94,26 @@ NSString * const kDescriptionTextViewText = @"Description...";
         self.descriptionTextView.layer.cornerRadius = 7;
         self.descriptionTextView.autocorrectionType = NO;
         self.descriptionTextView.delegate = self;
-        self.descriptionTextView.text = kDescriptionTextViewText;
-        self.descriptionTextView.textColor = [UIColor lightGrayColor];
         self.descriptionTextView.backgroundColor = [UIColor greenColor];
         [self.descriptionTextView setScrollEnabled:NO];
+        
+        if (!(self.attachment.attachmentDescription)) {
+            self.descriptionTextView.text = kDescriptionTextViewText;
+            self.descriptionTextView.textColor = [UIColor lightGrayColor];
+        } else {
+            self.descriptionTextView.text = self.attachment.attachmentDescription;
+            self.descriptionTextView.textColor = [UIColor blackColor];
+        }
+        
+//        CGFloat fixedWidth = self.descriptionTextView.frame.size.width;
+//        CGSize newSize = [self.descriptionTextView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+//        CGRect newFrame = self.descriptionTextView.frame;
+//        newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+//        self.descriptionTextView.frame = newFrame;
+        
         [self addArrangedSubview:self.descriptionTextView];
+//        [self.descriptionTextView autoSetDimension:ALDimensionHeight toSize:20];
+        
     } else {
         UILabel *answerAttachmentLabel = [UILabel newAutoLayoutView];
         answerAttachmentLabel.numberOfLines = 0;
@@ -115,8 +128,6 @@ NSString * const kDescriptionTextViewText = @"Description...";
     if (isEditable == YES) {
         _deleteButton = [UIButton buttonWithType:UIButtonTypeCustom];
         self.deleteButton.backgroundColor = [UIColor redColor];
-//        UIImage *buttonImage = [UIImage imageNamed:@"playButton"];
-//        [self.deleteButton setImage:buttonImage forState:UIControlStateNormal];
         [self.deleteButton addTarget:self action:@selector(deleteButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:self.deleteButton];
         [self.deleteButton autoPinEdgeToSuperviewEdge:ALEdgeTop];
@@ -140,6 +151,7 @@ NSString * const kDescriptionTextViewText = @"Description...";
     CGRect newFrame = textView.frame;
     newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
     textView.frame = newFrame;
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAttachmentViewDescriptionTextViewDidChangeNotification object:nil];
 }
 
 - (void)textViewDidBeginEditing:(UITextView *)textView {

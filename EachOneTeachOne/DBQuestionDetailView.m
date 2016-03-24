@@ -21,6 +21,7 @@
 #import "DBAnswer.h"
 #import "DBQuestionDetailViewController.h"
 #import "DBAttachmentView.h"
+#import "DBAnswerView.h"
 
 @interface DBQuestionDetailView () <UITextViewDelegate>
 
@@ -62,15 +63,8 @@
         }
         
         for (DBAnswer *answer in question.answers) {
-            UILabel *answerDescriptionLabel = [UILabel newAutoLayoutView];
-            answerDescriptionLabel.numberOfLines = 0;
-            answerDescriptionLabel.text = answer.textOfAnswer;
-            [answerDescriptionLabel sizeToFit];
-            [self.stackView addArrangedSubview:answerDescriptionLabel];
-            
-            for (DBAttachment *attachment in answer.attachments) {
-                [self.stackView addArrangedSubview:[[DBAttachmentView alloc] initWithAttachment:attachment isEditable:NO]];
-            }
+                        
+            [self.stackView addArrangedSubview:[[DBAnswerView alloc] initWithAnswer:answer]];
         }
         
         _answerQuestionView = [DBAnswerQuestionView newAutoLayoutView];
