@@ -31,6 +31,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [self.loginAndSignUpView initialAnimation];
+//    [self.loginAndSignUpView dynamicAnimation];
 }
 
 - (void)viewWillAppear:(BOOL)animated {

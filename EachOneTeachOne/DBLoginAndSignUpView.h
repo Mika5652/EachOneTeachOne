@@ -12,6 +12,8 @@
 
 @property UIImageView *logoImageView;
 
+@property UIView *testView;
+
 @property UITextField *emailTextField;
 @property UITextField *passwordTextField;
 @property UITextField *againPasswordTextField;
@@ -26,5 +28,6 @@
 @property (strong, nonatomic) NSArray *loginScreenItems;
 
 - (void)initialAnimation;
+- (void)dynamicAnimation;
 
 @end
