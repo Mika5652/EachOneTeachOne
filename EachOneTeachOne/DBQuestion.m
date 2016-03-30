@@ -42,6 +42,7 @@ static NSInteger const kLimit = 2;
     [query includeKey:@"attachments"];
     [query includeKey:@"answers"];
     [query includeKey:@"answers.attachments"];
+    [query includeKey:@"answers.comments"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *questions, NSError *error) {
         completion(questions, error);
     }];

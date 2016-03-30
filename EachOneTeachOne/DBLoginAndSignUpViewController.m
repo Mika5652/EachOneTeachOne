@@ -11,6 +11,11 @@
 #import "DBLoginAndSignUpView.h"
 #import "DBLoginAndSignUpViewController.h"
 
+#import <Parse/Parse.h>
+#import "UIView+ActivityIndicatorView.h"
+#import "UIViewController+DBAlerts.h"
+#import "DBFeedViewController.h"
+
 @interface DBLoginAndSignUpViewController ()
 
 @end
@@ -25,6 +30,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.loginAndSignUpView.loginButton addTarget:self action:@selector(loginButtonWasPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.loginAndSignUpView.signUpButton addTarget:self action:@selector(signUpButtonWasPressed) forControlEvents:UIControlEventTouchUpInside];
+    
     self.navigationController.navigationBarHidden = YES;
 }
 
@@ -43,6 +52,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+}
+
 #pragma mark - StatusBar
 
 - (BOOL)prefersStatusBarHidden {
@@ -53,6 +66,56 @@
 
 - (DBLoginAndSignUpView *)loginAndSignUpView {
     return (DBLoginAndSignUpView *)self.view;
+}
+
+#pragma mark - User Action
+
+- (void)loginButtonWasPressed {
+    [PFUser logInWithUsernameInBackground:self.loginAndSignUpView.emailTextField.text password:self.loginAndSignUpView.passwordTextField.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {
+        if (user && !error) {
+            if ([[user objectForKey:@"emailVerified"] boolValue]) {
+                DBFeedViewController *feedViewController = [[DBFeedViewController alloc] init];
+                [self.navigationController setViewControllers:[NSArray arrayWithObject:feedViewController] animated:YES];
+                self.navigationController.navigationBarHidden = NO;
+            } else {
+                [self showAlertWithTitle:NSLocalizedString(@"Login failed", @"") message:NSLocalizedString(@"Email not verified", @"") dismissButtonText:@"I see..."];
+            }
+        } else {
+            [self showAlertWithTitle:NSLocalizedString(@"Login failed", @"") message:NSLocalizedString(@"Check your credentials and try again", @"") dismissButtonText:@"YES SIR!"];
+        }
+    }];
+}
+
+- (void)signUpButtonWasPressed {
+    PFUser *user = [PFUser user];
+    
+    if (![self.loginAndSignUpView.emailTextField.text isEqualToString:@""]) {
+        user.username = self.loginAndSignUpView.emailTextField.text;
+        user.email = self.loginAndSignUpView.emailTextField.text;
+        
+        if (![self.loginAndSignUpView.passwordTextField.text isEqualToString:@""]) {
+            if ([self.loginAndSignUpView.passwordTextField.text isEqualToString:self.loginAndSignUpView.againPasswordTextField.text]) {
+                user.password = self.loginAndSignUpView.passwordTextField.text;
+                [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+                    if (!error) {
+                        self.loginAndSignUpView.emailTextField.text = @"";
+                        self.loginAndSignUpView.passwordTextField.text = @"";
+                        self.loginAndSignUpView.againPasswordTextField.text = @"";
+                        [self showOKAlertWithTitle:NSLocalizedString(@"Thanks. Your account has been created. Please verify your email so you can sign in and use our app.", @"") message:nil];
+                    } else {
+                        [self showOKAlertWithTitle:NSLocalizedString(@"Invalid email address", @"") message:nil];
+                    }
+                }];
+            } else {
+                [self showOKAlertWithTitle:NSLocalizedString(@"Password doesn't match", @"") message:nil];
+            }
+        } else {
+            [self showOKAlertWithTitle:NSLocalizedString(@"Password is required", @"") message:nil];
+        }
+    } else {
+        [self showOKAlertWithTitle:NSLocalizedString(@"Email is required", @"") message:nil];
+    }
+        
 }
 
 @end

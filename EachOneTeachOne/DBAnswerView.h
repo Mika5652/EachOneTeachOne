@@ -10,6 +10,10 @@
 
 @class DBAnswer;
 
+extern NSString * const kAnswerViewCommentAnswerButtonWasPressedNotification;
+extern NSString * const kAnswerViewCommentAnswerButtonWasPressedCommentTextObjectKey;
+extern NSString * const kAnswerViewCommentAnswerButtonWasPressedAnswertObjectKey;
+
 @interface DBAnswerView : UIStackView
 
 @property DBAnswer *answer;

@@ -31,10 +31,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     
     DBLoginAndSignUpViewController *loginViewController = [[DBLoginAndSignUpViewController alloc] init];
-//    DBFeedViewController *feedViewController = [[DBFeedViewController alloc] init];
-    
     UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:loginViewController];
-//        UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedViewController];
+//    DBFeedViewController *feedViewController = [[DBFeedViewController alloc] init];
+//    UINavigationController *navigationController = [[UINavigationController alloc] initWithRootViewController:feedViewController];
     
     self.window.rootViewController = navigationController;
     [self.window makeKeyAndVisible];

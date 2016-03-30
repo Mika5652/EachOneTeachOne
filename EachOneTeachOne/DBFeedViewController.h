@@ -7,10 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 @class DBFeedView;
 
-@interface DBFeedViewController : UIViewController <PFLogInViewControllerDelegate>
+@interface DBFeedViewController : UIViewController <UITableViewDelegate> //PFLogInViewControllerDelegate
 
 @property (nonatomic) DBFeedView *feedView;
 

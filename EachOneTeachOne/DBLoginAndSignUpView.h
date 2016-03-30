@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+extern NSString * const kLoginAndSignUpViewLoginButtonWasPressedNotification;
+
 @interface DBLoginAndSignUpView : UIView <UICollisionBehaviorDelegate>
 
 @property UIImageView *logoImageView;

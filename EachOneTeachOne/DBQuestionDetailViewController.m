@@ -17,6 +17,8 @@
 #import "DBAnswerQuestionView.h"
 #import "DBAttachmentView.h"
 #import "DBAnswer.h"
+#import "DBAnswerComment.h"
+#import "DBAnswerView.h"
 #import "UIViewController+DBAlerts.h"
 
 @interface DBQuestionDetailViewController ()
@@ -34,6 +36,7 @@
         _question = question;
         _answerQuestionDataSource = [[DBAnswerQuestionDataSource alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveAttachmentViewWasDeletedNotification:) name:kAttachmentViewWasDeletedNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveAnswerViewCommentAnswerButtonWasPressedNotification:) name:kAnswerViewCommentAnswerButtonWasPressedNotification object:nil];
     }
     return self;
 }
@@ -148,6 +151,19 @@
             }
         }
     }
+}
+
+- (void)receiveAnswerViewCommentAnswerButtonWasPressedNotification:(NSNotification *)notification {
+    
+    if ([[notification name] isEqualToString:kAnswerViewCommentAnswerButtonWasPressedNotification]) {
+        [DBAnswerComment uploadAnswerCommentWithText:[notification. userInfo objectForKey:kAnswerViewCommentAnswerButtonWasPressedCommentTextObjectKey]
+                                            toAnswer:[notification.userInfo objectForKey:kAnswerViewCommentAnswerButtonWasPressedAnswertObjectKey]
+                                          completion:^(DBAnswerComment *answerComment, NSError *error) {
+                                              
+                                              //TODO - reload view
+                                          }];
+    }
+    
 }
 
 #pragma mark - Properties

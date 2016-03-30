@@ -11,6 +11,11 @@
 #import "DBAnswer.h"
 #import "DBAttachmentView.h"
 #import "DBAttachment.h"
+#import "DBAnswerComment.h"
+
+NSString * const kAnswerViewCommentAnswerButtonWasPressedNotification = @"AnswerViewCommentAnswerButtonWasPressedNotification";
+NSString * const kAnswerViewCommentAnswerButtonWasPressedCommentTextObjectKey = @"AnswerViewCommentAnswerButtonWasPressedCommentTextObjectKey";
+NSString * const kAnswerViewCommentAnswerButtonWasPressedAnswertObjectKey = @"AnswerViewCommentAnswerButtonWasPressedAnswertObjectKey";
 
 @interface DBAnswerView () <UITextViewDelegate>
 
@@ -18,6 +23,7 @@
 @property UIButton *plusButton;
 @property UIButton *minusButton;
 @property UIButton *replyButton;
+@property UIButton *commentButton;
 @property UILabel *voteLabel;
 @property UITextView *commentAnswerTextView;
 @property (nonatomic, assign) BOOL replyButtonWasPressed;
@@ -32,7 +38,7 @@
         self.backgroundColor = [UIColor whiteColor];
         
         _answer = answer;
-        
+                
         self.axis = UILayoutConstraintAxisVertical;
         self.distribution = UIStackViewDistributionEqualSpacing;
         self.alignment = UIStackViewAlignmentFill;
@@ -46,6 +52,15 @@
         
         for (DBAttachment *attachment in answer.attachments) {
             [self addArrangedSubview:[[DBAttachmentView alloc] initWithAttachment:attachment isEditable:NO]];
+        }
+        
+        for (DBAnswerComment *answerComment in answer.comments) {
+            UILabel *answerCommentLabel = [UILabel newAutoLayoutView];
+            answerCommentLabel.numberOfLines = 0;
+            answerCommentLabel.text = answerComment.textOfComment;
+            answerCommentLabel.textColor = [UIColor cyanColor];
+            [answerCommentLabel sizeToFit];
+            [self addArrangedSubview:answerCommentLabel];
         }
         
         [self addVoteStackViewToAnswer];
@@ -126,15 +141,30 @@
         [self.commentAnswerTextView setScrollEnabled:NO];
         [self addArrangedSubview:self.commentAnswerTextView];
         
-        UIButton *commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
-        commentButton.backgroundColor = [UIColor blackColor];
-        [commentButton setTitle:@"Comment this Shit" forState:UIControlStateNormal];
-//        [commentButton addTarget:self action:@selector(replyButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
-        [self addArrangedSubview:commentButton];
-        [commentButton autoSetDimension:ALDimensionHeight toSize:30];
+        _commentButton = [UIButton buttonWithType:UIButtonTypeCustom];
+        self.commentButton.backgroundColor = [UIColor blackColor];
+        [self.commentButton setTitle:@"Comment this Shit" forState:UIControlStateNormal];
+        [self.commentButton addTarget:self action:@selector(commentbuttonDidPress) forControlEvents:UIControlEventTouchUpInside];
+        [self addArrangedSubview:self.commentButton];
+        [self.commentButton autoSetDimension:ALDimensionHeight toSize:30];
         
         self.replyButtonWasPressed = YES;
     }
+}
+
+- (void)commentbuttonDidPress {
+    [[NSNotificationCenter defaultCenter] postNotificationName:kAnswerViewCommentAnswerButtonWasPressedNotification object:nil userInfo:@{kAnswerViewCommentAnswerButtonWasPressedCommentTextObjectKey : self.commentAnswerTextView.text, kAnswerViewCommentAnswerButtonWasPressedAnswertObjectKey : self.answer}];
+    
+    [self removeArrangedSubview:self.commentAnswerTextView];
+    [self.commentAnswerTextView removeFromSuperview];
+    [self removeArrangedSubview:self.commentButton];
+    [self.commentButton removeFromSuperview];
+    
+    self.commentAnswerTextView = nil;
+    self.commentButton = nil;
+    
+    self.replyButtonWasPressed = NO;
+    
 }
 
 #pragma mark - UITextViewDelegate
