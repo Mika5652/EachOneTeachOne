@@ -95,5 +95,12 @@
 
 - (void)applicationWillTerminate:(UIApplication *)application {
 }
+- (UIInterfaceOrientationMask)application:(UIApplication *)application supportedInterfaceOrientationsForWindow:(nullable UIWindow *)window {
+    if ([window.rootViewController.childViewControllers.lastObject isKindOfClass:[DBLoginAndSignUpViewController class]]) {
+        return UIInterfaceOrientationMaskPortrait;
+    } else {
+        return UIInterfaceOrientationMaskAllButUpsideDown;
+    }
+}
 
 @end
