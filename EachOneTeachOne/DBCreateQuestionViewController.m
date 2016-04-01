@@ -113,23 +113,54 @@
 #pragma mark - UIImagePickerControllerSourceType
 
 - (void)captureVideo {
-    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+    
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Action Sheet" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+        // Cancel button tappped do nothing.
+        
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Take photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         self.imagePickerController =[[UIImagePickerController alloc] init];
         self.imagePickerController.delegate = self;
         self.imagePickerController.mediaTypes = [NSArray arrayWithObjects:(NSString *) kUTTypeMovie, kUTTypeImage, nil];
         self.imagePickerController.allowsEditing = NO;
         self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
         [self presentViewController:self.imagePickerController  animated:YES completion:nil];
-    }
+        
+    }]];
     
-    else if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"Choose photo" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
         self.imagePickerController =[[UIImagePickerController alloc] init];
         self.imagePickerController.delegate = self;
         self.imagePickerController.mediaTypes = [NSArray arrayWithObjects:(NSString *) kUTTypeImage,nil];
         self.imagePickerController.allowsEditing = NO;
         self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
         [self presentViewController:self.imagePickerController animated:YES completion:nil];
-    }
+        
+    }]];
+    
+    [self presentViewController:actionSheet animated:YES completion:nil];
+    
+//    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
+//        self.imagePickerController =[[UIImagePickerController alloc] init];
+//        self.imagePickerController.delegate = self;
+//        self.imagePickerController.mediaTypes = [NSArray arrayWithObjects:(NSString *) kUTTypeMovie, kUTTypeImage, nil];
+//        self.imagePickerController.allowsEditing = NO;
+//        self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
+//        [self presentViewController:self.imagePickerController  animated:YES completion:nil];
+//    }
+//    
+//    else if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
+//        self.imagePickerController =[[UIImagePickerController alloc] init];
+//        self.imagePickerController.delegate = self;
+//        self.imagePickerController.mediaTypes = [NSArray arrayWithObjects:(NSString *) kUTTypeImage,nil];
+//        self.imagePickerController.allowsEditing = NO;
+//        self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
+//        [self presentViewController:self.imagePickerController animated:YES completion:nil];
+//    }
 }
 
 #pragma mark - UIImagePickerControllerDelegate

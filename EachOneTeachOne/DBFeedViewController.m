@@ -19,6 +19,7 @@
 #import "DBFeedDataSource.h"
 #import "DBFeedViewTableViewCell.h"
 #import "DBQuestionDetailViewController.h"
+#import "DBUserPreferencesViewController.h"
 
 #import "DBQuestion.h"
 
@@ -64,7 +65,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     self.navigationController.toolbarHidden = NO;
-    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:nil];
+    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(userPreferencesToolbarButton)];
     NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
     self.toolbarItems = toolbarItems;
 }
@@ -74,6 +75,12 @@
 - (void)rightBarButtonDidPress {
     DBCreateQuestionViewController *createQuestionViewController = [[DBCreateQuestionViewController alloc] init];
     [self.navigationController pushViewController:createQuestionViewController animated:YES];
+}
+
+- (void)userPreferencesToolbarButton {
+    DBUserPreferencesViewController *userPreferencesViewController = [[DBUserPreferencesViewController alloc] initWithUser:[PFUser currentUser]];
+    [self.navigationController pushViewController:userPreferencesViewController animated:YES];
+    
 }
 
 #pragma mark - Properties

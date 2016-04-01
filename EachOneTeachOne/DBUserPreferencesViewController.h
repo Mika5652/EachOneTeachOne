@@ -9,8 +9,11 @@
 #import <UIKit/UIKit.h>
 #import "DBUserPreferencesView.h"
 
-@interface DBUserPreferencesViewController : UIViewController
+@interface DBUserPreferencesViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
 @property (nonatomic) DBUserPreferencesView *userPreferencesView;
+@property PFUser *user;
+
+- (instancetype)initWithUser:(PFUser *)user;
 
 @end

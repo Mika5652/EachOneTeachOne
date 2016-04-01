@@ -8,12 +8,22 @@
 
 #import <UIKit/UIKit.h>
 #import <Parse/Parse.h>
+#import <ParseUI/ParseUI.h>
 
 @interface DBUserPreferencesView : UIView
 
-@property PFFile *avatar;
 @property UITextField *userNameTextField;
 @property UITextField *crewTextField;
 @property UITextField *cityTextField;
+@property UILabel *userNameLabel;
+@property UILabel *crewLabel;
+@property UILabel *cityLabel;
+@property UIButton *avatarButton;
+@property PFImageView *avatarPFImageView;
+
+@property UIStackView *stackView;
+@property UIScrollView *scrollView;
+
+- (instancetype)initWithUser:(PFUser *)user;
 
 @end

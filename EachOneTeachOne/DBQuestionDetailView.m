@@ -37,6 +37,7 @@
         _scrollView = [[UIScrollView alloc] init];
         [self addSubview:self.scrollView];
         [self.scrollView autoPinEdgesToSuperviewEdges];
+        [self.scrollView setContentInset:UIEdgeInsetsMake(64, 0, 64, 0)];
         
         _stackView = [[UIStackView alloc] init];
         self.stackView.axis = UILayoutConstraintAxisVertical;

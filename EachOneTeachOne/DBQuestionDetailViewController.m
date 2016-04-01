@@ -125,12 +125,14 @@
                                 [self.question saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
                                     if (!error) {
                                         self.view = [[DBQuestionDetailView alloc] initWithQuestion:self.question];
+                                        [self.questionDetailView hideActivityIndicatorView];
                                     } else {
                                         [self showOKAlertWithTitle:NSLocalizedString(@"Error during posting answer", @"") message:error.localizedDescription];
                                     }
                                 }];
-                                
-                                [self.questionDetailView hideActivityIndicatorView];
+//                                [self.questionDetailView setNeedsUpdateConstraints];
+//                                [self.questionDetailView updateConstraintsIfNeeded];
+//                                [self.questionDetailView setNeedsDisplay];
                             }];
     } else {
         [self showOKAlertWithTitle:NSLocalizedString(@"Please enter description", @"") message:nil];

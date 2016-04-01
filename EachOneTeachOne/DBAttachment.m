@@ -29,7 +29,7 @@ CGFloat const kThumbnailWidth = 256;
 #pragma mark - Properties
 
 - (void)setThumbnailImage:(UIImage *)thumbnailImage {
-    _thumbnailImage = [thumbnailImage photoResizedToSize:CGSizeMake(kThumbnailWidth,  thumbnailImage.size.height*(kThumbnailWidth/thumbnailImage.size.width))];
+    _thumbnailImage = [thumbnailImage photoResizedToSize:CGSizeMake(kThumbnailWidth, thumbnailImage.size.height*(kThumbnailWidth/thumbnailImage.size.width))];
 }
 
 - (void)setVideoURL:(NSURL *)videoURL {

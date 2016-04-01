@@ -75,8 +75,8 @@
         if (user && !error) {
             if ([[user objectForKey:@"emailVerified"] boolValue]) {
                 DBFeedViewController *feedViewController = [[DBFeedViewController alloc] init];
-                [self.navigationController setViewControllers:[NSArray arrayWithObject:feedViewController] animated:YES];
                 self.navigationController.navigationBarHidden = NO;
+                [self.navigationController setViewControllers:[NSArray arrayWithObject:feedViewController] animated:YES];
             } else {
                 [self showAlertWithTitle:NSLocalizedString(@"Login failed", @"") message:NSLocalizedString(@"Email not verified", @"") dismissButtonText:@"I see..."];
             }

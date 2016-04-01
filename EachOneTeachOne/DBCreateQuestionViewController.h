@@ -20,6 +20,6 @@
 @property DBCreateQuestionDataSource *createQuestionDataSource;
 @property NSString *titleTextString;
 @property NSString *descriptionTextString;
-@property UIImagePickerController *picker;
+//@property UIImagePickerController *picker;
 
 @end
