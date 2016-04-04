@@ -34,11 +34,7 @@
     cell.descriptionLabel.text = question.questionDescription;
     cell.photoImageView.file = question.thumbnail;
     [cell.photoImageView loadInBackground];
-//    [question.thumbnail getDataInBackgroundWithBlock:^(NSData * data, NSError *error) {
-//        if (!error) {
-//            [cell.photoImageView setImage:[UIImage imageWithData:data]];
-//        }
-//    }];
+
     [cell setNeedsUpdateConstraints];
     [cell updateConstraintsIfNeeded];
     return cell;

@@ -88,7 +88,7 @@ NSString * const kAnswerViewCommentAnswerButtonWasPressedAnswertObjectKey = @"An
     _voteLabel = [UILabel newAutoLayoutView];
     self.voteLabel.backgroundColor = [UIColor yellowColor];
     self.voteLabel.numberOfLines = 0;
-    self.voteLabel.text = [NSString stringWithFormat:@"%d", self.answer.vote];
+    self.voteLabel.text = [NSString stringWithFormat:@"%d", self.answer.upvotes.count - self.answer.downvotes.count];
     self.voteLabel.textAlignment = NSTextAlignmentCenter;
     [self.voteLabel sizeToFit];
     [self.voteStackView addArrangedSubview:self.voteLabel];

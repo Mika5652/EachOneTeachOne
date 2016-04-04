@@ -34,7 +34,7 @@
     user[@"city"] = city;
 }
 
-- (void)setuserAvatar:(PFFile *)avatar ofUser:(PFUser *)user {
+- (void)setUserAvatar:(PFFile *)avatar ofUser:(PFUser *)user {
     user[@"avatar"] = avatar;
 }
 

@@ -17,8 +17,9 @@ typedef void (^DBAnswerVoteCompletion)(int voteRating, NSError *error);
 
 @property NSString *textOfAnswer;
 @property NSMutableArray *attachments;
-@property int vote;
 @property NSMutableArray *comments;
+@property NSMutableArray *upvotes;
+@property NSMutableArray *downvotes;
 
 + (void)uploadAnswerWithText:(NSString *)text attachemnts:(NSMutableArray *)dataArray completion:(DBUploadAnswerCompletion)completion;
 + (void)changeAnswerVoteRating:(DBAnswer *)answer wasPlusPressed:(BOOL)plusWasPressed completion:(DBAnswerVoteCompletion)completion;

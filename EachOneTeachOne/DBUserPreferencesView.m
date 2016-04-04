@@ -72,6 +72,7 @@ static CGFloat const kHorizontalSpacing = 4;
         
         _avatarPFImageView = [PFImageView newAutoLayoutView];
         self.avatarPFImageView.file = [user getUserAvatar:user];
+        [self.avatarPFImageView loadInBackground];
         [self addSubview:self.avatarPFImageView];
         
         _avatarButton = [UIButton buttonWithType:UIButtonTypeCustom];

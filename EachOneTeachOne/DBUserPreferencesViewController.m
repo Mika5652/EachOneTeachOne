@@ -9,6 +9,10 @@
 #import "DBUserPreferencesViewController.h"
 #import <Parse/Parse.h>
 #import "PFUser+Extensions.h"
+#import "UIImage+DBResizing.h"
+#import "UIViewController+DBAlerts.h"
+#import "UIView+ActivityIndicatorView.h"
+#import "DBActivityIndicatorView.h"
 
 // Frameworks
 #import <MediaPlayer/MediaPlayer.h>
@@ -37,9 +41,9 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     self.navigationController.toolbarHidden = NO;
-    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:nil];
-    NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
-    self.toolbarItems = toolbarItems;
+//    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:nil];
+//    NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
+//    self.toolbarItems = toolbarItems;
 }
 
 - (void)viewDidLoad {
@@ -54,11 +58,20 @@
 #pragma mark - User actions
 
 - (void)saveButtonWasPressed {
-    NSLog(@"Hola hej");
+    [self.view showActivityIndicatorViewWithTitle:@"Updating..."];
+    
     [self.user setUserName:self.userPreferencesView.userNameTextField.text ofUser:self.user];
     [self.user setUserCrew:self.userPreferencesView.crewTextField.text ofUser:self.user];
     [self.user setUserCity:self.userPreferencesView.cityTextField.text ofUser:self.user];
-    [self.user setuserAvatar:self.userPreferencesView.avatarPFImageView.file ofUser:self.user];
+    [self.user setUserAvatar:self.userPreferencesView.avatarPFImageView.file ofUser:self.user];
+    
+    [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (!error) {
+            [self.view hideActivityIndicatorView];
+        } else {
+            [self showAlertWithTitle:NSLocalizedString(@"Something is broken", @"") message:NSLocalizedString(@"There is some error, please try post your changes later", @"") dismissButtonText:@"OK"];
+        }
+    }];
 }
 
 - (void)avatarButtonWasPressed {
@@ -66,7 +79,7 @@
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         
-        // Cancel button tappped do nothing.
+//         Cancel button tappped do nothing.
         
     }]];
     
@@ -98,7 +111,10 @@
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     if ([picker isEqual:self.imagePickerController]) {
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
-            self.userPreferencesView.avatarPFImageView.image = info[UIImagePickerControllerOriginalImage];
+            UIImage *newAvatarImage = [info[UIImagePickerControllerOriginalImage] photoResizedToSize:CGSizeMake(256,256)];
+            NSData *fileData = UIImageJPEGRepresentation(newAvatarImage, 1);
+            self.userPreferencesView.avatarPFImageView.file = [PFFile fileWithData:fileData];
+            self.userPreferencesView.avatarPFImageView.image = newAvatarImage;
         }
 
         [picker dismissViewControllerAnimated:YES completion:nil];

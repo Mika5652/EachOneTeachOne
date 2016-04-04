@@ -17,7 +17,7 @@
 - (void)setUserName:(NSString *)userName ofUser:(PFUser *)user;
 - (void)setUserCrew:(NSString *)crew ofUser:(PFUser *)user;
 - (void)setUserCity:(NSString *)city ofUser:(PFUser *)user;
-- (void)setuserAvatar:(PFFile *)avatar ofUser:(PFUser *)user;
+- (void)setUserAvatar:(PFFile *)avatar ofUser:(PFUser *)user;
 
 
 @end
