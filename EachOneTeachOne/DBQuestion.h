@@ -22,6 +22,7 @@ extern NSString * const kAWSS3BaseURL;
 @property NSMutableArray *attachments;
 @property NSMutableArray *answers;
 @property PFFile *thumbnail;
+@property PFUser *user;
 
 + (void)getNewQuestionsWithSkip:(NSInteger)skip completion:(DBGetQuestionsCompletion)completion;
 + (void)uploadQuestionWithTitle:(NSString *)questionTitle questionDesciption:(NSString *)questionDescription dataArray:(NSMutableArray *)dataArray completion:(DBUploadQuestionCompletion)completion;

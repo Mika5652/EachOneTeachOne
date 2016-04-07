@@ -8,6 +8,8 @@
 
 #import "PFUser+Extensions.h"
 
+@class DBQuestion;
+
 @implementation PFUser (Extension)
 
 - (NSString *)getUserCrew:(PFUser *)user {
@@ -36,6 +38,11 @@
 
 - (void)setUserAvatar:(PFFile *)avatar ofUser:(PFUser *)user {
     user[@"avatar"] = avatar;
+}
+
+- (void)getUserNameFromQuestion:(DBQuestion *)question {
+    PFQuery *query = [PFUser query];
+    
 }
 
 @end

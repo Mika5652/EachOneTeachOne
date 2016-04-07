@@ -6,39 +6,39 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
-#import "DBUserPreferencesView.h"
+#import "DBUserPreferencesEditableView.h"
 #import <PureLayout/PureLayout.h>
 #import "PFUser+Extensions.h"
 
 static CGFloat const kVerticalSpacing = 4;
 static CGFloat const kHorizontalSpacing = 4;
 
-@interface DBUserPreferencesView () //<UITextFieldDelegate>
+@interface DBUserPreferencesEditableView () //<UITextFieldDelegate>
 
 @property (nonatomic, assign) BOOL didSetupConstraints;
 
 @end
 
-@implementation DBUserPreferencesView
+@implementation DBUserPreferencesEditableView
 
 - (instancetype)initWithUser:(PFUser *)user {
     self = [super init];
     if (self) {
         self.backgroundColor = [UIColor whiteColor];
         
-//        [self autoPinEdgesToSuperviewEdges];
+        //        [self autoPinEdgesToSuperviewEdges];
         
-//        _scrollView = [[UIScrollView alloc] init];
-//        [self addSubview:self.scrollView];
-//        [self.scrollView autoPinEdgesToSuperviewEdges];
-//        
-//        _stackView = [[UIStackView alloc] init];
-//        self.stackView.axis = UILayoutConstraintAxisVertical;
-//        self.stackView.distribution = UIStackViewDistributionEqualSpacing;
-//        self.stackView.alignment = UIStackViewAlignmentFill;
-//        self.stackView.spacing = 5;
-//        [self.scrollView addSubview:self.stackView];
-//        [self.stackView autoPinEdgesToSuperviewEdges];
+        //        _scrollView = [[UIScrollView alloc] init];
+        //        [self addSubview:self.scrollView];
+        //        [self.scrollView autoPinEdgesToSuperviewEdges];
+        //
+        //        _stackView = [[UIStackView alloc] init];
+        //        self.stackView.axis = UILayoutConstraintAxisVertical;
+        //        self.stackView.distribution = UIStackViewDistributionEqualSpacing;
+        //        self.stackView.alignment = UIStackViewAlignmentFill;
+        //        self.stackView.spacing = 5;
+        //        [self.scrollView addSubview:self.stackView];
+        //        [self.stackView autoPinEdgesToSuperviewEdges];
         
         _userNameTextField = [UITextField newAutoLayoutView];
         self.userNameTextField.autocorrectionType = NO;
@@ -54,7 +54,7 @@ static CGFloat const kHorizontalSpacing = 4;
         self.cityTextField.autocorrectionType = NO;
         _cityTextField.text = [user getUserCity:user];
         [self addSubview:self.cityTextField];
-
+        
         _userNameLabel = [UILabel newAutoLayoutView];
         self.userNameLabel.numberOfLines = 1;
         self.userNameLabel.text = @"User name:";
@@ -77,7 +77,7 @@ static CGFloat const kHorizontalSpacing = 4;
         
         _avatarButton = [UIButton buttonWithType:UIButtonTypeCustom];
         [self addSubview:self.self.avatarButton];
-
+        
     }
     return self;
 }

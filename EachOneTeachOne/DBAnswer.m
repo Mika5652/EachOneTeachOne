@@ -116,9 +116,9 @@
 
     [answer saveInBackgroundWithBlock:^(BOOL succeeded, NSError * error) {
         if (!error && succeeded) {
-            completion((answer.upvotes.count - answer.downvotes.count), error);
+            completion((int)(answer.upvotes.count - answer.downvotes.count), error);
         } else {
-            completion((answer.upvotes.count - answer.downvotes.count), [NSError errorWithDomain:@"Error during uploading answer vote rating to Parse" code:0 userInfo:nil]);
+            completion((int)(answer.upvotes.count - answer.downvotes.count), [NSError errorWithDomain:@"Error during uploading answer vote rating to Parse" code:0 userInfo:nil]);
         }
     }];
 }

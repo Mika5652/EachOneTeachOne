@@ -12,6 +12,9 @@
 #import "DBAttachmentView.h"
 #import "DBAttachment.h"
 #import "DBAnswerComment.h"
+#import "UIView+ActivityIndicatorView.h"
+#import "UIViewController+DBAlerts.h"
+#import "DBActivityIndicatorView.h"
 
 NSString * const kAnswerViewCommentAnswerButtonWasPressedNotification = @"AnswerViewCommentAnswerButtonWasPressedNotification";
 NSString * const kAnswerViewCommentAnswerButtonWasPressedCommentTextObjectKey = @"AnswerViewCommentAnswerButtonWasPressedCommentTextObjectKey";
@@ -88,7 +91,7 @@ NSString * const kAnswerViewCommentAnswerButtonWasPressedAnswertObjectKey = @"An
     _voteLabel = [UILabel newAutoLayoutView];
     self.voteLabel.backgroundColor = [UIColor yellowColor];
     self.voteLabel.numberOfLines = 0;
-    self.voteLabel.text = [NSString stringWithFormat:@"%d", self.answer.upvotes.count - self.answer.downvotes.count];
+    self.voteLabel.text = [NSString stringWithFormat:@"%ld", (self.answer.upvotes.count - self.answer.downvotes.count)];
     self.voteLabel.textAlignment = NSTextAlignmentCenter;
     [self.voteLabel sizeToFit];
     [self.voteStackView addArrangedSubview:self.voteLabel];
@@ -153,17 +156,46 @@ NSString * const kAnswerViewCommentAnswerButtonWasPressedAnswertObjectKey = @"An
 }
 
 - (void)commentbuttonDidPress {
-    [[NSNotificationCenter defaultCenter] postNotificationName:kAnswerViewCommentAnswerButtonWasPressedNotification object:nil userInfo:@{kAnswerViewCommentAnswerButtonWasPressedCommentTextObjectKey : self.commentAnswerTextView.text, kAnswerViewCommentAnswerButtonWasPressedAnswertObjectKey : self.answer}];
+//    [[NSNotificationCenter defaultCenter] postNotificationName:kAnswerViewCommentAnswerButtonWasPressedNotification object:nil userInfo:@{kAnswerViewCommentAnswerButtonWasPressedCommentTextObjectKey : self.commentAnswerTextView.text, kAnswerViewCommentAnswerButtonWasPressedAnswertObjectKey : self.answer}];
     
-    [self removeArrangedSubview:self.commentAnswerTextView];
-    [self.commentAnswerTextView removeFromSuperview];
-    [self removeArrangedSubview:self.commentButton];
-    [self.commentButton removeFromSuperview];
+    [self.superview showActivityIndicatorViewWithTitle:@"Posting..."];
+
+
+    if (![self.commentAnswerTextView.text isEqual:kDescriptionTextViewText]) {
+        [DBAnswerComment uploadAnswerCommentWithText:self.commentAnswerTextView.text
+                                            toAnswer:self.answer
+                                          completion:^(DBAnswerComment *answerComment, NSError *error) {
+                                              if (!error) {
+                                                  
+                                                  [self removeArrangedSubview:self.commentAnswerTextView];
+                                                  [self.commentAnswerTextView removeFromSuperview];
+                                                  [self removeArrangedSubview:self.commentButton];
+                                                  [self.commentButton removeFromSuperview];
+                                                  
+                                                  UILabel *newAnswerCommentLabel = [UILabel newAutoLayoutView];
+                                                  newAnswerCommentLabel.numberOfLines = 0;
+                                                  newAnswerCommentLabel.text = answerComment.textOfComment;
+                                                  newAnswerCommentLabel.textColor = [UIColor cyanColor];
+                                                  [newAnswerCommentLabel sizeToFit];
+
+                                                  // atIndex handle that subview is insert above VoteStackView
+                                                  [self insertArrangedSubview:newAnswerCommentLabel atIndex:self.arrangedSubviews.count-1];
+                                                  
+                                                  self.commentAnswerTextView = nil;
+                                                  self.commentButton = nil;
+                                                  self.replyButtonWasPressed = NO;
+                                                  
+                                              } else {
+//                                                  [self showOKAlertWithTitle:NSLocalizedString(@"Error during posting comment", @"") message:error.localizedDescription];
+                                              }
+                                              [self.superview hideActivityIndicatorView];
+                                          }];
+    } else {
+//        [self showOKAlertWithTitle:NSLocalizedString(@"Please enter description", @"") message:nil];
+        [self.superview hideActivityIndicatorView];
+    }
+        
     
-    self.commentAnswerTextView = nil;
-    self.commentButton = nil;
-    
-    self.replyButtonWasPressed = NO;
     
 }
 

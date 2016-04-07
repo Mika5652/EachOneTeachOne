@@ -143,24 +143,6 @@
     }]];
     
     [self presentViewController:actionSheet animated:YES completion:nil];
-    
-//    if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeCamera]) {
-//        self.imagePickerController =[[UIImagePickerController alloc] init];
-//        self.imagePickerController.delegate = self;
-//        self.imagePickerController.mediaTypes = [NSArray arrayWithObjects:(NSString *) kUTTypeMovie, kUTTypeImage, nil];
-//        self.imagePickerController.allowsEditing = NO;
-//        self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeCamera;
-//        [self presentViewController:self.imagePickerController  animated:YES completion:nil];
-//    }
-//    
-//    else if ([UIImagePickerController isSourceTypeAvailable:UIImagePickerControllerSourceTypeSavedPhotosAlbum]) {
-//        self.imagePickerController =[[UIImagePickerController alloc] init];
-//        self.imagePickerController.delegate = self;
-//        self.imagePickerController.mediaTypes = [NSArray arrayWithObjects:(NSString *) kUTTypeImage,nil];
-//        self.imagePickerController.allowsEditing = NO;
-//        self.imagePickerController.sourceType = UIImagePickerControllerSourceTypeSavedPhotosAlbum;
-//        [self presentViewController:self.imagePickerController animated:YES completion:nil];
-//    }
 }
 
 #pragma mark - UIImagePickerControllerDelegate

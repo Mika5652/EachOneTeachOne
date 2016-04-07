@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DBUserPreferencesView.h"
+#import "DBUserPreferencesEditableView.h"
 
-@interface DBUserPreferencesViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface DBUserPreferencesViewEditableController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property (nonatomic) DBUserPreferencesView *userPreferencesView;
+@property (nonatomic) DBUserPreferencesEditableView *userPreferencesView;
 @property PFUser *user;
 
 - (instancetype)initWithUser:(PFUser *)user;

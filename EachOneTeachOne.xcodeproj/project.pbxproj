@@ -10,14 +10,14 @@
 		0903E2131C8031AD003FC892 /* DBCreateQuestionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E2121C8031AD003FC892 /* DBCreateQuestionDataSource.m */; };
 		0903E21C1C804298003FC892 /* DBFeedViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21B1C804298003FC892 /* DBFeedViewTableViewCell.m */; };
 		0903E21F1C804461003FC892 /* DBFeedDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 0903E21E1C804461003FC892 /* DBFeedDataSource.m */; };
-		09165DCC1CAC0968004CC7AC /* DBUserPreferencesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 09165DCB1CAC0968004CC7AC /* DBUserPreferencesView.m */; };
-		09165DD11CAC099B004CC7AC /* DBUserPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 09165DD01CAC099B004CC7AC /* DBUserPreferencesViewController.m */; };
 		092DFE001CA2A9DD005A32B1 /* DBAnswerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 092DFDFF1CA2A9DD005A32B1 /* DBAnswerView.m */; };
 		092DFE061CA2D2CC005A32B1 /* DBAnswerComment.m in Sources */ = {isa = PBXBuildFile; fileRef = 092DFE051CA2D2CC005A32B1 /* DBAnswerComment.m */; };
 		093007C41CAD142E000C2C2B /* PFUser+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 093007C31CAD142E000C2C2B /* PFUser+Extensions.m */; };
 		09385D961C75F16F00F0FB0D /* myText.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 09385D951C75F16F00F0FB0D /* myText.rtf */; };
 		095DA4C71C91B73C007F4146 /* DBQuestionDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 095DA4C61C91B73C007F4146 /* DBQuestionDetailView.m */; };
 		0966AA9E1C9ABB4B00D5239A /* DBAttachmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0966AA9D1C9ABB4B00D5239A /* DBAttachmentView.m */; };
+		096D1CB51CB63EB800380101 /* DBUserPreferencesViewEditableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 096D1CB41CB63EB800380101 /* DBUserPreferencesViewEditableController.m */; };
+		096D1CB81CB63F4700380101 /* DBUserPreferencesEditableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 096D1CB71CB63F4700380101 /* DBUserPreferencesEditableView.m */; };
 		097B5A0C1C9956F90086DBF8 /* DBAnswerQuestionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 097B5A0B1C9956F90086DBF8 /* DBAnswerQuestionDataSource.m */; };
 		097B5A121C9969110086DBF8 /* DBAnswerQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 097B5A111C9969110086DBF8 /* DBAnswerQuestionView.m */; };
 		0995EBB51C8DC2C30070E968 /* UIViewController+DBAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 0995EBB31C8DC2C30070E968 /* UIViewController+DBAlerts.m */; };
@@ -83,10 +83,6 @@
 		0903E21B1C804298003FC892 /* DBFeedViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFeedViewTableViewCell.m; sourceTree = "<group>"; };
 		0903E21D1C804461003FC892 /* DBFeedDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBFeedDataSource.h; sourceTree = "<group>"; };
 		0903E21E1C804461003FC892 /* DBFeedDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBFeedDataSource.m; sourceTree = "<group>"; };
-		09165DCA1CAC0968004CC7AC /* DBUserPreferencesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserPreferencesView.h; sourceTree = "<group>"; };
-		09165DCB1CAC0968004CC7AC /* DBUserPreferencesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserPreferencesView.m; sourceTree = "<group>"; };
-		09165DCF1CAC099B004CC7AC /* DBUserPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserPreferencesViewController.h; sourceTree = "<group>"; };
-		09165DD01CAC099B004CC7AC /* DBUserPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserPreferencesViewController.m; sourceTree = "<group>"; };
 		092DFDFE1CA2A9DD005A32B1 /* DBAnswerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAnswerView.h; sourceTree = "<group>"; };
 		092DFDFF1CA2A9DD005A32B1 /* DBAnswerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAnswerView.m; sourceTree = "<group>"; };
 		092DFE041CA2D2CC005A32B1 /* DBAnswerComment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAnswerComment.h; sourceTree = "<group>"; };
@@ -98,6 +94,10 @@
 		095DA4C61C91B73C007F4146 /* DBQuestionDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBQuestionDetailView.m; sourceTree = "<group>"; };
 		0966AA9C1C9ABB4B00D5239A /* DBAttachmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAttachmentView.h; sourceTree = "<group>"; };
 		0966AA9D1C9ABB4B00D5239A /* DBAttachmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAttachmentView.m; sourceTree = "<group>"; };
+		096D1CB31CB63EB800380101 /* DBUserPreferencesViewEditableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserPreferencesViewEditableController.h; sourceTree = "<group>"; };
+		096D1CB41CB63EB800380101 /* DBUserPreferencesViewEditableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserPreferencesViewEditableController.m; sourceTree = "<group>"; };
+		096D1CB61CB63F4700380101 /* DBUserPreferencesEditableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserPreferencesEditableView.h; sourceTree = "<group>"; };
+		096D1CB71CB63F4700380101 /* DBUserPreferencesEditableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserPreferencesEditableView.m; sourceTree = "<group>"; };
 		097B5A0A1C9956F90086DBF8 /* DBAnswerQuestionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAnswerQuestionDataSource.h; sourceTree = "<group>"; };
 		097B5A0B1C9956F90086DBF8 /* DBAnswerQuestionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAnswerQuestionDataSource.m; sourceTree = "<group>"; };
 		097B5A101C9969110086DBF8 /* DBAnswerQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAnswerQuestionView.h; sourceTree = "<group>"; };
@@ -246,8 +246,8 @@
 			isa = PBXGroup;
 			children = (
 				09165DCD1CAC096F004CC7AC /* View */,
-				09165DCF1CAC099B004CC7AC /* DBUserPreferencesViewController.h */,
-				09165DD01CAC099B004CC7AC /* DBUserPreferencesViewController.m */,
+				096D1CB31CB63EB800380101 /* DBUserPreferencesViewEditableController.h */,
+				096D1CB41CB63EB800380101 /* DBUserPreferencesViewEditableController.m */,
 			);
 			name = UserPreferencesView;
 			sourceTree = "<group>";
@@ -255,8 +255,8 @@
 		09165DCD1CAC096F004CC7AC /* View */ = {
 			isa = PBXGroup;
 			children = (
-				09165DCA1CAC0968004CC7AC /* DBUserPreferencesView.h */,
-				09165DCB1CAC0968004CC7AC /* DBUserPreferencesView.m */,
+				096D1CB61CB63F4700380101 /* DBUserPreferencesEditableView.h */,
+				096D1CB71CB63F4700380101 /* DBUserPreferencesEditableView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -724,7 +724,7 @@
 				09E61D711C980DEA000F21D9 /* DBAnswer.m in Sources */,
 				097B5A121C9969110086DBF8 /* DBAnswerQuestionView.m in Sources */,
 				0903E21C1C804298003FC892 /* DBFeedViewTableViewCell.m in Sources */,
-				09165DCC1CAC0968004CC7AC /* DBUserPreferencesView.m in Sources */,
+				096D1CB81CB63F4700380101 /* DBUserPreferencesEditableView.m in Sources */,
 				097B5A0C1C9956F90086DBF8 /* DBAnswerQuestionDataSource.m in Sources */,
 				F629708A1C4E8330007174C0 /* DBCreateQuestionView.m in Sources */,
 				F6B83B681C8DDA2000193641 /* DBLoginAndSignUpViewController.m in Sources */,
@@ -739,8 +739,8 @@
 				093007C41CAD142E000C2C2B /* PFUser+Extensions.m in Sources */,
 				F60D1C6F1C590FD9008A460F /* DBQuestion.m in Sources */,
 				092DFE001CA2A9DD005A32B1 /* DBAnswerView.m in Sources */,
+				096D1CB51CB63EB800380101 /* DBUserPreferencesViewEditableController.m in Sources */,
 				09CAF3361C85E2B0004508D2 /* DBAttachment.m in Sources */,
-				09165DD11CAC099B004CC7AC /* DBUserPreferencesViewController.m in Sources */,
 				09CAF3391C87347A004508D2 /* DBCreateQuestionTitleAndDescriptionTableViewCell.m in Sources */,
 				0995EBC21C9057750070E968 /* UIView+ActivityIndicatorView.m in Sources */,
 				09CAF3331C85D5D0004508D2 /* UIImage+DBResizing.m in Sources */,

@@ -6,25 +6,26 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
-#import "DBUserPreferencesViewController.h"
+#import "DBUserPreferencesViewEditableController.h"
 #import <Parse/Parse.h>
 #import "PFUser+Extensions.h"
 #import "UIImage+DBResizing.h"
 #import "UIViewController+DBAlerts.h"
 #import "UIView+ActivityIndicatorView.h"
 #import "DBActivityIndicatorView.h"
+#import "DBLoginAndSignUpViewController.h"
 
 // Frameworks
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface DBUserPreferencesViewController ()
+@interface DBUserPreferencesViewEditableController ()
 
 @property UIImagePickerController *imagePickerController;
 
 @end
 
-@implementation DBUserPreferencesViewController
+@implementation DBUserPreferencesViewEditableController
 
 - (instancetype)initWithUser:(PFUser *)user {
     self = [super init];
@@ -35,15 +36,16 @@
 }
 
 - (void)loadView {
-    self.view = [[DBUserPreferencesView alloc] initWithUser:self.user];
+    self.view = [[DBUserPreferencesEditableView alloc] initWithUser:self.user];
     self.title = NSLocalizedString(@"User preferences", nil);
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     self.navigationController.toolbarHidden = NO;
-//    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:nil];
-//    NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
-//    self.toolbarItems = toolbarItems;
+    UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAction target:self action:@selector(logoutButtonWasPressed)];
+    NSArray *toolbarItems = [NSArray arrayWithObjects:flexible, toolbarItem, nil];
+    self.toolbarItems = toolbarItems;
 }
 
 - (void)viewDidLoad {
@@ -56,6 +58,32 @@
 }
 
 #pragma mark - User actions
+
+- (void)logoutButtonWasPressed {
+    
+    UIAlertController *actionSheet = [UIAlertController alertControllerWithTitle:@"Do you want to logout?" message:nil preferredStyle:UIAlertControllerStyleActionSheet];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"NO" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
+        
+        //         Cancel button tappped do nothing.
+        
+    }]];
+    
+    [actionSheet addAction:[UIAlertAction actionWithTitle:@"YES" style:UIAlertActionStyleDefault handler:^(UIAlertAction *action) {
+        [PFUser logOutInBackgroundWithBlock:^(NSError * _Nullable error) {
+            if (!error) {
+                DBLoginAndSignUpViewController *loginViewController = [[DBLoginAndSignUpViewController alloc] init];
+                self.navigationController.navigationBarHidden = NO;
+                self.navigationController.toolbarHidden = YES;
+                [self.navigationController setViewControllers:[NSArray arrayWithObject:loginViewController] animated:YES];
+            } else {
+                [self showAlertWithTitle:NSLocalizedString(@"Something is broken", @"") message:NSLocalizedString(@"There is some error, please try logout later", @"") dismissButtonText:@"OK"];
+            }
+        }];
+    }]];
+    
+    [self presentViewController:actionSheet animated:YES completion:nil];
+}
 
 - (void)saveButtonWasPressed {
     [self.view showActivityIndicatorViewWithTitle:@"Updating..."];
@@ -79,7 +107,7 @@
     
     [actionSheet addAction:[UIAlertAction actionWithTitle:@"Cancel" style:UIAlertActionStyleCancel handler:^(UIAlertAction *action) {
         
-//         Cancel button tappped do nothing.
+        //         Cancel button tappped do nothing.
         
     }]];
     
@@ -116,15 +144,15 @@
             self.userPreferencesView.avatarPFImageView.file = [PFFile fileWithData:fileData];
             self.userPreferencesView.avatarPFImageView.image = newAvatarImage;
         }
-
+        
         [picker dismissViewControllerAnimated:YES completion:nil];
     }
 }
 
 #pragma mark - Properties
 
-- (DBUserPreferencesView *)userPreferencesView {
-    return (DBUserPreferencesView *)self.view;
+- (DBUserPreferencesEditableView *)userPreferencesView {
+    return (DBUserPreferencesEditableView *)self.view;
 }
 
 @end

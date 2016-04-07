@@ -11,7 +11,7 @@
 
 NSString * const kAWSS3BaseURL = @"https://s3.eu-central-1.amazonaws.com/eachoneteachonebucket";
 
-static NSInteger const kLimit = 2;
+static NSInteger const kLimit = 10;
 
 @implementation DBQuestion
 
@@ -20,6 +20,7 @@ static NSInteger const kLimit = 2;
 @dynamic attachments;
 @dynamic answers;
 @dynamic thumbnail;
+@dynamic user;
 
 + (NSString *)parseClassName
 {
@@ -43,6 +44,7 @@ static NSInteger const kLimit = 2;
     [query includeKey:@"answers"];
     [query includeKey:@"answers.attachments"];
     [query includeKey:@"answers.comments"];
+    [query includeKey:@"user"];
     [query findObjectsInBackgroundWithBlock:^(NSArray *questions, NSError *error) {
         completion(questions, error);
     }];
@@ -53,6 +55,7 @@ static NSInteger const kLimit = 2;
     DBQuestion *question = [DBQuestion object];
     question.title = questionTitle;
     question.questionDescription = questionDescription;
+    question.user = [PFUser currentUser];
     
     [question saveInBackgroundWithBlock:^(BOOL succeeded, NSError *error) {
         if (!error && succeeded) {

@@ -17,6 +17,7 @@
 @property UIScrollView *scrollView;
 @property UIStackView *stackView;
 @property DBAnswerQuestionView *answerQuestionView;
+@property UIButton *userNameButton;
 
 - (instancetype)initWithQuestion:(DBQuestion *)question;
 - (void)addAnswerQuestionViewWithData:(DBAttachment *)attachment;

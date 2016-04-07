@@ -19,7 +19,9 @@
 #import "DBFeedDataSource.h"
 #import "DBFeedViewTableViewCell.h"
 #import "DBQuestionDetailViewController.h"
-#import "DBUserPreferencesViewController.h"
+#import "DBUserPreferencesViewEditableController.h"
+#import "UIView+ActivityIndicatorView.h"
+#import "DBActivityIndicatorView.h"
 
 #import "DBQuestion.h"
 
@@ -27,6 +29,7 @@
 
 @property DBFeedDataSource *feedDataSource;
 @property UIRefreshControl *refreshControl;
+@property NSInteger skip;
 
 @end
 
@@ -39,6 +42,7 @@
     
     if (self) {
         _feedDataSource = [[DBFeedDataSource alloc] init];
+        _skip = 0;
     }
     
     return self;
@@ -78,9 +82,26 @@
 }
 
 - (void)userPreferencesToolbarButton {
-    DBUserPreferencesViewController *userPreferencesViewController = [[DBUserPreferencesViewController alloc] initWithUser:[PFUser currentUser]];
+    DBUserPreferencesViewEditableController *userPreferencesViewController = [[DBUserPreferencesViewEditableController alloc] initWithUser:[PFUser currentUser]];
     [self.navigationController pushViewController:userPreferencesViewController animated:YES];
     
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {
+    NSInteger currentOffset = scrollView.contentOffset.y;
+    NSInteger maximumOffset = scrollView.contentSize.height - scrollView.frame.size.height;
+    
+    if (maximumOffset - currentOffset <= 40) {
+        self.skip = self.skip + 10;
+        [self.feedView showActivityIndicatorViewWithTitle:@""];
+        [DBQuestion getNewQuestionsWithSkip:self.skip completion:^(NSArray *questions, NSError *error) {
+            if (!error) {
+                [self.feedDataSource.items addObjectsFromArray:questions];
+                [self.feedView.tableView reloadData];
+                [self.feedView hideActivityIndicatorView];
+            }
+        }];
+    }
 }
 
 #pragma mark - Properties

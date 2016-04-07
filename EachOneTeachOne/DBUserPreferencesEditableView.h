@@ -10,7 +10,7 @@
 #import <Parse/Parse.h>
 #import <ParseUI/ParseUI.h>
 
-@interface DBUserPreferencesView : UIView
+@interface DBUserPreferencesEditableView : UIView
 
 @property UITextField *userNameTextField;
 @property UITextField *crewTextField;
