@@ -22,7 +22,7 @@
 #import "DBQuestionDetailViewController.h"
 #import "DBAttachmentView.h"
 #import "DBAnswerView.h"
-#import "DBUserPreferencesViewEditableController.h"
+#import "DBUserPreferencesEditableViewController.h"
 
 @interface DBQuestionDetailView () <UITextViewDelegate>
 

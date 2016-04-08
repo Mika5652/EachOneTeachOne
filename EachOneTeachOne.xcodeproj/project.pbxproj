@@ -16,8 +16,10 @@
 		09385D961C75F16F00F0FB0D /* myText.rtf in Resources */ = {isa = PBXBuildFile; fileRef = 09385D951C75F16F00F0FB0D /* myText.rtf */; };
 		095DA4C71C91B73C007F4146 /* DBQuestionDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 095DA4C61C91B73C007F4146 /* DBQuestionDetailView.m */; };
 		0966AA9E1C9ABB4B00D5239A /* DBAttachmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0966AA9D1C9ABB4B00D5239A /* DBAttachmentView.m */; };
-		096D1CB51CB63EB800380101 /* DBUserPreferencesViewEditableController.m in Sources */ = {isa = PBXBuildFile; fileRef = 096D1CB41CB63EB800380101 /* DBUserPreferencesViewEditableController.m */; };
 		096D1CB81CB63F4700380101 /* DBUserPreferencesEditableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 096D1CB71CB63F4700380101 /* DBUserPreferencesEditableView.m */; };
+		096D1CBB1CB63FC300380101 /* DBUserPreferencesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 096D1CBA1CB63FC300380101 /* DBUserPreferencesViewController.m */; };
+		096D1CBE1CB63FD400380101 /* DBUserPreferencesView.m in Sources */ = {isa = PBXBuildFile; fileRef = 096D1CBD1CB63FD400380101 /* DBUserPreferencesView.m */; };
+		096D1CC11CB6498C00380101 /* DBUserPreferencesEditableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 096D1CC01CB6498C00380101 /* DBUserPreferencesEditableViewController.m */; };
 		097B5A0C1C9956F90086DBF8 /* DBAnswerQuestionDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 097B5A0B1C9956F90086DBF8 /* DBAnswerQuestionDataSource.m */; };
 		097B5A121C9969110086DBF8 /* DBAnswerQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 097B5A111C9969110086DBF8 /* DBAnswerQuestionView.m */; };
 		0995EBB51C8DC2C30070E968 /* UIViewController+DBAlerts.m in Sources */ = {isa = PBXBuildFile; fileRef = 0995EBB31C8DC2C30070E968 /* UIViewController+DBAlerts.m */; };
@@ -94,10 +96,14 @@
 		095DA4C61C91B73C007F4146 /* DBQuestionDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBQuestionDetailView.m; sourceTree = "<group>"; };
 		0966AA9C1C9ABB4B00D5239A /* DBAttachmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAttachmentView.h; sourceTree = "<group>"; };
 		0966AA9D1C9ABB4B00D5239A /* DBAttachmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAttachmentView.m; sourceTree = "<group>"; };
-		096D1CB31CB63EB800380101 /* DBUserPreferencesViewEditableController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserPreferencesViewEditableController.h; sourceTree = "<group>"; };
-		096D1CB41CB63EB800380101 /* DBUserPreferencesViewEditableController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserPreferencesViewEditableController.m; sourceTree = "<group>"; };
 		096D1CB61CB63F4700380101 /* DBUserPreferencesEditableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserPreferencesEditableView.h; sourceTree = "<group>"; };
 		096D1CB71CB63F4700380101 /* DBUserPreferencesEditableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserPreferencesEditableView.m; sourceTree = "<group>"; };
+		096D1CB91CB63FC300380101 /* DBUserPreferencesViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserPreferencesViewController.h; sourceTree = "<group>"; };
+		096D1CBA1CB63FC300380101 /* DBUserPreferencesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserPreferencesViewController.m; sourceTree = "<group>"; };
+		096D1CBC1CB63FD400380101 /* DBUserPreferencesView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserPreferencesView.h; sourceTree = "<group>"; };
+		096D1CBD1CB63FD400380101 /* DBUserPreferencesView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserPreferencesView.m; sourceTree = "<group>"; };
+		096D1CBF1CB6498C00380101 /* DBUserPreferencesEditableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBUserPreferencesEditableViewController.h; sourceTree = "<group>"; };
+		096D1CC01CB6498C00380101 /* DBUserPreferencesEditableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBUserPreferencesEditableViewController.m; sourceTree = "<group>"; };
 		097B5A0A1C9956F90086DBF8 /* DBAnswerQuestionDataSource.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAnswerQuestionDataSource.h; sourceTree = "<group>"; };
 		097B5A0B1C9956F90086DBF8 /* DBAnswerQuestionDataSource.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBAnswerQuestionDataSource.m; sourceTree = "<group>"; };
 		097B5A101C9969110086DBF8 /* DBAnswerQuestionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBAnswerQuestionView.h; sourceTree = "<group>"; };
@@ -246,8 +252,10 @@
 			isa = PBXGroup;
 			children = (
 				09165DCD1CAC096F004CC7AC /* View */,
-				096D1CB31CB63EB800380101 /* DBUserPreferencesViewEditableController.h */,
-				096D1CB41CB63EB800380101 /* DBUserPreferencesViewEditableController.m */,
+				096D1CBF1CB6498C00380101 /* DBUserPreferencesEditableViewController.h */,
+				096D1CC01CB6498C00380101 /* DBUserPreferencesEditableViewController.m */,
+				096D1CB91CB63FC300380101 /* DBUserPreferencesViewController.h */,
+				096D1CBA1CB63FC300380101 /* DBUserPreferencesViewController.m */,
 			);
 			name = UserPreferencesView;
 			sourceTree = "<group>";
@@ -257,6 +265,8 @@
 			children = (
 				096D1CB61CB63F4700380101 /* DBUserPreferencesEditableView.h */,
 				096D1CB71CB63F4700380101 /* DBUserPreferencesEditableView.m */,
+				096D1CBC1CB63FD400380101 /* DBUserPreferencesView.h */,
+				096D1CBD1CB63FD400380101 /* DBUserPreferencesView.m */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -721,6 +731,7 @@
 			files = (
 				F629707E1C4E7A76007174C0 /* DBFeedView.m in Sources */,
 				0995EBB51C8DC2C30070E968 /* UIViewController+DBAlerts.m in Sources */,
+				096D1CC11CB6498C00380101 /* DBUserPreferencesEditableViewController.m in Sources */,
 				09E61D711C980DEA000F21D9 /* DBAnswer.m in Sources */,
 				097B5A121C9969110086DBF8 /* DBAnswerQuestionView.m in Sources */,
 				0903E21C1C804298003FC892 /* DBFeedViewTableViewCell.m in Sources */,
@@ -739,13 +750,14 @@
 				093007C41CAD142E000C2C2B /* PFUser+Extensions.m in Sources */,
 				F60D1C6F1C590FD9008A460F /* DBQuestion.m in Sources */,
 				092DFE001CA2A9DD005A32B1 /* DBAnswerView.m in Sources */,
-				096D1CB51CB63EB800380101 /* DBUserPreferencesViewEditableController.m in Sources */,
 				09CAF3361C85E2B0004508D2 /* DBAttachment.m in Sources */,
+				096D1CBB1CB63FC300380101 /* DBUserPreferencesViewController.m in Sources */,
 				09CAF3391C87347A004508D2 /* DBCreateQuestionTitleAndDescriptionTableViewCell.m in Sources */,
 				0995EBC21C9057750070E968 /* UIView+ActivityIndicatorView.m in Sources */,
 				09CAF3331C85D5D0004508D2 /* UIImage+DBResizing.m in Sources */,
 				F62970811C4E7A9D007174C0 /* DBFeedViewController.m in Sources */,
 				F62970461C4E7159007174C0 /* main.m in Sources */,
+				096D1CBE1CB63FD400380101 /* DBUserPreferencesView.m in Sources */,
 				0903E2131C8031AD003FC892 /* DBCreateQuestionDataSource.m in Sources */,
 				092DFE061CA2D2CC005A32B1 /* DBAnswerComment.m in Sources */,
 				09FE3D321C92C2140000E57E /* DBQuestionDetailViewController.m in Sources */,

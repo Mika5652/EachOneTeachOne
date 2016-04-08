@@ -49,4 +49,14 @@
     return nil;
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath withHeight:(NSNumber *)number
+{
+//    return UITableViewAutomaticDimension;
+    if (indexPath.row == 0) {
+        return [number floatValue];
+    } else {
+        return UITableViewAutomaticDimension;
+    }
+}
+
 @end

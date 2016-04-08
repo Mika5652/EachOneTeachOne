@@ -45,6 +45,7 @@
     self = [super init];
     if (self) {
         _createQuestionDataSource = [[DBCreateQuestionDataSource alloc] init];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCreateQuestionDescriptionTextViewDidChangeNotification:) name:kCreateQuestionDescriptionTextViewDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCreateQuestionDescriptionTextDidChangeNotification:) name:kCreateQuestionDescriptionTextDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCreateQuestionTitleTextDidChangeNotification:) name:kCreateQuestionTitleTextDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveAttachmentViewWasDeletedNotification:) name:kAttachmentViewWasDeletedNotification object:nil];
@@ -77,6 +78,17 @@
 }
 
 #pragma mark - Notification
+
+- (void)receiveCreateQuestionDescriptionTextViewDidChangeNotification:(NSNotification *)notification {
+    if ([[notification name] isEqualToString:kCreateQuestionDescriptionTextViewDidChangeNotification]) {
+
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+        [self.createQuestionView.tableView beginUpdates];
+        [self.createQuestionDataSource tableView:self.createQuestionView.tableView heightForRowAtIndexPath:indexPath withHeight:[notification.userInfo objectForKey:kCreateQuestionDescriptionTextViewKey]];
+        [self.createQuestionView.tableView endUpdates];
+    }
+}
+
 - (void)receiveCreateQuestionDescriptionTextDidChangeNotification:(NSNotification *) notification {
     
     if ([[notification name] isEqualToString:kCreateQuestionDescriptionTextDidChangeNotification]) {

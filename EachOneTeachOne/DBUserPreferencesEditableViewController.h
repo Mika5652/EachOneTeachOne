@@ -9,9 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "DBUserPreferencesEditableView.h"
 
-@interface DBUserPreferencesViewEditableController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
+@interface DBUserPreferencesEditableViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate>
 
-@property (nonatomic) DBUserPreferencesEditableView *userPreferencesView;
+@property (nonatomic) DBUserPreferencesEditableView *userPreferencesEditableView;
 @property PFUser *user;
 
 - (instancetype)initWithUser:(PFUser *)user;

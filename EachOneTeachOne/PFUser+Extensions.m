@@ -40,9 +40,4 @@
     user[@"avatar"] = avatar;
 }
 
-- (void)getUserNameFromQuestion:(DBQuestion *)question {
-    PFQuery *query = [PFUser query];
-    
-}
-
 @end

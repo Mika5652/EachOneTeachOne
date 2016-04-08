@@ -12,8 +12,10 @@
 #import "DBAttachmentView.h"
 
 NSString * const kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier = @"kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier";
+NSString * const kCreateQuestionDescriptionTextViewDidChangeNotification = @"kCreateQuestionDescriptionTextViewDidChangeNotification";
 NSString * const kCreateQuestionDescriptionTextDidChangeNotification = @"CreateQuestionDescriptionTextDidChangeNotification";
 NSString * const kCreateQuestionTitleTextDidChangeNotification = @"CreateQuestionTitleTextDidChangeNotification";
+NSString * const kCreateQuestionDescriptionTextViewKey = @"kCreateQuestionDescriptionTextViewKey";
 NSString * const kCreateQuestionDescriptionTextKey = @"CreateQuestionDescriptionTextKey";
 NSString * const kCreateQuestionTitleTextKey = @"CreateQuestionTitleTextKey";
 static CGFloat const kVerticalSpacing = 4;
@@ -48,6 +50,7 @@ static CGFloat const kHorizontalSpacing = 4;
         self.descriptionTextView.autocorrectionType = NO;
         self.descriptionTextView.delegate = self;
         self.descriptionTextView.text = kDescriptionTextViewText;
+        [self.descriptionTextView setScrollEnabled:NO];
         self.descriptionTextView.textColor = [UIColor lightGrayColor];
         [self.contentView addSubview:self.descriptionTextView];
     }
@@ -66,7 +69,7 @@ static CGFloat const kHorizontalSpacing = 4;
         [self.descriptionTextView autoPinEdge:ALEdgeTop toEdge:ALEdgeBottom ofView:self.titleTextField withOffset:kVerticalSpacing];
         [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeLeading withInset:kHorizontalSpacing];
         [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeTrailing withInset:kHorizontalSpacing];
-        [self.descriptionTextView autoSetDimension:ALDimensionHeight toSize:50];
+//        [self.descriptionTextView autoSetDimension:ALDimensionHeight toSize:self.descriptionTextView.frame.size.height];
         [NSLayoutConstraint autoSetPriority:999 forConstraints:^{
             [self.descriptionTextView autoPinEdgeToSuperviewEdge:ALEdgeBottom withInset:kVerticalSpacing];
         }];
@@ -87,6 +90,7 @@ static CGFloat const kHorizontalSpacing = 4;
         }
         [textView becomeFirstResponder];
     }
+//    [self scrollToCursorForTextView:textView];
 }
 
 - (void)textViewDidEndEditing:(UITextView *)textView {
@@ -100,6 +104,19 @@ static CGFloat const kHorizontalSpacing = 4;
         }
     }
     [textView resignFirstResponder];
+}
+
+- (void)textViewDidChange:(UITextView *)textView {
+    CGFloat fixedWidth = textView.frame.size.width;
+    CGSize newSize = [textView sizeThatFits:CGSizeMake(fixedWidth, MAXFLOAT)];
+    CGRect newFrame = textView.frame;
+    newFrame.size = CGSizeMake(fmaxf(newSize.width, fixedWidth), newSize.height);
+    
+    if (!(textView.frame.size.height == newFrame.size.height)) {
+        [[NSNotificationCenter defaultCenter] postNotificationName:kCreateQuestionDescriptionTextViewDidChangeNotification object:nil userInfo:@{kCreateQuestionDescriptionTextViewKey : @(newFrame.size.height + self.titleTextField.frame.size.height+12)}];
+    }
+    
+    textView.frame = newFrame;
 }
 
 #pragma mark - UITextFieldDelegate

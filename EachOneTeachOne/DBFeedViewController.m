@@ -19,7 +19,7 @@
 #import "DBFeedDataSource.h"
 #import "DBFeedViewTableViewCell.h"
 #import "DBQuestionDetailViewController.h"
-#import "DBUserPreferencesViewEditableController.h"
+#import "DBUserPreferencesViewController.h"
 #import "UIView+ActivityIndicatorView.h"
 #import "DBActivityIndicatorView.h"
 
@@ -82,9 +82,8 @@
 }
 
 - (void)userPreferencesToolbarButton {
-    DBUserPreferencesViewEditableController *userPreferencesViewController = [[DBUserPreferencesViewEditableController alloc] initWithUser:[PFUser currentUser]];
+    DBUserPreferencesViewController *userPreferencesViewController = [[DBUserPreferencesViewController alloc] initWithUser:[PFUser currentUser]];
     [self.navigationController pushViewController:userPreferencesViewController animated:YES];
-    
 }
 
 - (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate {

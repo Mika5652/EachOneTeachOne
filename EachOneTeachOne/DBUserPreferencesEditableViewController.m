@@ -6,7 +6,7 @@
 //  Copyright © 2016 Michael Pohl. All rights reserved.
 //
 
-#import "DBUserPreferencesViewEditableController.h"
+#import "DBUserPreferencesEditableViewController.h"
 #import <Parse/Parse.h>
 #import "PFUser+Extensions.h"
 #import "UIImage+DBResizing.h"
@@ -19,13 +19,13 @@
 #import <MediaPlayer/MediaPlayer.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 
-@interface DBUserPreferencesViewEditableController ()
+@interface DBUserPreferencesEditableViewController ()
 
 @property UIImagePickerController *imagePickerController;
 
 @end
 
-@implementation DBUserPreferencesViewEditableController
+@implementation DBUserPreferencesEditableViewController
 
 - (instancetype)initWithUser:(PFUser *)user {
     self = [super init];
@@ -51,7 +51,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.userPreferencesView.avatarButton addTarget:self action:@selector(avatarButtonWasPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.userPreferencesEditableView.avatarButton addTarget:self action:@selector(avatarButtonWasPressed) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Save" style:UIBarButtonItemStylePlain target:self action:@selector(saveButtonWasPressed)];
     self.navigationItem.rightBarButtonItem = rightBarButton;
@@ -88,14 +88,15 @@
 - (void)saveButtonWasPressed {
     [self.view showActivityIndicatorViewWithTitle:@"Updating..."];
     
-    [self.user setUserName:self.userPreferencesView.userNameTextField.text ofUser:self.user];
-    [self.user setUserCrew:self.userPreferencesView.crewTextField.text ofUser:self.user];
-    [self.user setUserCity:self.userPreferencesView.cityTextField.text ofUser:self.user];
-    [self.user setUserAvatar:self.userPreferencesView.avatarPFImageView.file ofUser:self.user];
+    [self.user setUserName:self.userPreferencesEditableView.userNameTextField.text ofUser:self.user];
+    [self.user setUserCrew:self.userPreferencesEditableView.crewTextField.text ofUser:self.user];
+    [self.user setUserCity:self.userPreferencesEditableView.cityTextField.text ofUser:self.user];
+    [self.user setUserAvatar:self.userPreferencesEditableView.avatarPFImageView.file ofUser:self.user];
     
     [self.user saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
         if (!error) {
             [self.view hideActivityIndicatorView];
+            [self.navigationController popViewControllerAnimated:NO];
         } else {
             [self showAlertWithTitle:NSLocalizedString(@"Something is broken", @"") message:NSLocalizedString(@"There is some error, please try post your changes later", @"") dismissButtonText:@"OK"];
         }
@@ -141,8 +142,8 @@
         if ([info[UIImagePickerControllerMediaType] isEqualToString:@"public.image"]) {
             UIImage *newAvatarImage = [info[UIImagePickerControllerOriginalImage] photoResizedToSize:CGSizeMake(256,256)];
             NSData *fileData = UIImageJPEGRepresentation(newAvatarImage, 1);
-            self.userPreferencesView.avatarPFImageView.file = [PFFile fileWithData:fileData];
-            self.userPreferencesView.avatarPFImageView.image = newAvatarImage;
+            self.userPreferencesEditableView.avatarPFImageView.file = [PFFile fileWithData:fileData];
+            self.userPreferencesEditableView.avatarPFImageView.image = newAvatarImage;
         }
         
         [picker dismissViewControllerAnimated:YES completion:nil];
@@ -151,7 +152,7 @@
 
 #pragma mark - Properties
 
-- (DBUserPreferencesEditableView *)userPreferencesView {
+- (DBUserPreferencesEditableView *)userPreferencesEditableView {
     return (DBUserPreferencesEditableView *)self.view;
 }
 

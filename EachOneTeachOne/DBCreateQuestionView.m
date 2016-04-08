@@ -22,7 +22,9 @@
         _tableView = [[UITableView alloc] init];
         self.tableView.backgroundColor = [UIColor lightGrayColor];
         self.tableView.rowHeight = UITableViewAutomaticDimension;
-        self.tableView.estimatedRowHeight = 100;
+        self.tableView.estimatedRowHeight = 100;        
+//        [self.tableView setNeedsLayout];
+//        [self.tableView layoutIfNeeded];
 //        self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 //        self.tableView.contentInset = UIEdgeInsetsMake(20, 0, 0, 0);
         [self addSubview:self.tableView];

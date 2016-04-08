@@ -12,4 +12,6 @@
 
 @property NSMutableArray *items;
 
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath withHeight:(NSNumber *)number;
+
 @end

@@ -9,8 +9,10 @@
 #import <UIKit/UIKit.h>
 
 extern NSString * const kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier;
+extern NSString * const kCreateQuestionDescriptionTextViewDidChangeNotification;
 extern NSString * const kCreateQuestionDescriptionTextDidChangeNotification;
 extern NSString * const kCreateQuestionTitleTextDidChangeNotification;
+extern NSString * const kCreateQuestionDescriptionTextViewKey;
 extern NSString * const kCreateQuestionDescriptionTextKey;
 extern NSString * const kCreateQuestionTitleTextKey;
 

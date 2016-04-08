@@ -24,7 +24,7 @@ static CGFloat const kHorizontalSpacing = 4;
 - (instancetype)initWithUser:(PFUser *)user {
     self = [super init];
     if (self) {
-        self.backgroundColor = [UIColor whiteColor];
+        self.backgroundColor = [UIColor greenColor];
         
         //        [self autoPinEdgesToSuperviewEdges];
         

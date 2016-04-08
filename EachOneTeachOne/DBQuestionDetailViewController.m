@@ -20,7 +20,7 @@
 #import "DBAnswerComment.h"
 #import "DBAnswerView.h"
 #import "UIViewController+DBAlerts.h"
-#import "DBUserPreferencesViewEditableController.h"
+#import "DBUserPreferencesViewController.h"
 
 @interface DBQuestionDetailViewController ()
 
@@ -51,8 +51,18 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     self.navigationController.toolbarHidden = NO;
-    UIBarButtonItem *toolbarItem = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(captureVideo)];
-    NSArray *toolbarItems = [NSArray arrayWithObjects:toolbarItem, nil];
+    UIBarButtonItem *addAttachment = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(captureVideo)];
+    NSArray *toolbarItems;
+    
+    if (self.question.user == [PFUser currentUser]) {
+        UIBarButtonItem *flexible = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemFlexibleSpace target:self action:nil];
+        UIBarButtonItem *editQuestion = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editQuestion)];
+        toolbarItems = [NSArray arrayWithObjects:addAttachment, flexible, editQuestion, nil];
+
+    } else {
+        toolbarItems = [NSArray arrayWithObjects:addAttachment, nil];
+    }
+    
     self.toolbarItems = toolbarItems;
 }
 
@@ -146,23 +156,12 @@
                                         
                                         // atIndex handle that subview is insert above answer textField
                                         [self.questionDetailView.stackView insertArrangedSubview:[[DBAnswerView alloc] initWithAnswer:answer] atIndex:self.questionDetailView.stackView.arrangedSubviews.count-1];
-                                        
-//                                        self.view = [[DBQuestionDetailView alloc] initWithQuestion:self.question];
-//                                        [self viewDidLoad];
-//                                        DBQuestionDetailViewController *vc =[[DBQuestionDetailViewController alloc] initWithQuestion:self.question];
-//                                        [self.navigationController pushViewController:vc animated:NO];
-//                                        NSMutableArray *navigationArray = [[NSMutableArray alloc] initWithArray: self.navigationController.viewControllers];
-//                                        [navigationArray removeObjectAtIndex: navigationArray.count-2];
-//                                        self.navigationController.viewControllers = navigationArray;
-                                        
+                                       
                                         [self.questionDetailView hideActivityIndicatorView];
                                     } else {
                                         [self showOKAlertWithTitle:NSLocalizedString(@"Error during posting answer", @"") message:error.localizedDescription];
                                     }
                                 }];
-//                                [self.questionDetailView setNeedsUpdateConstraints];
-//                                [self.questionDetailView updateConstraintsIfNeeded];
-//                                [self.view setNeedsDisplay];
                             }];
     } else {
         [self showOKAlertWithTitle:NSLocalizedString(@"Please enter description", @"") message:nil];
@@ -171,8 +170,12 @@
 }
 
 - (void)userNameButtonDidPress {
-    DBUserPreferencesViewEditableController *userPreferencesViewController = [[DBUserPreferencesViewEditableController alloc] initWithUser:self.question.user];
+    DBUserPreferencesViewController *userPreferencesViewController = [[DBUserPreferencesViewController alloc] initWithUser:self.question.user];
     [self.navigationController pushViewController:userPreferencesViewController animated:YES];
+}
+
+- (void)editQuestion {
+    NSLog(@"ej mejt");
 }
 
 #pragma mark - Notification
