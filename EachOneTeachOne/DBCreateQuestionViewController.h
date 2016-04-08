@@ -9,10 +9,11 @@
 #import <UIKit/UIKit.h>
 
 // Macros
-#define TAKE_VIDEO_ICON                 @"camera_icon"
+#define TAKE_VIDEO_ICON @"camera_icon"
 
 @class DBCreateQuestionView;
 @class DBCreateQuestionDataSource;
+@class DBQuestion;
 
 @interface DBCreateQuestionViewController : UIViewController <UINavigationControllerDelegate, UIImagePickerControllerDelegate, UITextFieldDelegate, UITextViewDelegate, UITableViewDelegate>
 
@@ -21,5 +22,7 @@
 @property NSString *titleTextString;
 @property NSString *descriptionTextString;
 //@property UIImagePickerController *picker;
+
+- (instancetype)initWithQuestion:(DBQuestion *)question;
 
 @end

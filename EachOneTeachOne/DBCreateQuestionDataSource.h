@@ -8,10 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class DBQuestion;
+
 @interface DBCreateQuestionDataSource : NSObject <UITableViewDataSource>
 
 @property NSMutableArray *items;
+@property DBQuestion *question;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath withHeight:(NSNumber *)number;
+- (NSString *)questionTitleString;
+- (NSString *)questionDescriptionString;
 
 @end

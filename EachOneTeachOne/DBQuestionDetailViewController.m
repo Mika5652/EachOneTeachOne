@@ -21,6 +21,7 @@
 #import "DBAnswerView.h"
 #import "UIViewController+DBAlerts.h"
 #import "DBUserPreferencesViewController.h"
+#import "DBCreateQuestionViewController.h"
 
 @interface DBQuestionDetailViewController ()
 
@@ -64,6 +65,12 @@
     }
     
     self.toolbarItems = toolbarItems;
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+//    [self reloadInputViews];
+//    [self.view setNeedsDisplay];
+//    [self.view layoutSubviews];
 }
 
 - (void)viewDidLoad {
@@ -175,7 +182,8 @@
 }
 
 - (void)editQuestion {
-    NSLog(@"ej mejt");
+    DBCreateQuestionViewController *createQuestionViewController = [[DBCreateQuestionViewController alloc] initWithQuestion:self.question];
+    [self.navigationController pushViewController:createQuestionViewController animated:NO];
 }
 
 #pragma mark - Notification

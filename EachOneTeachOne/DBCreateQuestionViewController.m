@@ -34,8 +34,7 @@
 @interface DBCreateQuestionViewController ()
 
 @property UIImagePickerController *imagePickerController;
-@property NSString *questionTitleString;
-@property NSString *questionDescriptionString;
+@property DBQuestion *question;
 
 @end
 
@@ -46,10 +45,18 @@
     if (self) {
         _createQuestionDataSource = [[DBCreateQuestionDataSource alloc] init];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCreateQuestionDescriptionTextViewDidChangeNotification:) name:kCreateQuestionDescriptionTextViewDidChangeNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCreateQuestionDescriptionTextDidChangeNotification:) name:kCreateQuestionDescriptionTextDidChangeNotification object:nil];
-        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveCreateQuestionTitleTextDidChangeNotification:) name:kCreateQuestionTitleTextDidChangeNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveAttachmentViewWasDeletedNotification:) name:kAttachmentViewWasDeletedNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(receiveAttachmentViewDescriptionTextViewDidChangeNotification:) name:kAttachmentViewDescriptionTextViewDidChangeNotification object:nil];
+    }
+    return self;
+}
+
+- (instancetype)initWithQuestion:(DBQuestion *)question {
+    self = [self init];
+    if (self) {
+        _createQuestionDataSource.question = question;
+        _question = question;
+        [self.createQuestionDataSource.items addObjectsFromArray:question.attachments];
     }
     return self;
 }
@@ -61,11 +68,20 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(postButtonDidPress)];
-    self.navigationItem.rightBarButtonItem = rightBarButton;
     
     self.createQuestionView.tableView.dataSource = self.createQuestionDataSource;
     self.createQuestionView.tableView.delegate = self;
+    
+    if (self.createQuestionDataSource.question) {
+        UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Update" style:UIBarButtonItemStylePlain target:self action:@selector(updateButtonDidPress)];
+        self.navigationItem.rightBarButtonItem = rightBarButton;
+    } else {
+        UIBarButtonItem *rightBarButton = [[UIBarButtonItem alloc] initWithTitle:@"Post" style:UIBarButtonItemStylePlain target:self action:@selector(postButtonDidPress)];
+        self.navigationItem.rightBarButtonItem = rightBarButton;
+    }
+    
+//    self.createQuestionView.tableView.dataSource = self.createQuestionDataSource;
+//    self.createQuestionView.tableView.delegate = self;
     [self.createQuestionView.tableView registerClass:[DBCreateQuestionTitleAndDescriptionTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionTitleAndDescritionTableViewCellIdentifier];
     [self.createQuestionView.tableView registerClass:[DBCreateQuestionAttachmentTableViewCell class] forCellReuseIdentifier:kDBCreateQuestionAttachmentTableViewCellIdentifier];
 }
@@ -84,22 +100,8 @@
 
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
         [self.createQuestionView.tableView beginUpdates];
-        [self.createQuestionDataSource tableView:self.createQuestionView.tableView heightForRowAtIndexPath:indexPath withHeight:[notification.userInfo objectForKey:kCreateQuestionDescriptionTextViewKey]];
+//        [self.createQuestionDataSource tableView:self.createQuestionView.tableView heightForRowAtIndexPath:indexPath withHeight:[notification.userInfo objectForKey:kCreateQuestionDescriptionTextViewKey]];
         [self.createQuestionView.tableView endUpdates];
-    }
-}
-
-- (void)receiveCreateQuestionDescriptionTextDidChangeNotification:(NSNotification *) notification {
-    
-    if ([[notification name] isEqualToString:kCreateQuestionDescriptionTextDidChangeNotification]) {
-        self.questionDescriptionString = [notification.userInfo objectForKey:kCreateQuestionDescriptionTextKey];
-    }
-}
-
-- (void)receiveCreateQuestionTitleTextDidChangeNotification:(NSNotification *) notification {
-    
-    if ([[notification name] isEqualToString:kCreateQuestionTitleTextDidChangeNotification]) {
-        self.questionTitleString = [notification.userInfo objectForKey:kCreateQuestionTitleTextKey];
     }
 }
 
@@ -185,9 +187,9 @@
 
     [self.view showActivityIndicatorViewWithTitle:@"Posting..."];
     
-    if (self.questionTitleString) {
-        [DBQuestion uploadQuestionWithTitle:self.questionTitleString
-                         questionDesciption:self.questionDescriptionString
+    if ([self.createQuestionDataSource questionTitleString]) {
+        [DBQuestion uploadQuestionWithTitle:[self.createQuestionDataSource questionTitleString]
+                         questionDesciption:[self.createQuestionDataSource questionDescriptionString]
                                   dataArray:self.createQuestionDataSource.items
                                  completion:^(DBQuestion *question, NSError *error) {
                                      if (!error) {
@@ -200,8 +202,29 @@
          }];
     } else {
         NSLog(@"Empty input");
+        [self showOKAlertWithTitle:NSLocalizedString(@"You can't upload question without title", @"") message:nil];
         [self.view hideActivityIndicatorView];
     }
+}
+
+- (void)updateButtonDidPress {
+    
+    [self.view showActivityIndicatorViewWithTitle:@"Posting..."];
+    
+    self.question.title = [self.createQuestionDataSource questionTitleString];
+    self.question.questionDescription = [self.createQuestionDataSource questionDescriptionString];
+    self.question.attachments = self.createQuestionDataSource.items;
+    [self.question saveInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
+        if (!error) {
+            //pop new controller with reload
+//            self.createQuestionView.tableView.dataSource = self.createQuestionDataSource;
+//            [self.createQuestionView.tableView reloadData];
+            [self.navigationController popViewControllerAnimated:NO];
+            [self.view hideActivityIndicatorView];
+        } else {
+            [self showAlertWithTitle:NSLocalizedString(@"Something is broken", @"") message:NSLocalizedString(@"Error occured during updating your questin, please try it again later", @"") dismissButtonText:@"OK"];
+        }
+    }];
 }
 
 #pragma mark - Properties
