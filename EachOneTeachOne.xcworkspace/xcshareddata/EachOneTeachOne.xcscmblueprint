@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "96E845B5F131BABD8769ECF664D40F5FB8E5CC3A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "96E845B5F131BABD8769ECF664D40F5FB8E5CC3A" : 0,
+    "4224CC58F86C8F20CBA2681F757B599571C621A4" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "2FCBC644-B1CB-4BE8-ABE8-762399C4F474",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "96E845B5F131BABD8769ECF664D40F5FB8E5CC3A" : "EachOneTeachOne\/",
+    "4224CC58F86C8F20CBA2681F757B599571C621A4" : "ios-material-design\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "EachOneTeachOne",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "EachOneTeachOne.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/moqod\/ios-material-design.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4224CC58F86C8F20CBA2681F757B599571C621A4"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Mika5652\/EachOneTeachOne.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "96E845B5F131BABD8769ECF664D40F5FB8E5CC3A"
+    }
+  ]
+}

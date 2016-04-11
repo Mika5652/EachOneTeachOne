@@ -48,6 +48,7 @@
 		F629708A1C4E8330007174C0 /* DBCreateQuestionView.m in Sources */ = {isa = PBXBuildFile; fileRef = F62970891C4E8330007174C0 /* DBCreateQuestionView.m */; };
 		F629708F1C512D13007174C0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F629708E1C512D13007174C0 /* MediaPlayer.framework */; };
 		F62970911C512D2A007174C0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F62970901C512D2A007174C0 /* MobileCoreServices.framework */; };
+		F660D5C91CBBA78D00EB845D /* UIView+MaterialDesign.m in Sources */ = {isa = PBXBuildFile; fileRef = F660D5C81CBBA78D00EB845D /* UIView+MaterialDesign.m */; };
 		F6B83B5A1C8C3F8D00193641 /* libBolts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B551C8C3F8D00193641 /* libBolts.a */; };
 		F6B83B5B1C8C3F8D00193641 /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B561C8C3F8D00193641 /* libFBSDKCoreKit.a */; };
 		F6B83B5C1C8C3F8D00193641 /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B571C8C3F8D00193641 /* libFBSDKLoginKit.a */; };
@@ -160,6 +161,8 @@
 		F629708D1C4E8DE1007174C0 /* Core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Core.h; sourceTree = "<group>"; };
 		F629708E1C512D13007174C0 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		F62970901C512D2A007174C0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		F660D5C71CBBA78D00EB845D /* UIView+MaterialDesign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+MaterialDesign.h"; path = "../../ios-material-design/MaterialDesign/MaterialDesign/UIView+MaterialDesign.h"; sourceTree = "<group>"; };
+		F660D5C81CBBA78D00EB845D /* UIView+MaterialDesign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+MaterialDesign.m"; path = "../../ios-material-design/MaterialDesign/MaterialDesign/UIView+MaterialDesign.m"; sourceTree = "<group>"; };
 		F6B83B521C8AF6C000193641 /* EachOneTeachOne-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EachOneTeachOne-Bridging-Header.h"; sourceTree = "<group>"; };
 		F6B83B551C8C3F8D00193641 /* libBolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBolts.a; path = "Pods/../build/Debug-iphoneos/libBolts.a"; sourceTree = "<group>"; };
 		F6B83B561C8C3F8D00193641 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
@@ -498,6 +501,8 @@
 		F629708C1C4E8DD6007174C0 /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				F660D5C71CBBA78D00EB845D /* UIView+MaterialDesign.h */,
+				F660D5C81CBBA78D00EB845D /* UIView+MaterialDesign.m */,
 				0995EBBD1C9057750070E968 /* DBActivityIndicatorView.h */,
 				0995EBBE1C9057750070E968 /* DBActivityIndicatorView.m */,
 				0995EBBF1C9057750070E968 /* UIView+ActivityIndicatorView.h */,
@@ -758,6 +763,7 @@
 				F62970811C4E7A9D007174C0 /* DBFeedViewController.m in Sources */,
 				F62970461C4E7159007174C0 /* main.m in Sources */,
 				096D1CBE1CB63FD400380101 /* DBUserPreferencesView.m in Sources */,
+				F660D5C91CBBA78D00EB845D /* UIView+MaterialDesign.m in Sources */,
 				0903E2131C8031AD003FC892 /* DBCreateQuestionDataSource.m in Sources */,
 				092DFE061CA2D2CC005A32B1 /* DBAnswerComment.m in Sources */,
 				09FE3D321C92C2140000E57E /* DBQuestionDetailViewController.m in Sources */,

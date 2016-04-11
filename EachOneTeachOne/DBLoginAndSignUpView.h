@@ -15,6 +15,7 @@ extern NSString * const kLoginAndSignUpViewLoginButtonWasPressedNotification;
 @property UIImageView *logoImageView;
 
 @property UIView *testView;
+@property UIView *loginMaterialEffectView;
 
 @property UITextField *emailTextField;
 @property UITextField *passwordTextField;

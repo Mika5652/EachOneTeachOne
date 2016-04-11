@@ -7,14 +7,15 @@
 //
 #import <PureLayout/PureLayout.h>
 #import <QuartzCore/QuartzCore.h>
+#import <Parse/Parse.h>
 
 #import "DBLoginAndSignUpView.h"
 #import "DBLoginAndSignUpViewController.h"
 
-#import <Parse/Parse.h>
 #import "UIView+ActivityIndicatorView.h"
 #import "UIViewController+DBAlerts.h"
 #import "DBFeedViewController.h"
+#import "UIView+MaterialDesign.h"
 
 @interface DBLoginAndSignUpViewController ()
 
@@ -31,7 +32,7 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.loginAndSignUpView.loginButton addTarget:self action:@selector(loginButtonWasPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.loginAndSignUpView.loginButton addTarget:self action:@selector(loginButtonDidPress:event:) forControlEvents:UIControlEventTouchUpInside];
     [self.loginAndSignUpView.signUpButton addTarget:self action:@selector(signUpButtonWasPressed) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationController.navigationBarHidden = YES;
@@ -68,6 +69,20 @@
 }
 
 #pragma mark - User Action
+
+// Toto je pouze pro rychlejší login přes SignIn button
+- (void)loginButtonDidPress:(UIControl *)sender event:(UIEvent *)event {
+    CGPoint position = [[[event allTouches] anyObject] locationInView:self.loginAndSignUpView];
+    [self.loginAndSignUpView.loginMaterialEffectView mdInflateAnimatedFromPoint:position backgroundColor:[UIColor greenColor] duration:0.8 completion:^{
+        DBFeedViewController *feedViewController = [[DBFeedViewController alloc] init];
+        UINavigationController *navigationController =
+        [[UINavigationController alloc] initWithRootViewController:feedViewController];
+        feedViewController.navigationController.providesPresentationContextTransitionStyle = YES;
+        feedViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self.navigationController presentViewController:navigationController animated:YES completion:nil];
+    }];
+    
+}
 
 - (void)loginButtonWasPressed {
     [PFUser logInWithUsernameInBackground:self.loginAndSignUpView.emailTextField.text password:self.loginAndSignUpView.passwordTextField.text block:^(PFUser * _Nullable user, NSError * _Nullable error) {

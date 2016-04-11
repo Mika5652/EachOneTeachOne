@@ -94,6 +94,11 @@
         self.loginButton.backgroundColor = [UIColor redColor];
         [self.loginButton setTitle:NSLocalizedString(@"Sign In", nil) forState:UIControlStateNormal];
         [self addSubview:self.loginButton];
+        
+        _loginMaterialEffectView = [[UIView alloc] initWithFrame:screenRect];
+        self.loginMaterialEffectView.backgroundColor = [UIColor clearColor];
+        self.loginMaterialEffectView.userInteractionEnabled = NO;
+        [self addSubview:self.loginMaterialEffectView];
 
         self.initialStateConstraintsToDeactivate = [NSLayoutConstraint autoCreateAndInstallConstraints:^{
             [self.logoImageView autoCenterInSuperview];
