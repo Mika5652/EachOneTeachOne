@@ -25,9 +25,17 @@
 @property NSArray *initialStateConstraintsToDeactivate;
 
 @property (nonatomic, strong) UIDynamicAnimator *animator;
-@property UICollisionBehavior *collisionBehavior;
-@property UIGravityBehavior *gravityBehavior;
+@property UICollisionBehavior *leftCollisionBehavior;
+@property UICollisionBehavior *rightCollisionBehavior;
+@property UICollisionBehavior *leftBehindScreenCollisionBehavior;
+@property UICollisionBehavior *rightBehindScreenCollisionBehavior;
+
+@property UIGravityBehavior *signUpGravityBehavior;
+@property UIGravityBehavior *logInGravityBehavior;
+
 @property UIAttachmentBehavior *attachmentBehavior;
+
+@property UIDynamicItemBehavior *dynamicItemBehavior;
 
 @property NSLayoutConstraint *fbButtonConstraint;
 @property NSLayoutConstraint *loginButtonConstraint;
@@ -46,14 +54,17 @@
         CGRect screenRect = [[UIScreen mainScreen] bounds];
         CGFloat screenWidth = screenRect.size.width;
         CGFloat screenHeight = screenRect.size.height;
-        CGFloat collisionBoundary = screenWidth / 4;
-        CGFloat itemWidth = screenWidth / 2;
+        CGFloat leftCollisionBoundary = screenWidth / 5;
+        CGFloat rightCollisionBoundary = (screenWidth / 5) * 4;
+        CGFloat leftBehindScreenBoundary = -screenWidth;
+        CGFloat rightBehindScreenBoundary = 2 * screenWidth;
+        CGFloat itemWidth = leftCollisionBoundary * 3;
         
         _animator = [[UIDynamicAnimator alloc] initWithReferenceView:self];
         
         _logoImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"camera_icon"]];
         [self addSubview:self.logoImageView];
-        
+// SignUp screen items
         _emailTextField = [[UITextField alloc] initWithFrame:CGRectMake(450, 150, itemWidth, 20)];
         self.emailTextField.backgroundColor = [UIColor yellowColor];
         self.emailTextField.placeholder = NSLocalizedString(@"Email", nil);
@@ -72,7 +83,7 @@
         self.againPasswordTextField.placeholder = NSLocalizedString(@"Password again", nil);
         self.againPasswordTextField.layer.cornerRadius = 8;
         [self addSubview:self.againPasswordTextField];
-        
+    
         _signUpButton = [UIButton buttonWithType:UIButtonTypeSystem];
         self.signUpButton.frame = CGRectMake(600, 250, itemWidth, 30);
         self.signUpButton.backgroundColor = [UIColor redColor];
@@ -83,17 +94,21 @@
         _facebookButton = [[FBSDKLoginButton alloc] initWithFrame:CGRectMake(650, 290, itemWidth, 30)];
         [self addSubview:self.facebookButton];
         
+        _mutableAttributedString = [[NSMutableAttributedString alloc] initWithString:NSLocalizedString(@"Do you have account? SignIn", nil)];
+        [self.mutableAttributedString addAttribute:NSForegroundColorAttributeName value:[UIColor blueColor] range:NSMakeRange(19, 8)];
+        
         _underButtonLabel = [[UILabel alloc] initWithFrame:CGRectMake(700, 330, itemWidth, 20)];
-        self.underButtonLabel.text = NSLocalizedString(@"Do you have account?", nil);
+//        self.underButtonLabel.text = NSLocalizedString(@"Do you have account?", nil);
+        self.underButtonLabel.attributedText = self.mutableAttributedString;
         self.underButtonLabel.adjustsFontSizeToFitWidth = 0;
         self.underButtonLabel.minimumScaleFactor = 0;
         [self addSubview:self.underButtonLabel];
         
-        _loginButton = [UIButton buttonWithType:UIButtonTypeSystem];
-        self.loginButton.frame = CGRectMake(750, 360, itemWidth, 20);
-        self.loginButton.backgroundColor = [UIColor redColor];
-        [self.loginButton setTitle:NSLocalizedString(@"Sign In", nil) forState:UIControlStateNormal];
-        [self addSubview:self.loginButton];
+        _signInButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        self.signInButton.frame = CGRectMake(750, 360, itemWidth, 20);
+        self.signInButton.backgroundColor = [UIColor redColor];
+        [self.signInButton setTitle:NSLocalizedString(@"Sign In", nil) forState:UIControlStateNormal];
+        [self addSubview:self.signInButton];
         
         _loginMaterialEffectView = [[UIView alloc] initWithFrame:screenRect];
         self.loginMaterialEffectView.backgroundColor = [UIColor clearColor];
@@ -105,14 +120,61 @@
             [self.logoImageView autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self withMultiplier:0.5];
             [self.logoImageView autoMatchDimension:ALDimensionHeight toDimension:ALDimensionWidth ofView:self withMultiplier:0.5];
         }];
+// LogIn screen items
+        _emailLogInTextField = [[UITextField alloc] initWithFrame:CGRectMake(700, 150, itemWidth, 20)];
+        self.emailLogInTextField.backgroundColor = [UIColor yellowColor];
+        self.emailLogInTextField.placeholder = NSLocalizedString(@"Email login", nil);
+        self.emailLogInTextField.layer.cornerRadius = 8;
+        self.emailLogInTextField.translatesAutoresizingMaskIntoConstraints = YES;
+        [self addSubview:self.emailLogInTextField];
+        
+        _passwordLogInTextField = [[UITextField alloc] initWithFrame:CGRectMake(750, 180, itemWidth, 20)];
+        self.passwordLogInTextField.backgroundColor = [UIColor yellowColor];
+        self.passwordLogInTextField.placeholder = NSLocalizedString(@"Password login", nil);
+        self.passwordLogInTextField.layer.cornerRadius = 8;
+        [self addSubview:self.passwordLogInTextField];
+        
+        _logInButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        self.logInButton.frame = CGRectMake(800, 230, itemWidth, 30);
+        self.logInButton.backgroundColor = [UIColor redColor];
+        self.logInButton.layer.cornerRadius = 8;
+        [self.logInButton setTitle:NSLocalizedString(@"LogIn", nil) forState:UIControlStateNormal];
+        [self addSubview:self.logInButton];
+        
+        _backToSignUpButton = [UIButton buttonWithType:UIButtonTypeSystem];
+        self.backToSignUpButton.frame = CGRectMake(850, 280, itemWidth, 30);
+        self.backToSignUpButton.backgroundColor = [UIColor redColor];
+        self.backToSignUpButton.layer.cornerRadius = 8;
+        [self.backToSignUpButton setTitle:NSLocalizedString(@"Back to SignUP", nil) forState:UIControlStateNormal];
+        [self addSubview:self.backToSignUpButton];
 
 // Initial dynamic behaviors of UIKitDynamics
-        _gravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.emailTextField, self.passwordTextField, self.againPasswordTextField ,self.signUpButton, self.facebookButton, self.underButtonLabel, self.loginButton]];
-        self.gravityBehavior.gravityDirection = CGVectorMake(-1, 0);
-        self.gravityBehavior.magnitude = 1.0;
         
-        _collisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.emailTextField, self.passwordTextField, self.againPasswordTextField ,self.signUpButton, self.facebookButton, self.underButtonLabel, self.loginButton]];
-        [self.collisionBehavior addBoundaryWithIdentifier:@"centerBoundary" fromPoint:CGPointMake(collisionBoundary, 0) toPoint:CGPointMake(collisionBoundary, 2000)];
+// Gravity Behaviors
+        _signUpGravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.emailTextField, self.passwordTextField, self.againPasswordTextField ,self.signUpButton, self.facebookButton, self.underButtonLabel, self.signInButton]];
+        self.signUpGravityBehavior.gravityDirection = CGVectorMake(-1, 0);
+        _logInGravityBehavior = [[UIGravityBehavior alloc] initWithItems:@[self.emailLogInTextField, self.passwordLogInTextField, self.logInButton, self.backToSignUpButton]];
+        
+// LeftCollisionBehavior with boundary invisible on screen
+        _leftCollisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.emailTextField, self.passwordTextField, self.againPasswordTextField ,self.signUpButton, self.facebookButton, self.underButtonLabel, self.signInButton]];
+        [self.leftCollisionBehavior addBoundaryWithIdentifier:@"leftBoundary" fromPoint:CGPointMake(leftCollisionBoundary, 0) toPoint:CGPointMake(leftCollisionBoundary, 2000)];
+        
+// LeftBehindScreenCollisionBehavior with boundary behind the screen
+        _leftBehindScreenCollisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.emailTextField, self.passwordTextField, self.againPasswordTextField ,self.signUpButton, self.facebookButton, self.underButtonLabel, self.signInButton]];
+        [self.leftBehindScreenCollisionBehavior addBoundaryWithIdentifier:@"leftBehindScreenBoundary" fromPoint:CGPointMake(leftBehindScreenBoundary , 0) toPoint:CGPointMake(leftBehindScreenBoundary , 2000)];
+        
+// RightCollisionBehavior with boundary invisible on screen
+        _rightCollisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.emailTextField, self.passwordTextField, self.againPasswordTextField ,self.signUpButton, self.facebookButton, self.underButtonLabel, self.signInButton]];
+        [self.rightCollisionBehavior addBoundaryWithIdentifier:@"rightBoundary" fromPoint:CGPointMake(rightCollisionBoundary, 0) toPoint:CGPointMake(rightCollisionBoundary, 2000)];
+        
+// RightBehindScreenCollisionBehavior with boundary behind the screen
+        _rightBehindScreenCollisionBehavior = [[UICollisionBehavior alloc] initWithItems:@[self.emailLogInTextField, self.passwordLogInTextField, self.logInButton, self.backToSignUpButton]];
+        [self.rightBehindScreenCollisionBehavior addBoundaryWithIdentifier:@"rightBehindScreenBoundary" fromPoint:CGPointMake(rightBehindScreenBoundary , 0) toPoint:CGPointMake(rightBehindScreenBoundary , 2000)];
+        
+// Dynamic item behavior
+        _dynamicItemBehavior = [[UIDynamicItemBehavior alloc] initWithItems:@[self.emailTextField, self.passwordTextField, self.againPasswordTextField ,self.signUpButton, self.facebookButton, self.underButtonLabel, self.signInButton, self.emailLogInTextField, self.passwordLogInTextField, self.logInButton, self.backToSignUpButton]];
+        self.dynamicItemBehavior.density = 0;
+        self.dynamicItemBehavior.allowsRotation = NO;
 //
 //            [self.emailTextField autoAlignAxisToSuperviewAxis:ALAxisVertical];
 //            [self.emailTextField autoMatchDimension:ALDimensionWidth toDimension:ALDimensionWidth ofView:self withMultiplier:0.6];
@@ -180,10 +242,37 @@
 }
 
 - (void)dynamicAnimation {
-    [self.animator addBehavior:self.gravityBehavior];
-    [self.animator addBehavior:self.collisionBehavior];
+    [self.animator addBehavior:self.signUpGravityBehavior];
+    [self.animator addBehavior:self.leftCollisionBehavior];
+    [self.animator addBehavior:self.dynamicItemBehavior];
+    [self.animator addBehavior:self.leftBehindScreenCollisionBehavior];
 }
 
+- (void)removeBehavior {
+    [self.leftCollisionBehavior removeItem:self.emailTextField];
+    [self.leftCollisionBehavior removeItem:self.passwordTextField];
+    [self.leftCollisionBehavior removeItem:self.againPasswordTextField];
+    [self.leftCollisionBehavior removeItem:self.signUpButton];
+    [self.leftCollisionBehavior removeItem:self.facebookButton];
+    [self.leftCollisionBehavior removeItem:self.underButtonLabel];
+    [self.leftCollisionBehavior removeItem:self.signInButton];
+    
+    [self.leftCollisionBehavior addItem:self.emailLogInTextField];
+    [self.leftCollisionBehavior addItem:self.passwordLogInTextField];
+    [self.leftCollisionBehavior addItem:self.logInButton];
+    [self.leftCollisionBehavior addItem:self.backToSignUpButton];
+    
+    [self.animator addBehavior:self.logInGravityBehavior];
+    [self.animator addBehavior:self.signUpGravityBehavior];
+    [self.logInGravityBehavior setGravityDirection:CGVectorMake(-1, 0)];
+    [self.signUpGravityBehavior setGravityDirection:CGVectorMake(-1, 0)];
+}
+
+- (void)backToSignUpBehavior {
+    [self.signUpGravityBehavior setGravityDirection:CGVectorMake(1, 0)];
+    [self.animator addBehavior:self.rightCollisionBehavior];
+    [self.animator addBehavior:self.rightBehindScreenCollisionBehavior];
+}
 
 - (void)updateConstraints {
     if (!self.didSetupConstraints) {

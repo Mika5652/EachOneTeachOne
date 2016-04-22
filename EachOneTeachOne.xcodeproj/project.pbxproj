@@ -49,6 +49,7 @@
 		F629708F1C512D13007174C0 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F629708E1C512D13007174C0 /* MediaPlayer.framework */; };
 		F62970911C512D2A007174C0 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F62970901C512D2A007174C0 /* MobileCoreServices.framework */; };
 		F660D5C91CBBA78D00EB845D /* UIView+MaterialDesign.m in Sources */ = {isa = PBXBuildFile; fileRef = F660D5C81CBBA78D00EB845D /* UIView+MaterialDesign.m */; };
+		F660D5CB1CCA1BD400EB845D /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F660D5CA1CCA1BD400EB845D /* CoreText.framework */; };
 		F6B83B5A1C8C3F8D00193641 /* libBolts.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B551C8C3F8D00193641 /* libBolts.a */; };
 		F6B83B5B1C8C3F8D00193641 /* libFBSDKCoreKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B561C8C3F8D00193641 /* libFBSDKCoreKit.a */; };
 		F6B83B5C1C8C3F8D00193641 /* libFBSDKLoginKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = F6B83B571C8C3F8D00193641 /* libFBSDKLoginKit.a */; };
@@ -163,6 +164,8 @@
 		F62970901C512D2A007174C0 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		F660D5C71CBBA78D00EB845D /* UIView+MaterialDesign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "UIView+MaterialDesign.h"; path = "../../ios-material-design/MaterialDesign/MaterialDesign/UIView+MaterialDesign.h"; sourceTree = "<group>"; };
 		F660D5C81CBBA78D00EB845D /* UIView+MaterialDesign.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = "UIView+MaterialDesign.m"; path = "../../ios-material-design/MaterialDesign/MaterialDesign/UIView+MaterialDesign.m"; sourceTree = "<group>"; };
+		F660D5CA1CCA1BD400EB845D /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		F660D5CC1CCA1DA700EB845D /* libTTTAttributedLabel.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libTTTAttributedLabel.a; path = "../../Library/Developer/Xcode/DerivedData/EachOneTeachOne-bgzwtewzwhfiqcbxtlkincnydfhm/Build/Products/Debug-iphonesimulator/libTTTAttributedLabel.a"; sourceTree = "<group>"; };
 		F6B83B521C8AF6C000193641 /* EachOneTeachOne-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "EachOneTeachOne-Bridging-Header.h"; sourceTree = "<group>"; };
 		F6B83B551C8C3F8D00193641 /* libBolts.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libBolts.a; path = "Pods/../build/Debug-iphoneos/libBolts.a"; sourceTree = "<group>"; };
 		F6B83B561C8C3F8D00193641 /* libFBSDKCoreKit.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libFBSDKCoreKit.a; path = "Pods/../build/Debug-iphoneos/libFBSDKCoreKit.a"; sourceTree = "<group>"; };
@@ -181,6 +184,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F660D5CB1CCA1BD400EB845D /* CoreText.framework in Frameworks */,
 				F6B83B781C9191C400193641 /* SpriteKit.framework in Frameworks */,
 				F6B83B5A1C8C3F8D00193641 /* libBolts.a in Frameworks */,
 				F6B83B5B1C8C3F8D00193641 /* libFBSDKCoreKit.a in Frameworks */,
@@ -337,6 +341,8 @@
 		830E87CD4348C160D2091E25 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F660D5CC1CCA1DA700EB845D /* libTTTAttributedLabel.a */,
+				F660D5CA1CCA1BD400EB845D /* CoreText.framework */,
 				F6B83B771C9191C400193641 /* SpriteKit.framework */,
 				F6B83B551C8C3F8D00193641 /* libBolts.a */,
 				F6B83B561C8C3F8D00193641 /* libFBSDKCoreKit.a */,

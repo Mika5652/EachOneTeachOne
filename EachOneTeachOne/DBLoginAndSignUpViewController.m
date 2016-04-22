@@ -32,8 +32,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.loginAndSignUpView.loginButton addTarget:self action:@selector(loginButtonDidPress:event:) forControlEvents:UIControlEventTouchUpInside];
-    [self.loginAndSignUpView.signUpButton addTarget:self action:@selector(signUpButtonWasPressed) forControlEvents:UIControlEventTouchUpInside];
+    [self.loginAndSignUpView.signInButton addTarget:self action:@selector(loginButtonDidPress:event:) forControlEvents:UIControlEventTouchUpInside];
+    [self.loginAndSignUpView.signUpButton addTarget:self action:@selector(signUpButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
+    [self.loginAndSignUpView.backToSignUpButton addTarget:self action:@selector(backToSignUpButtonDidPress) forControlEvents:UIControlEventTouchUpInside];
     
     self.navigationController.navigationBarHidden = YES;
 }
@@ -69,6 +70,14 @@
 }
 
 #pragma mark - User Action
+
+- (void)signUpButtonDidPress {
+    [self.loginAndSignUpView removeBehavior];
+}
+
+- (void)backToSignUpButtonDidPress {
+    [self.loginAndSignUpView backToSignUpBehavior];
+}
 
 // Toto je pouze pro rychlejší login přes SignIn button
 - (void)loginButtonDidPress:(UIControl *)sender event:(UIEvent *)event {
